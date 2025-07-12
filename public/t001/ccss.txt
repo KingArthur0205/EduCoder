@@ -1,0 +1,3 @@
+Addressing **7.EE.A.2** (Understand that rewriting an expression in different forms in a problem context can shed light on the problem and how the quantities in it are related. For example, a + 0.05a = 1.05a means that "increase by 5%" is the same as "multiply by 1.05.")
+**7.EE.B.4** (Use variables to represent quantities in a real-world or mathematical problem, and construct simple equations and inequalities to solve problems by reasoning about the quantities.)
+**7.RP.A.3** (Use proportional relationships to solve multistep ratio and percent problems. Examples: simple interest, tax, markups and markdowns, gratuities and commissions, fees, percent increase and decrease, percent error.)
