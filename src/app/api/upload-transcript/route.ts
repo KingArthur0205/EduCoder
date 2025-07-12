@@ -109,7 +109,7 @@ async function prepareTranscriptFiles(
     // Add metadata files
     files['speakers.json'] = JSON.stringify(speakerColors, null, 2);
     files['content.json'] = JSON.stringify({
-      "gradeLevel": "Grade Level", 
+      "gradeLevel": "Title...", 
       "lessonGoal": "Lesson Goal"
     }, null, 2);
     files['images.json'] = JSON.stringify({ "images": [] }, null, 2);
@@ -137,7 +137,7 @@ async function prepareTranscriptFiles(
         'transcript.csv': csvContent,
         'speakers.json': JSON.stringify(speakerColors, null, 2),
         'content.json': JSON.stringify({
-          "gradeLevel": "Grade Level", 
+          "gradeLevel": "Title...", 
           "lessonGoal": "Lesson Goal"
         }, null, 2),
         'images.json': JSON.stringify({ "images": [] }, null, 2)
@@ -357,7 +357,7 @@ export async function POST(request: NextRequest) {
         fullCsvContent,
         speakerColors,
         {
-          "gradeLevel": "Grade Level", 
+          "gradeLevel": "Title...", 
           "lessonGoal": "Lesson Goal"
         },
         { "images": [] }

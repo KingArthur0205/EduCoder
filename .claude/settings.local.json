@@ -12,7 +12,10 @@
       "Bash(find:*)",
       "Bash(grep:*)",
       "Bash(npm install:*)",
-      "Bash(awk:*)"
+      "Bash(awk:*)",
+      "Bash(source:*)",
+      "Bash(curl:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }

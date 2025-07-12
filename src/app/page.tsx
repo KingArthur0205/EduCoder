@@ -35,7 +35,7 @@ export default function Home() {
   // Function to extract a meaningful lesson title from content data
   const extractLessonTitle = useCallback((content: Record<string, unknown>, transcriptId: string, settingsTitle?: string): string => {
     // Priority 1: Custom title from settings file
-    if (settingsTitle && settingsTitle.trim() !== '' && settingsTitle !== 'Grade Level') {
+    if (settingsTitle && settingsTitle.trim() !== '' && settingsTitle !== 'Title...') {
       return settingsTitle.trim();
     }
     
@@ -59,7 +59,7 @@ export default function Home() {
     }
     
     // Priority 5: Use grade_level if it exists and is meaningful
-    if (typeof content.grade_level === 'string' && content.grade_level !== 'Grade Level' && content.grade_level.trim() !== '') {
+    if (typeof content.grade_level === 'string' && content.grade_level !== 'Title...' && content.grade_level.trim() !== '') {
       return content.grade_level.trim();
     }
     

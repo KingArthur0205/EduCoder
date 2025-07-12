@@ -2630,7 +2630,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
           console.log('Loaded content from localStorage:', data);
         } else {
           // Default values if no content found anywhere
-          setGradeLevel("Grade Level");
+          setGradeLevel("Title...");
           setLessonGoal("Lesson Goal");
           setAvailableSegment([]);
           console.log('No content found anywhere, using defaults');
@@ -2638,7 +2638,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
       } catch (err) {
         console.error("Error loading content:", err);
         // Set defaults on error
-        setGradeLevel("Grade Level");
+        setGradeLevel("Title...");
         setLessonGoal("Lesson Goal");
         setAvailableSegment([]);
       }
@@ -3143,7 +3143,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
   
   // Set page title based on custom title
   useEffect(() => {
-    if (gradeLevel && gradeLevel !== "Grade Level" && gradeLevel.trim() !== "") {
+    if (gradeLevel && gradeLevel !== "Title..." && gradeLevel.trim() !== "") {
       document.title = `${gradeLevel} - EduCoder`;
     } else {
       document.title = `Transcript t${number} - EduCoder`;
@@ -5213,7 +5213,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
                   </button>
                 )}
             <h2 className="text-xl font-semibold text-gray-800 text-center">
-              {gradeLevel && gradeLevel !== "Grade Level" ? gradeLevel : "Transcript"}
+              {gradeLevel && gradeLevel !== "Title..." ? gradeLevel : "Transcript"}
             </h2>
               </div>
               
