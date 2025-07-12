@@ -61,8 +61,7 @@ interface FeatureColumnsProps {
   rowData: TableRow;
   selectedFeature: string | null;
   annotationData: AnnotationData | null;
-  isStudent: boolean;
-  isSelectable: boolean; // Add this prop
+  isSelectable: boolean; // Only prop needed for determining if row is annotatable
   onFeatureChange: (lineNumber: number, code: string, value: boolean) => void;
   onHoverChange?: (isHovering: boolean) => void;
 }
@@ -816,7 +815,7 @@ export default function TranscriptPage() {
         console.log('No real data loaded, skipping save before unload to prevent overwriting good data');
       }
       
-      // Also save grade level and lesson goal to server before unload
+      // Also save grade level and lesson goal before unload
       try {
         const getResponse = await fetch(`/api/update-content?transcriptId=t${number}`);
         const { content: currentContent } = await getResponse.json();
@@ -827,7 +826,33 @@ export default function TranscriptPage() {
           lessonGoal: lessonGoal
         };
         
-        // Use sendBeacon for reliable saving during page unload
+        // Always save to localStorage first (immediate and reliable)
+        await safeStorageSet(`t${number}-content.json`, JSON.stringify(updatedContent));
+        console.log('Content saved to localStorage before unload');
+        
+        // Also save to settings file before unload (if possible)
+        try {
+          const settingsResponse = await fetch('/api/save-transcript-settings', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              transcriptId: `t${number}`,
+              gradeLevel: gradeLevel,
+              lessonGoal: lessonGoal
+            }),
+          });
+          
+          const settingsResult = await settingsResponse.json();
+          if (settingsResult.success) {
+            console.log('Content saved to settings file before unload');
+          }
+        } catch {
+          // Silently fail for settings file save during unload
+        }
+        
+        // Try to save to server as well
         const payload = JSON.stringify({
           transcriptId: `t${number}`,
           content: updatedContent,
@@ -846,6 +871,42 @@ export default function TranscriptPage() {
         }
       } catch (error) {
         console.error('Error saving content before unload:', error);
+        // Even if server save fails, try to save to localStorage
+        try {
+          const existingContentRaw = await safeStorageGet(`t${number}-content.json`);
+          const existingContent = existingContentRaw ? JSON.parse(existingContentRaw) : {};
+          const updatedContent = {
+            ...existingContent,
+            gradeLevel: gradeLevel,
+            lessonGoal: lessonGoal
+          };
+          await safeStorageSet(`t${number}-content.json`, JSON.stringify(updatedContent));
+          console.log('Content saved to localStorage as fallback before unload');
+          
+          // Also try to save to settings file as fallback
+          try {
+            const settingsResponse = await fetch('/api/save-transcript-settings', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                transcriptId: `t${number}`,
+                gradeLevel: gradeLevel,
+                lessonGoal: lessonGoal
+              }),
+            });
+            
+            const settingsResult = await settingsResponse.json();
+            if (settingsResult.success) {
+              console.log('Content saved to settings file as fallback before unload');
+            }
+          } catch {
+            // Silently fail for settings file save during unload
+          }
+        } catch (storageError) {
+          console.error('Failed to save content to localStorage before unload:', storageError);
+        }
       }
       
       console.log("Data saved before page unload");
@@ -942,13 +1003,83 @@ export default function TranscriptPage() {
           }),
         });
 
+        const result = await response.json();
+        
         if (response.ok) {
           console.log('Grade level and lesson goal auto-saved successfully');
+          
+          // If public folder is not writable, save to localStorage
+          if (result.useLocalStorage || result.localStorageOnly) {
+            try {
+              await safeStorageSet(`t${number}-content.json`, JSON.stringify(updatedContent));
+              console.log('Grade level and lesson goal auto-saved to localStorage');
+            } catch (storageError) {
+              console.error('Failed to auto-save to localStorage:', storageError);
+            }
+          }
+          
+          // Also auto-save to local settings file (silently)
+          try {
+            const settingsResponse = await fetch('/api/save-transcript-settings', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                transcriptId: `t${number}`,
+                gradeLevel: gradeLevel,
+                lessonGoal: lessonGoal
+              }),
+            });
+            
+            const settingsResult = await settingsResponse.json();
+            if (settingsResult.success) {
+              console.log('Grade level and lesson goal auto-saved to local settings file');
+            }
+          } catch {
+            // Silently fail for auto-save to settings file
+          }
         } else {
           console.warn('Failed to auto-save grade level and lesson goal');
         }
       } catch (error) {
         console.error('Error auto-saving grade level and lesson goal:', error);
+        // Try to save to localStorage as fallback
+        try {
+          const existingContentRaw = await safeStorageGet(`t${number}-content.json`);
+          const existingContent = existingContentRaw ? JSON.parse(existingContentRaw) : {};
+          const updatedContent = {
+            ...existingContent,
+            gradeLevel: gradeLevel,
+            lessonGoal: lessonGoal
+          };
+          await safeStorageSet(`t${number}-content.json`, JSON.stringify(updatedContent));
+          console.log('Grade level and lesson goal auto-saved to localStorage as fallback');
+          
+          // Also try to save to settings file as fallback (silently)
+          try {
+            const settingsResponse = await fetch('/api/save-transcript-settings', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                transcriptId: `t${number}`,
+                gradeLevel: gradeLevel,
+                lessonGoal: lessonGoal
+              }),
+            });
+            
+            const settingsResult = await settingsResponse.json();
+            if (settingsResult.success) {
+              console.log('Grade level and lesson goal auto-saved to settings file as fallback');
+            }
+          } catch {
+            // Silently fail for auto-save to settings file
+          }
+        } catch (storageError) {
+          console.error('Failed to auto-save to localStorage fallback:', storageError);
+        }
       }
     };
 
@@ -1172,8 +1303,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
     rowData,
     selectedFeature,
     annotationData,
-    isStudent,
-    isSelectable, // Add this prop
+    isSelectable,
     onFeatureChange,
     onHoverChange
   }: FeatureColumnsProps) => {
@@ -1189,7 +1319,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
           <td key={code} className="px-1 py-1 border border-black border-2 text-center">
               <FeatureToggle
               isChecked={!!rowAnnotations[code]}
-              isDisabled={!isStudent || !isSelectable} // Add isSelectable check
+              isDisabled={!isSelectable} // Use only isSelectable check
               onToggle={(checked) => onFeatureChange(rowData.col2 - 1, code, checked)}
               />
           </td>
@@ -1199,8 +1329,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
   }, (prev, next) => {
     // Simplified comparison focusing only on what matters
     if (prev.selectedFeature !== next.selectedFeature) return false;
-    if (prev.isStudent !== next.isStudent) return false;
-    if (prev.isSelectable !== next.isSelectable) return false; // Add this check
+    if (prev.isSelectable !== next.isSelectable) return false;
     if (!prev.selectedFeature || !next.selectedFeature) return true;
 
     const prevRow = prev.annotationData?.[prev.selectedFeature]?.annotations[prev.rowData.col2 - 1];
@@ -1282,7 +1411,6 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
     rowData,
     category,
     annotationData,
-    isStudent,
     onFeatureChange,
     onOpenAnnotationWindow,
     onOpenDefinition
@@ -1290,7 +1418,6 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
     rowData: TableRow;
     category: string;
     annotationData: AnnotationData | null;
-    isStudent: boolean;
     onFeatureChange: (lineNumber: number, code: string, value: boolean) => void;
     onOpenAnnotationWindow: (rowData: TableRow, category: string, codes: string[], rowAnnotations: {[key: string]: boolean}) => void;
     onOpenDefinition: (code: string, definition: string, example1: string, nonexample1: string, position: { x: number; y: number }) => void;
@@ -1354,7 +1481,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
 
     // Determine background color based on selection state
     const getCellColor = () => {
-      if (!isStudent) return "bg-gray-100";
+      if (!isSelectable) return "bg-gray-100";
       // Removed gray-out for non-selectable rows - keep them with normal colors
       
       // HIGHLIGHT: Show yellow if dropdown has ever been opened (stays yellow permanently)
@@ -1419,7 +1546,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
     };
 
     const handleCellClick = (event: React.MouseEvent) => {
-      if (isStudent && isSelectable) { // Add isSelectable check
+      if (isSelectable) { // Use only isSelectable check
         event.preventDefault();
         event.stopPropagation();
         
@@ -1473,11 +1600,11 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
           onClick={handleCellClick}
           data-cell-key={dropdownKey}
         >
-          {isStudent ? (
+          {isSelectable ? (
             <div className="text-xs font-medium relative">
               {/* Summary display */}
               <div className={yesCount > 0 ? 'text-green-700' : 'text-black'}>
-                {isSelectable ? `${yesCount}/${totalCount}` : '—'}
+                {yesCount}/{totalCount}
                 </div>
               
               {/* Dropdown expansion */}
@@ -1524,7 +1651,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
                               e.stopPropagation();
                             }}
                             className="mr-2 form-checkbox h-3 w-3 text-blue-600"
-                            disabled={!isStudent || !isSelectable}
+                            disabled={!isSelectable}
                           />
                           <button
                             className="text-sky-600 hover:text-sky-800 hover:underline text-left flex-1"
@@ -1569,7 +1696,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
     // Basic props comparison
     if (prevRowData.col2 !== nextRowData.col2 || 
         prevProps.category !== nextProps.category ||
-        prevProps.isStudent !== nextProps.isStudent) {
+        false) { // No longer need to compare isStudent
       return false; // Re-render if basic props changed
     }
     
@@ -1678,7 +1805,6 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
     const hasNote = rowData.noteIds.trim() !== "";
     const isSelectedForLineEdit = editingLinesId !== null && tempSelectedRows.includes(+rowData.col2);
     const isRowSelectableForNote = isTableRowSelectable(rowData);
-    const isStudent = rowData.col5.toLowerCase().includes("student");
     const isSelectedForNoteCreation = isCreatingNote && selectedRows.includes(rowData.col2);
 
     // Search highlighting
@@ -1844,7 +1970,6 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
             rowData={rowData}
             category={category}
             annotationData={annotationData}
-            isStudent={isStudent}
             onFeatureChange={onFeatureChange}
             onOpenAnnotationWindow={handleOpenAnnotationWindow}
             onOpenDefinition={handleOpenDefinition}
@@ -3015,6 +3140,15 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
       setMounted(true);
     }
   }, [loading]); 
+  
+  // Set page title based on custom title
+  useEffect(() => {
+    if (gradeLevel && gradeLevel !== "Grade Level" && gradeLevel.trim() !== "") {
+      document.title = `${gradeLevel} - EduCoder`;
+    } else {
+      document.title = `Transcript t${number} - EduCoder`;
+    }
+  }, [gradeLevel, number]);
   
   const getRowColor = (speaker: string, speakerColors: { [key: string]: string }) => {
     return speakerColors[speaker] || "bg-gray-100"; // Default to gray if speaker is not found
@@ -4277,15 +4411,88 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
         }),
       });
 
+      const result = await response.json();
+      
       if (response.ok) {
         setGradeLevel(tempGradeLevel);
         setIsEditingGradeLevel(false);
+        
+        // If public folder is not writable, save to localStorage
+        if (result.useLocalStorage || result.localStorageOnly) {
+          try {
+            await safeStorageSet(`t${number}-content.json`, JSON.stringify(updatedContent));
+            console.log('Grade level saved to localStorage');
+          } catch (storageError) {
+            console.error('Failed to save to localStorage:', storageError);
+          }
+        }
+        
+        // Also save to local settings file
+        try {
+          const settingsResponse = await fetch('/api/save-transcript-settings', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              transcriptId: `t${number}`,
+              gradeLevel: tempGradeLevel,
+              lessonGoal: lessonGoal // Include current lesson goal
+            }),
+          });
+          
+          const settingsResult = await settingsResponse.json();
+          if (settingsResult.success) {
+            console.log('Grade level saved to local settings file');
+          } else if (!settingsResult.isServerless) {
+            console.warn('Failed to save to settings file:', settingsResult.error);
+          }
+        } catch (settingsError) {
+          console.error('Error saving to settings file:', settingsError);
+        }
       } else {
         alert('Failed to save grade level');
       }
     } catch (error) {
       console.error('Error saving grade level:', error);
-      alert('Failed to save grade level');
+      // Try to save to localStorage as fallback
+      try {
+        const existingContentRaw = await safeStorageGet(`t${number}-content.json`);
+        const existingContent = existingContentRaw ? JSON.parse(existingContentRaw) : {};
+        const updatedContent = {
+          ...existingContent,
+          gradeLevel: tempGradeLevel
+        };
+        await safeStorageSet(`t${number}-content.json`, JSON.stringify(updatedContent));
+        setGradeLevel(tempGradeLevel);
+        setIsEditingGradeLevel(false);
+        console.log('Grade level saved to localStorage as fallback');
+        
+        // Also try to save to settings file as fallback
+        try {
+          const settingsResponse = await fetch('/api/save-transcript-settings', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              transcriptId: `t${number}`,
+              gradeLevel: tempGradeLevel,
+              lessonGoal: lessonGoal
+            }),
+          });
+          
+          const settingsResult = await settingsResponse.json();
+          if (settingsResult.success) {
+            console.log('Grade level saved to local settings file as fallback');
+          }
+        } catch {
+          console.log('Settings file save skipped in fallback mode');
+        }
+      } catch (storageError) {
+        console.error('Failed to save to localStorage fallback:', storageError);
+        alert('Failed to save grade level');
+      }
     }
   };
 
@@ -4312,15 +4519,88 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
         }),
       });
 
+      const result = await response.json();
+      
       if (response.ok) {
         setLessonGoal(tempLessonGoal);
         setIsEditingLessonGoal(false);
+        
+        // If public folder is not writable, save to localStorage
+        if (result.useLocalStorage || result.localStorageOnly) {
+          try {
+            await safeStorageSet(`t${number}-content.json`, JSON.stringify(updatedContent));
+            console.log('Instruction and context saved to localStorage');
+          } catch (storageError) {
+            console.error('Failed to save to localStorage:', storageError);
+          }
+        }
+        
+        // Also save to local settings file
+        try {
+          const settingsResponse = await fetch('/api/save-transcript-settings', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              transcriptId: `t${number}`,
+              gradeLevel: gradeLevel, // Include current grade level
+              lessonGoal: tempLessonGoal
+            }),
+          });
+          
+          const settingsResult = await settingsResponse.json();
+          if (settingsResult.success) {
+            console.log('Instruction and context saved to local settings file');
+          } else if (!settingsResult.isServerless) {
+            console.warn('Failed to save to settings file:', settingsResult.error);
+          }
+        } catch (settingsError) {
+          console.error('Error saving to settings file:', settingsError);
+        }
       } else {
         alert('Failed to save instruction and context');
       }
     } catch (error) {
-              console.error('Error saving instruction and context:', error);
-              alert('Failed to save instruction and context');
+      console.error('Error saving instruction and context:', error);
+      // Try to save to localStorage as fallback
+      try {
+        const existingContentRaw = await safeStorageGet(`t${number}-content.json`);
+        const existingContent = existingContentRaw ? JSON.parse(existingContentRaw) : {};
+        const updatedContent = {
+          ...existingContent,
+          lessonGoal: tempLessonGoal
+        };
+        await safeStorageSet(`t${number}-content.json`, JSON.stringify(updatedContent));
+        setLessonGoal(tempLessonGoal);
+        setIsEditingLessonGoal(false);
+        console.log('Instruction and context saved to localStorage as fallback');
+        
+        // Also try to save to settings file as fallback
+        try {
+          const settingsResponse = await fetch('/api/save-transcript-settings', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              transcriptId: `t${number}`,
+              gradeLevel: gradeLevel,
+              lessonGoal: tempLessonGoal
+            }),
+          });
+          
+          const settingsResult = await settingsResponse.json();
+          if (settingsResult.success) {
+            console.log('Instruction and context saved to local settings file as fallback');
+          }
+        } catch {
+          console.log('Settings file save skipped in fallback mode');
+        }
+      } catch (storageError) {
+        console.error('Failed to save to localStorage fallback:', storageError);
+        alert('Failed to save instruction and context');
+      }
     }
   };
 
@@ -4642,7 +4922,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
         
         <div className="bg-gray-100 border rounded-lg p-4 mb-4">
           <div className="flex justify-between items-start mb-3">
-            {/* Editable Grade Level */}
+            {/* Editable Title */}
             <div className="flex-1 mr-4">
               {isEditingGradeLevel ? (
                 <div className="flex items-center gap-2">
@@ -4651,7 +4931,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
                     value={tempGradeLevel}
                     onChange={(e) => setTempGradeLevel(e.target.value)}
                     className="flex-1 text-xl text-gray-800 font-semibold bg-white border border-gray-300 rounded px-2 py-1"
-                    placeholder="Enter grade level..."
+                    placeholder="Enter title..."
                     autoFocus
                   />
                   <button
@@ -4671,9 +4951,9 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
                 <h1 
                   className="text-xl text-gray-800 font-semibold cursor-pointer hover:bg-gray-200 p-1 rounded"
                   onClick={startEditingGradeLevel}
-                  title="Click to edit grade level"
+                  title="Click to edit title"
                 >
-                  {gradeLevel || "Click to add grade level"}
+                  {gradeLevel || "Click to add title"}
                 </h1>
               )}
             </div>
@@ -4932,7 +5212,9 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
                     Show Prompts
                   </button>
                 )}
-            <h2 className="text-xl font-semibold text-gray-800 text-center">Transcript</h2>
+            <h2 className="text-xl font-semibold text-gray-800 text-center">
+              {gradeLevel && gradeLevel !== "Grade Level" ? gradeLevel : "Transcript"}
+            </h2>
               </div>
               
               <div className="flex items-center gap-2">
@@ -6011,7 +6293,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
                                      <div onClick={(e) => e.stopPropagation()}>
                      <FeatureToggle
                        isChecked={showAnnotationWindow.rowAnnotations[code] || false}
-                       isDisabled={!showAnnotationWindow.rowData.col5.includes("Student") || !isTableRowSelectable(showAnnotationWindow.rowData)}
+                       isDisabled={!isTableRowSelectable(showAnnotationWindow.rowData)}
                        onToggle={(checked) => {
                          handleFeatureChange(showAnnotationWindow.rowData.col2 - 1, code, checked);
                        }}

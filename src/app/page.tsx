@@ -8,7 +8,7 @@ import FeatureDefinitionUpload from "./components/FeatureDefinitionUpload";
 import FeatureDefinitionsViewer from "./components/FeatureDefinitionsViewer";
 import ZipUpload from "./components/ZipUpload";
 import Settings from "./components/Settings";
-import { safeStorageGet } from "./utils/storageUtils";
+import { safeStorageGet, loadTranscriptFromPublic, getAvailablePublicTranscripts, saveTranscriptData, safeStorageSet } from "./utils/storageUtils";
 import * as XLSX from 'xlsx';
 
 interface TranscriptInfo {
@@ -33,18 +33,23 @@ export default function Home() {
   const [downloadingAll, setDownloadingAll] = useState(false);
 
   // Function to extract a meaningful lesson title from content data
-  const extractLessonTitle = useCallback((content: Record<string, unknown>, transcriptId: string): string => {
-    // Priority 1: Custom lesson title
+  const extractLessonTitle = useCallback((content: Record<string, unknown>, transcriptId: string, settingsTitle?: string): string => {
+    // Priority 1: Custom title from settings file
+    if (settingsTitle && settingsTitle.trim() !== '' && settingsTitle !== 'Grade Level') {
+      return settingsTitle.trim();
+    }
+    
+    // Priority 2: Custom lesson title
     if (typeof content.customLessonTitle === 'string' && content.customLessonTitle.trim() !== '') {
       return content.customLessonTitle.trim();
     }
     
-    // Priority 2: Lesson title field (if not default)
+    // Priority 3: Lesson title field (if not default)
     if (typeof content.lesson_title === 'string' && content.lesson_title !== 'Lesson Title' && content.lesson_title.trim() !== '') {
       return content.lesson_title.trim();
     }
     
-    // Priority 3: Extract lesson name from gradeLevel if it contains lesson info
+    // Priority 4: Extract lesson name from gradeLevel if it contains lesson info
     if (typeof content.gradeLevel === 'string') {
       // Look for patterns like "Lesson X: Title" or "Unit X: Title, Lesson Y: Title"
       const lessonMatch = content.gradeLevel.match(/Lesson \d+: ([^,]+)/);
@@ -53,12 +58,12 @@ export default function Home() {
       }
     }
     
-    // Priority 4: Use grade_level if it exists and is meaningful
+    // Priority 5: Use grade_level if it exists and is meaningful
     if (typeof content.grade_level === 'string' && content.grade_level !== 'Grade Level' && content.grade_level.trim() !== '') {
       return content.grade_level.trim();
     }
     
-    // Priority 5: Use activityPurpose if available
+    // Priority 6: Use activityPurpose if available
     if (typeof content.activityPurpose === 'string' && content.activityPurpose.trim() !== '') {
       // Take first line or first 50 characters
       const purpose = content.activityPurpose.trim().split('\n')[0];
@@ -72,12 +77,26 @@ export default function Home() {
   // Function to load content for a single transcript
   const loadTranscriptContent = useCallback(async (transcriptId: string): Promise<string> => {
     try {
+      // Load settings title first
+      let settingsTitle = '';
+      try {
+        const settingsResponse = await fetch(`/api/save-transcript-settings?transcriptId=${transcriptId}`);
+        if (settingsResponse.ok) {
+          const settingsData = await settingsResponse.json();
+          if (settingsData.success && settingsData.settings) {
+            settingsTitle = settingsData.settings.gradeLevel || '';
+          }
+        }
+      } catch {
+        // Settings not available, continue without it
+      }
+      
       // First try API (public folder)
       try {
         const response = await fetch(`/api/transcript/${transcriptId}?file=content.json`);
         if (response.ok) {
           const content = await response.json();
-          return extractLessonTitle(content, transcriptId);
+          return extractLessonTitle(content, transcriptId, settingsTitle);
         }
       } catch {
         // Fallback to localStorage
@@ -87,7 +106,7 @@ export default function Home() {
       const contentData = localStorage.getItem(`${transcriptId}-content.json`);
       if (contentData) {
         const content = JSON.parse(contentData);
-        return extractLessonTitle(content, transcriptId);
+        return extractLessonTitle(content, transcriptId, settingsTitle);
       }
       
       // If no content found, return generic name
@@ -98,8 +117,75 @@ export default function Home() {
     }
   }, [extractLessonTitle]);
 
+  // Function to restore transcripts from public folder to localStorage
+  const restoreTranscriptsFromPublic = useCallback(async () => {
+    try {
+      const publicTranscriptIds = await getAvailablePublicTranscripts();
+      console.log('Found transcripts in public folder for recovery:', publicTranscriptIds);
+
+      for (const transcriptId of publicTranscriptIds) {
+        // Check if transcript already exists in localStorage
+        const existingTranscriptData = await safeStorageGet(`${transcriptId}-transcript.csv`);
+        if (existingTranscriptData) {
+          console.log(`Transcript ${transcriptId} already exists in localStorage, skipping recovery`);
+          continue;
+        }
+
+        console.log(`Restoring transcript ${transcriptId} from public folder...`);
+        
+        // Load transcript data from public folder
+        const publicData = await loadTranscriptFromPublic(transcriptId);
+        if (!publicData) {
+          console.warn(`Failed to load ${transcriptId} from public folder`);
+          continue;
+        }
+
+        // Save to localStorage/IndexedDB
+        if (publicData.csvContent) {
+          await saveTranscriptData(transcriptId, publicData.csvContent);
+        }
+        if (publicData.speakersData) {
+          await safeStorageSet(`${transcriptId}-speakers.json`, JSON.stringify(publicData.speakersData));
+        }
+        if (publicData.contentData) {
+          await safeStorageSet(`${transcriptId}-content.json`, JSON.stringify(publicData.contentData));
+        }
+        if (publicData.imagesData) {
+          await safeStorageSet(`${transcriptId}-images.json`, JSON.stringify(publicData.imagesData));
+        }
+
+        console.log(`Successfully restored transcript ${transcriptId} to localStorage`);
+      }
+
+      // Update localStorage transcript list
+      if (publicTranscriptIds.length > 0) {
+        const existingTranscripts = JSON.parse(localStorage.getItem('transcripts') || '[]');
+        const existingIds = new Set(existingTranscripts.map((t: TranscriptInfo) => t.id));
+        
+        const newTranscripts = publicTranscriptIds
+          .filter(id => !existingIds.has(id))
+          .map(id => ({
+            id,
+            displayName: `Transcript ${id}`,
+            isNew: !['t001', 't044', 't053', 't016', 't019'].includes(id)
+          }));
+
+        if (newTranscripts.length > 0) {
+          const allTranscripts = [...existingTranscripts, ...newTranscripts];
+          localStorage.setItem('transcripts', JSON.stringify(allTranscripts));
+          console.log('Updated localStorage transcript list with recovered transcripts:', newTranscripts);
+        }
+      }
+    } catch (error) {
+      console.error('Error during transcript recovery from public folder:', error);
+    }
+  }, []);
+
   const loadTranscripts = useCallback(async () => {
     try {
+      // First, attempt to restore any transcripts from public folder that aren't in localStorage
+      await restoreTranscriptsFromPublic();
+      
       const allTranscripts: TranscriptInfo[] = [];
       
       // Load transcripts from localStorage
@@ -161,7 +247,7 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  }, [loadTranscriptContent]);
+  }, [loadTranscriptContent, restoreTranscriptsFromPublic]);
 
   // Load visited transcripts from localStorage
   const loadVisitedTranscripts = () => {
@@ -453,8 +539,8 @@ export default function Home() {
         isLocalStorageTranscript = parsedTranscripts.some((t: TranscriptInfo) => t.id === transcriptId);
       }
       
+      // Delete from localStorage if it exists there
       if (isLocalStorageTranscript) {
-        // Delete from localStorage
         if (storedTranscripts) {
           const parsedTranscripts = JSON.parse(storedTranscripts);
           const updatedTranscripts = parsedTranscripts.filter((t: TranscriptInfo) => t.id !== transcriptId);
@@ -479,8 +565,10 @@ export default function Home() {
           
           console.log(`Deleted localStorage transcript ${transcriptId} and related data`);
         }
-      } else {
-        // Try to delete from server (public folder)
+      }
+      
+      // Always try to delete from public folder as well (since we now save to both locations)
+      try {
         const response = await fetch('/api/delete-transcript', {
           method: 'DELETE',
           headers: {
@@ -491,12 +579,15 @@ export default function Home() {
         
         const data = await response.json();
         
-        if (!data.success) {
-          alert(`Error deleting transcript: ${data.error}`);
-          return;
+        if (data.success) {
+          console.log(`Deleted public folder transcript ${transcriptId}`);
+        } else if (response.status !== 404) {
+          // Only show error if it's not a "not found" error (404 is ok, means it wasn't in public folder)
+          console.warn(`Warning: Could not delete from public folder: ${data.error}`);
         }
-        
-        console.log(`Deleted public folder transcript ${transcriptId}`);
+      } catch (publicDeleteError) {
+        console.warn('Warning: Failed to delete transcript from public folder:', publicDeleteError);
+        // Don't fail the entire deletion if public folder cleanup fails
       }
       
       // Refresh transcript list after successful deletion

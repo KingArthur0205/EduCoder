@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as XLSX from 'xlsx';
+import { writeFileSync, mkdirSync } from 'fs';
+import { join } from 'path';
 
 // Function to get the next available transcript number (checking both localStorage and public folder)
 async function getNextTranscriptNumber(existingLocalStorageNumbers: number[] = []): Promise<number> {
@@ -146,6 +148,29 @@ async function prepareTranscriptFiles(
       }
     };
   }
+}
+
+// Function to save transcript to public folder for session recovery
+async function saveToPublicFolder(
+  transcriptId: string,
+  csvContent: string,
+  speakerColors: { [key: string]: string },
+  contentData: Record<string, unknown>,
+  imagesData: Record<string, unknown>
+): Promise<void> {
+  const transcriptDir = join(process.cwd(), 'public', transcriptId);
+  
+  try {
+    mkdirSync(transcriptDir, { recursive: true });
+  } catch {
+    // Directory might already exist, that's okay
+  }
+
+  // Save all transcript files
+  writeFileSync(join(transcriptDir, 'transcript.csv'), csvContent);
+  writeFileSync(join(transcriptDir, 'speakers.json'), JSON.stringify(speakerColors, null, 2));
+  writeFileSync(join(transcriptDir, 'content.json'), JSON.stringify(contentData, null, 2));
+  writeFileSync(join(transcriptDir, 'images.json'), JSON.stringify(imagesData, null, 2));
 }
 
 export async function POST(request: NextRequest) {
@@ -324,6 +349,24 @@ export async function POST(request: NextRequest) {
       file.name,
       speakerColors
     );
+
+    // Also save to public folder for session recovery
+    try {
+      await saveToPublicFolder(
+        transcriptId,
+        fullCsvContent,
+        speakerColors,
+        {
+          "gradeLevel": "Grade Level", 
+          "lessonGoal": "Lesson Goal"
+        },
+        { "images": [] }
+      );
+      console.log(`Transcript ${transcriptId} saved to public folder for session recovery`);
+    } catch (publicSaveError) {
+      console.error('Failed to save to public folder:', publicSaveError);
+      // Don't fail the upload if public save fails - it's for recovery only
+    }
 
     return NextResponse.json({ 
       success: true, 

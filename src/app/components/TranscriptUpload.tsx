@@ -21,6 +21,13 @@ interface TranscriptUploadProps {
   onUploadSuccess?: () => void;
 }
 
+interface FileUploadStatus {
+  file: File;
+  status: 'pending' | 'uploading' | 'success' | 'error';
+  transcriptId?: string;
+  message?: string;
+}
+
 export default function TranscriptUpload({ onUploadSuccess }: TranscriptUploadProps) {
   const [isDragOver, setIsDragOver] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -28,6 +35,8 @@ export default function TranscriptUpload({ onUploadSuccess }: TranscriptUploadPr
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
+  const [multiFileStatus, setMultiFileStatus] = useState<FileUploadStatus[]>([]);
+  const [isMultiUpload, setIsMultiUpload] = useState(false);
   const router = useRouter();
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -157,22 +166,191 @@ export default function TranscriptUpload({ onUploadSuccess }: TranscriptUploadPr
     }
   }, [router, onUploadSuccess]);
 
+  const handleMultipleFileUpload = useCallback(async (files: File[]) => {
+    // Validate all files first
+    const validFiles = files.filter(file => 
+      file.name.endsWith('.xlsx') || file.name.endsWith('.xls') || file.name.endsWith('.csv')
+    );
+
+    if (validFiles.length === 0) {
+      setUploadStatus({
+        type: 'error',
+        message: 'No valid files found. Please select Excel (.xlsx, .xls) or CSV (.csv) files.'
+      });
+      return;
+    }
+
+    if (validFiles.length < files.length) {
+      setUploadStatus({
+        type: 'error',
+        message: `${files.length - validFiles.length} file(s) were skipped. Only Excel (.xlsx, .xls) and CSV (.csv) files are supported.`
+      });
+      return;
+    }
+
+    setIsMultiUpload(true);
+    setIsUploading(true);
+    setUploadStatus({ type: null, message: '' });
+
+    // Initialize file status tracking
+    const initialStatus: FileUploadStatus[] = validFiles.map(file => ({
+      file,
+      status: 'pending'
+    }));
+    setMultiFileStatus(initialStatus);
+
+    let successCount = 0;
+    let errorCount = 0;
+    const uploadedTranscripts: string[] = [];
+
+    // Process files sequentially to avoid conflicts
+    for (let i = 0; i < validFiles.length; i++) {
+      const file = validFiles[i];
+      
+      // Update status to uploading
+      setMultiFileStatus(prev => prev.map((item, index) => 
+        index === i ? { ...item, status: 'uploading' } : item
+      ));
+
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        
+        // Get updated existing transcript numbers for each upload
+        const existingTranscriptsRaw = await safeStorageGet('transcripts');
+        const existingTranscripts = JSON.parse(existingTranscriptsRaw || '[]');
+        const existingNumbers = existingTranscripts.map((t: { id: string }) => {
+          const match = t.id.match(/^t(\d+)$/);
+          return match ? parseInt(match[1], 10) : 0;
+        }).filter((n: number) => n > 0);
+        
+        if (existingNumbers.length > 0) {
+          formData.append('existingNumbers', JSON.stringify(existingNumbers));
+        }
+
+        const response = await fetch('/api/upload-transcript', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const result: UploadResponse = await response.json();
+
+        if (result.success && result.transcriptId) {
+          // Save transcript data to storage
+          if (result.storage && !result.storage.cloudStorage) {
+            // Save individual transcript files using safe storage with chunking support
+            for (const [filename, content] of Object.entries(result.storage.files)) {
+              try {
+                if (filename.includes('transcript') && filename.endsWith('.csv')) {
+                  await saveTranscriptData(result.transcriptId, content as string);
+                } else {
+                  await safeStorageSet(`${result.transcriptId}-${filename}`, content as string);
+                }
+              } catch (error) {
+                console.error(`Failed to save ${filename}:`, error);
+                throw new Error(`Storage failed for ${filename}`);
+              }
+            }
+
+            // Save original file
+            if (result.storage.originalFile) {
+              await safeStorageSet(`${result.transcriptId}-original`, JSON.stringify(result.storage.originalFile));
+            }
+
+            // Update transcripts list in storage
+            const currentTranscriptsRaw = await safeStorageGet('transcripts');
+            const currentTranscripts = JSON.parse(currentTranscriptsRaw || '[]');
+            const updatedTranscripts = [...currentTranscripts, {
+              id: result.transcriptId,
+              displayName: `Transcript ${result.transcriptId}`,
+              isNew: true
+            }];
+            await safeStorageSet('transcripts', JSON.stringify(updatedTranscripts));
+          }
+
+          // Update status to success
+          setMultiFileStatus(prev => prev.map((item, index) => 
+            index === i ? { 
+              ...item, 
+              status: 'success', 
+              transcriptId: result.transcriptId,
+              message: `Uploaded as ${result.transcriptId}`
+            } : item
+          ));
+
+          successCount++;
+          uploadedTranscripts.push(result.transcriptId);
+        } else {
+          throw new Error(result.error || 'Upload failed');
+        }
+      } catch (error) {
+        console.error(`Upload error for ${file.name}:`, error);
+        
+        // Update status to error
+        setMultiFileStatus(prev => prev.map((item, index) => 
+          index === i ? { 
+            ...item, 
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Upload failed'
+          } : item
+        ));
+
+        errorCount++;
+      }
+    }
+
+    setIsUploading(false);
+
+    // Show final status
+    if (successCount > 0) {
+      setUploadStatus({
+        type: 'success',
+        message: `Successfully uploaded ${successCount} transcript(s). ${errorCount > 0 ? `${errorCount} failed.` : 'Refreshing list...'}`
+      });
+      
+      // Call the callback to refresh the transcript list
+      if (onUploadSuccess) {
+        onUploadSuccess();
+      }
+      
+      // Auto-hide multi-upload UI after successful upload
+      setTimeout(() => {
+        setIsMultiUpload(false);
+        setMultiFileStatus([]);
+      }, 3000);
+    } else {
+      setUploadStatus({
+        type: 'error',
+        message: `All ${files.length} file(s) failed to upload. Please check the files and try again.`
+      });
+    }
+  }, [onUploadSuccess]);
+
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(false);
     
     const files = Array.from(e.dataTransfer.files);
     if (files.length > 0) {
-      handleFileUpload(files[0]);
+      if (files.length === 1) {
+        handleFileUpload(files[0]);
+      } else {
+        handleMultipleFileUpload(files);
+      }
     }
-  }, [handleFileUpload]);
+  }, [handleFileUpload, handleMultipleFileUpload]);
 
   const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files.length > 0) {
-      handleFileUpload(files[0]);
+      const fileArray = Array.from(files);
+      if (fileArray.length === 1) {
+        handleFileUpload(fileArray[0]);
+      } else {
+        handleMultipleFileUpload(fileArray);
+      }
     }
-  }, [handleFileUpload]);
+  }, [handleFileUpload, handleMultipleFileUpload]);
 
   return (
     <div className="w-full max-w-md mx-auto">
@@ -194,7 +372,10 @@ export default function TranscriptUpload({ onUploadSuccess }: TranscriptUploadPr
               Upload Transcript
             </h3>
             <p className="text-sm text-gray-500 mb-4">
-              Drag and drop an Excel or CSV file here, or click to select
+              Drag and drop Excel or CSV files here, or click to select
+            </p>
+            <p className="text-xs text-blue-600 mb-2">
+              💡 You can select multiple files for batch upload!
             </p>
             <p className="text-xs text-gray-400 mb-2">
               Required columns: #, Speaker, Dialogue
@@ -218,6 +399,7 @@ export default function TranscriptUpload({ onUploadSuccess }: TranscriptUploadPr
           <input
             type="file"
             accept=".xlsx,.xls,.csv"
+            multiple
             onChange={handleFileSelect}
             className="hidden"
             id="file-upload"
@@ -244,11 +426,57 @@ export default function TranscriptUpload({ onUploadSuccess }: TranscriptUploadPr
                 Uploading...
               </>
             ) : (
-              'Select Excel or CSV File'
+              'Select Excel or CSV Files'
             )}
           </label>
         </div>
       </div>
+
+      {/* Multi-file Upload Progress */}
+      {isMultiUpload && multiFileStatus.length > 0 && (
+        <div className="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-md">
+          <h4 className="text-sm font-medium text-gray-900 mb-3">
+            Upload Progress ({multiFileStatus.filter(f => f.status === 'success').length}/{multiFileStatus.length})
+          </h4>
+          <div className="space-y-2 max-h-60 overflow-y-auto">
+            {multiFileStatus.map((fileStatus, index) => (
+              <div key={index} className="flex items-center justify-between p-2 bg-white rounded border">
+                <div className="flex items-center space-x-2 flex-1 min-w-0">
+                  <div className={`w-3 h-3 rounded-full flex-shrink-0 ${
+                    fileStatus.status === 'pending' ? 'bg-gray-300' :
+                    fileStatus.status === 'uploading' ? 'bg-blue-500 animate-pulse' :
+                    fileStatus.status === 'success' ? 'bg-green-500' :
+                    'bg-red-500'
+                  }`} />
+                  <span className="text-xs text-gray-700 truncate" title={fileStatus.file.name}>
+                    {fileStatus.file.name}
+                  </span>
+                  {fileStatus.status === 'uploading' && (
+                    <svg className="animate-spin w-3 h-3 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  )}
+                </div>
+                <div className="text-xs text-gray-500 flex-shrink-0 ml-2">
+                  {fileStatus.status === 'success' && fileStatus.transcriptId && (
+                    <span className="text-green-600 font-medium">{fileStatus.transcriptId}</span>
+                  )}
+                  {fileStatus.status === 'error' && (
+                    <span className="text-red-600">Failed</span>
+                  )}
+                  {fileStatus.status === 'uploading' && (
+                    <span className="text-blue-600">Uploading...</span>
+                  )}
+                  {fileStatus.status === 'pending' && (
+                    <span className="text-gray-400">Waiting...</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Status Messages */}
       {uploadStatus.type && (
