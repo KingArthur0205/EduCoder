@@ -90,6 +90,113 @@ const parseXLSXAnnotationData = (arrayBuffer: ArrayBuffer, numRows: number, save
     return data;
   };
 
+// Function to parse XLSX and save feature definitions to localStorage
+const parseAndSaveDefaultCodebook = async (arrayBuffer: ArrayBuffer) => {
+  try {
+    console.log('AnnotationPanel: Parsing default Codebook.xlsx to extract feature definitions...');
+    
+    // Import XLSX dynamically to avoid SSR issues
+    const XLSX = await import('xlsx');
+    const workbook = XLSX.read(arrayBuffer);
+    
+    const categories: string[] = [];
+    const features: { [category: string]: Array<{
+      Code?: string;
+      Definition?: string;
+      Example1?: string;
+      example1?: string;
+      Example2?: string;
+      example2?: string;
+      NonExample1?: string;
+      nonexample1?: string;
+      NonExample2?: string;
+      nonexample2?: string;
+    }> } = {};
+    
+    // Process each sheet as a category
+    workbook.SheetNames.forEach((sheetName) => {
+      console.log(`Processing sheet: ${sheetName}`);
+      
+      const worksheet = workbook.Sheets[sheetName];
+      const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as unknown[][];
+      
+      if (jsonData.length === 0) {
+        console.warn(`Empty sheet: ${sheetName} - skipping`);
+        return;
+      }
+      
+      // Get headers from first row
+      const headers = jsonData[0] as string[];
+      console.log(`Headers: ${JSON.stringify(headers)}`);
+      
+      const codeIndex = headers.findIndex(h => h && h.toString().toLowerCase().includes('code'));
+      const definitionIndex = headers.findIndex(h => h && h.toString().toLowerCase().includes('definition'));
+      
+      if (codeIndex === -1) {
+        console.warn(`No 'Code' column found in sheet: ${sheetName} - skipping`);
+        return;
+      }
+      
+      // Extract features from remaining rows
+      const sheetFeatures: Array<{
+        Code?: string;
+        Definition?: string;
+        Example1?: string;
+        example1?: string;
+        Example2?: string;
+        example2?: string;
+        NonExample1?: string;
+        nonexample1?: string;
+        NonExample2?: string;
+        nonexample2?: string;
+      }> = [];
+      
+      for (let i = 1; i < jsonData.length; i++) {
+        const row = jsonData[i] as unknown[];
+        if (row && row[codeIndex] && String(row[codeIndex]).trim() !== '') {
+          const feature: Record<string, string> = {
+            Code: String(row[codeIndex]).trim(),
+            Definition: definitionIndex !== -1 && row[definitionIndex] 
+              ? String(row[definitionIndex]).trim() 
+              : ''
+          };
+          
+          // Add any additional columns
+          headers.forEach((header, index) => {
+            if (index !== codeIndex && index !== definitionIndex && row[index]) {
+              feature[String(header)] = String(row[index]).trim();
+            }
+          });
+          
+          sheetFeatures.push(feature);
+        }
+      }
+      
+      console.log(`Extracted ${sheetFeatures.length} features from sheet "${sheetName}"`);
+      if (sheetFeatures.length > 0) {
+        categories.push(sheetName);
+        features[sheetName] = sheetFeatures;
+      }
+    });
+    
+    // Save feature definitions to localStorage in the expected format
+    const featureDefinitions = {
+      uploadedAt: new Date().toISOString(),
+      originalFileName: 'Codebook.xlsx',
+      isXLSX: true,
+      categories: categories,
+      features: features
+    };
+    
+    localStorage.setItem('feature-definitions', JSON.stringify(featureDefinitions));
+    console.log('AnnotationPanel: Default feature definitions saved to localStorage:', featureDefinitions);
+    console.log('Categories detected:', categories);
+    
+  } catch (error) {
+    console.error('AnnotationPanel: Error parsing default codebook:', error);
+  }
+};
+
 export default function AnnotationPanel({ numRows, onSave, savedData, onAnnotationChange }: Props) {
   const [sheetNames, setSheetNames] = useState<string[]>([]);
   const [selectedSheet, setSelectedSheet] = useState<string | null>(null);
@@ -262,8 +369,38 @@ export default function AnnotationPanel({ numRows, onSave, savedData, onAnnotati
           }
         }
         
+        // Default: try to load Codebook.xlsx from public folder
+        console.log('AnnotationPanel: No localStorage data, loading default Codebook.xlsx...');
+        try {
+          const xlsxResponse = await fetch('/Codebook.xlsx');
+          if (xlsxResponse.ok) {
+            const arrayBuffer = await xlsxResponse.arrayBuffer();
+            
+            // Parse the XLSX to extract feature definitions and save to localStorage
+            await parseAndSaveDefaultCodebook(arrayBuffer);
+            
+            const data = parseXLSXAnnotationData(arrayBuffer, numRows, savedData);
+            console.log('AnnotationPanel: Default Codebook.xlsx loaded successfully');
+            
+            setAnnotationData(data);
+            setSheetNames(Object.keys(data));
+            setLoading(false);
+            setIsGeneratedFromCodebook(true);
+            
+            // If there's saved data, make sure it's reflected in the UI immediately
+            if (savedData) {
+              onAnnotationChange?.(savedData);
+            } else {
+              onAnnotationChange?.(data);
+            }
+            return;
+          }
+        } catch (error) {
+          console.warn('AnnotationPanel: Failed to load default Codebook.xlsx:', error);
+        }
+        
         // Fallback: try API for feature categories
-        console.log('AnnotationPanel: No localStorage data, trying API...');
+        console.log('AnnotationPanel: Default codebook failed, trying API...');
         const categoriesResponse = await fetch('/api/get-feature-categories');
         const categoriesData = await categoriesResponse.json();
         

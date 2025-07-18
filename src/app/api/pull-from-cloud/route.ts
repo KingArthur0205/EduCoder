@@ -5,6 +5,8 @@ interface CloudFile {
   fileName: string;
   userId: string;
   content: ArrayBuffer;
+  uploadedAt?: string;
+  size?: number;
 }
 
 let storage: Storage | null = null;
@@ -62,11 +64,14 @@ export async function GET(request: NextRequest) {
         try {
           const userId = match[1];
           const [fileContent] = await file.download();
+          const [metadata] = await file.getMetadata();
           
           matchingFiles.push({
             fileName: file.name.split('/').pop() || '', // Just the filename
             userId: userId,
-            content: fileContent.buffer as ArrayBuffer
+            content: fileContent.buffer as ArrayBuffer,
+            uploadedAt: metadata.timeCreated,
+            size: typeof metadata.size === 'number' ? metadata.size : 0
           });
         } catch (downloadError) {
           console.error(`Error downloading file ${fileName}:`, downloadError);
@@ -77,19 +82,40 @@ export async function GET(request: NextRequest) {
     if (matchingFiles.length === 0) {
       return NextResponse.json({ 
         files: [], 
+        groupedFiles: {},
         message: `No annotation files found for transcript ${transcriptId}` 
       });
     }
     
+    // Group files by user ID
+    const groupedFiles: Record<string, Array<{
+      fileName: string;
+      uploadedAt?: string;
+      size?: number;
+    }>> = {};
+    matchingFiles.forEach(file => {
+      if (!groupedFiles[file.userId]) {
+        groupedFiles[file.userId] = [];
+      }
+      groupedFiles[file.userId].push({
+        fileName: file.fileName,
+        uploadedAt: file.uploadedAt,
+        size: file.size
+      });
+    });
+
     // Convert ArrayBuffer to Array for JSON serialization
     const filesForResponse = matchingFiles.map(file => ({
       fileName: file.fileName,
       userId: file.userId,
+      uploadedAt: file.uploadedAt,
+      size: file.size,
       content: Array.from(new Uint8Array(file.content))
     }));
     
     return NextResponse.json({ 
       files: filesForResponse,
+      groupedFiles,
       message: `Found ${matchingFiles.length} annotation file(s) for transcript ${transcriptId}`
     });
     

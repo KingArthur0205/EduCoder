@@ -25,10 +25,13 @@ interface TableRow {
   [key: string]: string | number | null;
 }
 
-interface CloudFile {
-  userId: string;
-  fileName: string;
-  content?: unknown[];
+
+interface GroupedCloudFiles {
+  [userId: string]: Array<{
+    fileName: string;
+    uploadedAt: string;
+    size: number;
+  }>;
 }
 
 interface AnnotatorData {
@@ -273,9 +276,10 @@ export default function MultiAnnotatorComparisonView({
     message: string;
   }>({ type: null, message: '' });
   const [pullingFromCloud, setPullingFromCloud] = useState(false);
-  const [availableAnnotators, setAvailableAnnotators] = useState<{userId: string, fileName: string, uploadedAt: string, fileSize: number}[]>([]);
+  const [groupedFiles, setGroupedFiles] = useState<GroupedCloudFiles>({});
   const [showAnnotatorSelection, setShowAnnotatorSelection] = useState(false);
-  const [selectedAnnotators, setSelectedAnnotators] = useState<Set<string>>(new Set());
+  const [selectedTranscripts, setSelectedTranscripts] = useState<Set<string>>(new Set());
+  const [expandedUsers, setExpandedUsers] = useState<Set<string>>(new Set());
   const [showOnlyDifferences, setShowOnlyDifferences] = useState(false);
   const [showUploadSection, setShowUploadSection] = useState(true);
   const [showStatistics, setShowStatistics] = useState(false);
@@ -563,8 +567,10 @@ export default function MultiAnnotatorComparisonView({
                           processedValue = true;
                         } else if (rawValue === 0 || rawValue === '0' || rawValue === false || rawValue === 'false') {
                           processedValue = false;
-                        } else {
+                        } else if (typeof rawValue === 'string' || typeof rawValue === 'number' || typeof rawValue === 'boolean') {
                           processedValue = rawValue;
+                        } else {
+                          processedValue = String(rawValue);
                         }
                         
                         annotatorData.annotations[lineNum][categoryName][name] = processedValue;
@@ -743,21 +749,12 @@ export default function MultiAnnotatorComparisonView({
         throw new Error(result.error || 'Failed to fetch available annotators');
       }
       
-      if (result.files && result.files.length > 0) {
-        const annotators = result.files.map((file: CloudFile) => ({
-          userId: file.userId,
-          fileName: file.fileName,
-          uploadedAt: new Date().toISOString(), // You might want to get this from file metadata
-          fileSize: Array.isArray(file.content) ? file.content.length : 0
-        }));
-        
-        setAvailableAnnotators(annotators);
+      if (result.groupedFiles && Object.keys(result.groupedFiles).length > 0) {
+        setGroupedFiles(result.groupedFiles);
         setShowAnnotatorSelection(true);
       } else {
-        setUploadStatus({ 
-          type: 'error', 
-          message: 'No annotations found in cloud storage for this transcript.' 
-        });
+        // Show popup instead of small text
+        alert(`No annotations found in cloud storage for this transcript.\n\nThis could mean:\n• No one has uploaded annotations for transcript ${transcriptNumber} yet\n• Files may not have the correct naming format\n• There might be an issue with cloud storage connectivity`);
       }
     } catch (error) {
       console.error('Error fetching available annotators:', error);
@@ -770,60 +767,55 @@ export default function MultiAnnotatorComparisonView({
     }
   }, []);
 
-  const handlePullSelectedAnnotators = useCallback(async () => {
-    console.log('>>> HANDLE PULL SELECTED ANNOTATORS START');
-    console.log('  selectedAnnotators:', Array.from(selectedAnnotators));
-    
-    if (selectedAnnotators.size === 0) {
-      setUploadStatus({ type: 'error', message: 'Please select at least one annotator to pull.' });
+
+  const handlePullSelectedTranscripts = useCallback(async () => {
+    if (selectedTranscripts.size === 0) {
+      setUploadStatus({ type: 'error', message: 'Please select at least one transcript to pull.' });
       return;
     }
 
     setPullingFromCloud(true);
     try {
       const transcriptNumber = getTranscriptNumber();
-      console.log('  transcriptNumber:', transcriptNumber);
       
-      // Call API to get available files from cloud storage (we'll filter locally)
-      const response = await fetch(`/api/pull-from-cloud?transcriptId=t${transcriptNumber}`);
-      const result = await response.json();
-      
-      console.log('>>> API RESPONSE:', { ok: response.ok, filesCount: result.files?.length });
-      
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to pull files from cloud');
-      }
-      
-      if (result.files && result.files.length > 0) {
-        // Filter files based on selected annotators
-        const selectedFiles = result.files.filter((file: CloudFile) => 
-          selectedAnnotators.has(file.userId)
-        );
-        
-        console.log('>>> FILTERED FILES:', {
-          totalFiles: result.files?.length,
-          selectedFiles: selectedFiles.length,
-          selectedFileUserIds: selectedFiles.map((f: CloudFile) => f.userId)
-        });
-        
-        if (selectedFiles.length === 0) {
-          setUploadStatus({ type: 'error', message: 'No files found for selected annotators.' });
-          return;
+      // Create a map of userId to selected files
+      const selectedFilesMap: Record<string, string[]> = {};
+      selectedTranscripts.forEach(transcriptKey => {
+        const [userId, ...fileParts] = transcriptKey.split('_');
+        const fileName = fileParts.join('_');
+        if (!selectedFilesMap[userId]) {
+          selectedFilesMap[userId] = [];
         }
-        
-        // Process the selected files
-        const newAnnotators: AnnotatorData[] = [];
-        
-        for (const fileData of selectedFiles) {
+        selectedFilesMap[userId].push(fileName);
+      });
+
+      // Fetch each selected transcript individually
+      const newAnnotators: AnnotatorData[] = [];
+      
+      for (const [userId, fileNames] of Object.entries(selectedFilesMap)) {
+        for (const fileName of fileNames) {
           try {
-            console.log('>>> PROCESSING CLOUD FILE:', fileData.userId);
-            console.log('>>> File content length:', fileData.content.length);
+            const response = await fetch('/api/pull-from-cloud', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                transcriptId: `t${transcriptNumber}`,
+                userId: userId
+              }),
+            });
             
+            const result = await response.json();
+            
+            if (!response.ok) {
+              console.error(`Failed to fetch transcript for user ${userId}:`, result.error);
+              continue;
+            }
+
             // Parse the Excel file content
-            const workbook = XLSX.read(fileData.content, { type: 'array' });
+            const workbook = XLSX.read(result.content, { type: 'array' });
             const sheetNames = workbook.SheetNames;
-            
-            console.log('>>> Cloud Excel sheet names:', sheetNames);
             
             const categories: Record<string, AnnotationCategory> = {};
             
@@ -831,17 +823,9 @@ export default function MultiAnnotatorComparisonView({
             const nonNotesSheets = sheetNames.filter(name => name.toLowerCase() !== 'notes');
             const hasMultipleNonNotesSheets = nonNotesSheets.length > 1;
             
-            console.log('>>> Cloud Excel sheet analysis:', {
-              allSheets: sheetNames,
-              nonNotesSheets,
-              hasMultipleNonNotesSheets,
-              processingMode: hasMultipleNonNotesSheets ? 'multi-sheet' : 'single-sheet'
-            });
-            
             if (hasMultipleNonNotesSheets || nonNotesSheets.length === 1) {
               // Multi-sheet format - each sheet represents a category
               for (const sheetName of sheetNames) {
-                // Skip Notes sheet as it's handled separately
                 if (sheetName.toLowerCase() === 'notes') continue;
                 
                 const worksheet = workbook.Sheets[sheetName];
@@ -852,48 +836,25 @@ export default function MultiAnnotatorComparisonView({
                 const headers = data[0] as string[];
                 const rows = data.slice(1);
                 
-                console.log('>>> Cloud Excel headers:', headers);
-                console.log('>>> First few data rows:', rows.slice(0, 3));
-                
-                // Extract features from headers (skip first 3 columns: Line #, Speaker, Utterance)
                 const featureColumns = headers.slice(3);
-                console.log('>>> Feature columns found:', featureColumns);
-                
                 const annotations: Record<number, Record<string, boolean | number | string>> = {};
                 
                 for (const row of rows) {
-                  // Try multiple ways to get line number
                   let lineNumber = 0;
-                  
-                  // Method 1: Try first column (most common)
                   if (row[0] && !isNaN(parseInt(row[0].toString()))) {
                     lineNumber = parseInt(row[0].toString());
                   }
-                  // Method 2: Look for any column that looks like a line number
-                  else {
-                    for (let j = 0; j < Math.min(row.length, 3); j++) {
-                      if (row[j] && !isNaN(parseInt(row[j].toString()))) {
-                        lineNumber = parseInt(row[j].toString());
-                        break;
-                      }
-                    }
-                  }
                   
-                  console.log('>>> Processing cloud row:', { lineNumber, rowData: row.slice(0, 6) });
                   if (!lineNumber) continue;
                   
-                  // Check if this line is selectable in the main transcript
-                  const tableRow = tableData?.find(tr => tr.col2 === lineNumber || tr.col2 === lineNumber.toString() || parseInt(tr.col2?.toString()) === lineNumber);
+                  const tableRow = tableData?.find(tr => tr.col2 === lineNumber || parseInt(tr.col2?.toString()) === lineNumber);
                   if (tableRow && hasSelectableColumn) {
-                    // Check if row is selectable (inline logic to avoid useCallback issues)
                     if (tableRow.col7 && tableRow.col7.trim() !== '') {
                       const selectableValue = tableRow.col7.toLowerCase().trim();
                       const isSelectable = selectableValue === "true" || selectableValue === "yes" || selectableValue === "1";
-                      if (!isSelectable) {
-                        continue; // Skip non-selectable rows
-                      }
+                      if (!isSelectable) continue;
                     } else {
-                      continue; // Skip rows without selectable value
+                      continue;
                     }
                   }
                   
@@ -926,20 +887,15 @@ export default function MultiAnnotatorComparisonView({
               }
             }
             
-            // Convert categories to the expected format
             const formattedCategories: { [category: string]: { features: string[]; definitions?: { [feature: string]: string } } } = {};
-            
             Object.keys(categories).forEach(categoryName => {
               const category = categories[categoryName];
               formattedCategories[categoryName] = {
                 features: category.codes,
-                definitions: category.definitions ? 
-                  Object.fromEntries(Object.entries(category.definitions).map(([key, value]) => [key, value.Definition])) :
-                  undefined
+                definitions: undefined
               };
             });
-
-            // Restructure annotations to match expected format: annotations[lineNumber][category][feature]
+            
             const restructuredAnnotations: {
               [lineNumber: number]: {
                 [category: string]: {
@@ -958,90 +914,60 @@ export default function MultiAnnotatorComparisonView({
               });
             });
 
-            console.log('Cloud parsing result:', {
-              userId: fileData.userId,
-              sheetNames,
-              categoriesFound: Object.keys(categories),
-              formattedCategories,
-              restructuredAnnotations: Object.keys(restructuredAnnotations),
-              restructuredAnnotationsCount: Object.keys(restructuredAnnotations).length,
-              sampleLineAnnotations: restructuredAnnotations[1] || 'No line 1 annotations',
-              line16Annotations: restructuredAnnotations[16] || 'No line 16 annotations'
-            });
-
-            // Create annotator data object with proper annotation structure
             const annotatorData: AnnotatorData = {
-              annotator_id: fileData.userId || `cloud_user_${Date.now()}`,
-              display_name: fileData.userId || `Cloud Annotator`, // Use nickname instead of filename
+              annotator_id: `${userId}_${fileName}`,
+              display_name: `${userId} - ${fileName.replace('.xlsx', '')}`,
               description: `Pulled from cloud storage`,
-              filename: fileData.userId || 'Unknown', // Use nickname for filename display too
+              filename: fileName,
               upload_date: new Date().toISOString(),
               notes: '',
-              annotations: restructuredAnnotations, // Use the properly restructured annotations
+              annotations: restructuredAnnotations,
               categories: formattedCategories
             };
             
-            console.log('Final annotator data before adding:', {
-              annotator_id: annotatorData.annotator_id,
-              annotationsCount: Object.keys(annotatorData.annotations).length,
-              categoriesCount: Object.keys(annotatorData.categories).length,
-              sampleAnnotations: annotatorData.annotations[16] || 'No line 16',
-              allAnnotationLines: Object.keys(annotatorData.annotations)
-            });
-            
             newAnnotators.push(annotatorData);
           } catch (error) {
-            console.error(`Error processing file ${fileData.fileName}:`, error);
+            console.error(`Error processing transcript ${fileName} for user ${userId}:`, error);
           }
         }
+      }
+
+      if (newAnnotators.length > 0) {
+        setOtherAnnotators(prev => {
+          const combined = [...prev, ...newAnnotators];
+          
+          // Save to localStorage
+          const transcriptNumber = getTranscriptNumber();
+          const storageKey = `annotator-data-${transcriptNumber}`;
+          localStorage.setItem(storageKey, JSON.stringify(combined));
+          
+          return combined;
+        });
         
-        if (newAnnotators.length > 0) {
-          setOtherAnnotators(prev => {
-            const combined = [...prev, ...newAnnotators];
-            
-            // Save to localStorage
-            const transcriptNumber = getTranscriptNumber();
-            const storageKey = `annotator-data-${transcriptNumber}`;
-            localStorage.setItem(storageKey, JSON.stringify(combined));
-            
-            return combined;
-          });
-          
-          setUploadStatus({
-            type: 'success',
-            message: `Successfully pulled ${newAnnotators.length} annotator file(s) from cloud storage.`
-          });
-          
-          // Hide upload section if we have data
-          if (newAnnotators.length > 0) {
-            setShowUploadSection(false);
-          }
-          
-          // Close the selection modal
-          setShowAnnotatorSelection(false);
-          setSelectedAnnotators(new Set());
-        } else {
-          setUploadStatus({
-            type: 'error',
-            message: 'No valid annotation files found in cloud storage.'
-          });
-        }
+        setUploadStatus({
+          type: 'success',
+          message: `Successfully imported ${newAnnotators.length} transcript(s)`
+        });
+        
+        setShowAnnotatorSelection(false);
+        setSelectedTranscripts(new Set());
+        setExpandedUsers(new Set());
       } else {
         setUploadStatus({
           type: 'error',
-          message: 'No annotation files found in cloud storage for this transcript.'
+          message: 'No transcripts could be imported. Please check the file format.'
         });
       }
     } catch (error) {
-      console.error('Error pulling selected annotators:', error);
+      console.error('Error pulling transcripts:', error);
       setUploadStatus({
         type: 'error',
-        message: error instanceof Error ? error.message : 'Failed to pull selected annotators from cloud storage.'
+        message: error instanceof Error ? error.message : 'Failed to pull transcripts'
       });
     } finally {
       setPullingFromCloud(false);
     }
-  }, [selectedAnnotators, tableData, hasSelectableColumn]);
+  }, [selectedTranscripts, tableData, hasSelectableColumn]);
 
   const removeAnnotator = (annotatorId: string) => {
     setOtherAnnotators(prev => {
@@ -1119,7 +1045,7 @@ export default function MultiAnnotatorComparisonView({
     // Find the row index in the tableData array (this is how current user data is indexed)
     // Handle both string and number comparisons
     const rowIndex = tableData.findIndex(row => 
-      row.col2 === lineNumber.toString() || row.col2 === lineNumber || parseInt(row.col2?.toString()) === lineNumber
+      row.col2 === lineNumber || parseInt(row.col2?.toString()) === lineNumber
     );
     console.log('>>> Row lookup for current user:');
     console.log('  lineNumber:', lineNumber);
@@ -1184,7 +1110,7 @@ export default function MultiAnnotatorComparisonView({
     const value = lineAnnotations[category][feature] ?? null;
     console.log('>>> Found annotator value:', { annotatorId: annotator.annotator_id, lineNumber, category, feature, value, type: typeof value });
     return value;
-  }, [tableData, isTableRowSelectable]);
+  }, []);
 
   const getDisplayTableData = () => {
     console.log('>>> GET DISPLAY TABLE DATA - START');
@@ -1204,20 +1130,19 @@ export default function MultiAnnotatorComparisonView({
     // Filter for only annotated rows if requested
     if (showOnlyAnnotated && selectedCategory) {
       filteredData = filteredData.filter(row => {
-        // Don't filter out non-selectable rows - show all rows but display "-" for non-annotatable ones
-        // if (!isTableRowSelectable(row)) return false;
-        
-        // For non-selectable rows, always include them (they'll show "-" in the display)
-        if (!isTableRowSelectable(row)) return true;
+        // Exclude non-selectable rows since they show "-" for all values (not truly annotated)
+        if (!isTableRowSelectable(row)) return false;
         
         const features = getFeaturesForCategory(selectedCategory);
         const shouldInclude = features.some(feature => {
+          // Check if current annotator has actual annotation values (not null/undefined/"-")
           const currentValue = getCurrentAnnotatorValue(row.col2, selectedCategory, feature);
-          const hasCurrentAnnotation = currentValue !== null && currentValue !== undefined;
+          const hasCurrentAnnotation = currentValue !== null && currentValue !== undefined && currentValue !== '-';
           
+          // Check if any other annotator has actual annotation values (not null/undefined/"-")
           const hasOtherAnnotations = otherAnnotators.some(annotator => {
             const value = getAnnotatorValue(annotator, row.col2, selectedCategory, feature);
-            return value !== null && value !== undefined;
+            return value !== null && value !== undefined && value !== '-';
           });
           
           return hasCurrentAnnotation || hasOtherAnnotations;
@@ -1230,8 +1155,8 @@ export default function MultiAnnotatorComparisonView({
     // Only apply differences filter if category is selected
     if (showOnlyDifferences && selectedCategory) {
       filteredData = filteredData.filter(row => {
-        // For non-selectable rows, always include them (they'll show "-" in the display)
-        if (!isTableRowSelectable(row)) return true;
+        // Exclude non-selectable rows since they all show "-" (no real differences)
+        if (!isTableRowSelectable(row)) return false;
         
         const features = getFeaturesForCategory(selectedCategory);
         return features.some(feature => {
@@ -1240,8 +1165,11 @@ export default function MultiAnnotatorComparisonView({
             getAnnotatorValue(annotator, row.col2, selectedCategory, feature)
           );
           
-          const allValues = [currentValue, ...otherValues];
-          return !allValues.every(v => v === allValues[0]);
+          // Only consider actual annotation values (exclude null, undefined, and "-")
+          const allValues = [currentValue, ...otherValues].filter(v => v !== null && v !== undefined && v !== '-');
+          
+          // Only show differences if there are at least 2 actual values and they differ
+          return allValues.length >= 2 && !allValues.every(v => v === allValues[0]);
         });
       });
     }
@@ -1562,7 +1490,7 @@ export default function MultiAnnotatorComparisonView({
     console.log('>>> DISPLAY TABLE DATA:');
     console.log('  length:', displayTableData.length);
     console.log('  lineNumbers:', displayTableData.map(row => row.col2));
-    console.log('  hasLine16:', displayTableData.some(row => row.col2 === '16'));
+    console.log('  hasLine16:', displayTableData.some(row => row.col2 === 16));
   }, [displayTableData]);
 
   return (
@@ -2189,7 +2117,7 @@ export default function MultiAnnotatorComparisonView({
                   </thead>
                   <tbody>
                     {displayTableData.map((row, index) => {
-                      if (row.col2 === '16' || parseInt(row.col2) === 16) {
+                      if (parseInt(row.col2?.toString()) === 16) {
                         console.log('>>> FOUND LINE 16 in displayTableData:', { index, col2: row.col2, type: typeof row.col2, row });
                       }
                       const isSelectable = isTableRowSelectable(row);
@@ -2293,12 +2221,12 @@ export default function MultiAnnotatorComparisonView({
                           {/* Feature columns with stacked annotations */}
                           {selectedCategory && getFeaturesForCategory(selectedCategory).map(feature => {
                             // Convert col2 to number for proper line number handling
-                            const lineNumber = parseInt(row.col2);
+                            const lineNumber = typeof row.col2 === 'number' ? row.col2 : parseInt(String(row.col2) || '0');
                             
                             // For non-selectable rows, show "-" instead of annotation values
                             const currentValue = isSelectable ? getCurrentAnnotatorValue(lineNumber, selectedCategory, feature) : '-';
                             
-                            const otherValues = otherAnnotators.map((annotator, index) => {
+                            const otherValues = otherAnnotators.map((annotator) => {
                               const value = isSelectable ? getAnnotatorValue(annotator, lineNumber, selectedCategory, feature) : '-';
                               return value;
                             });
@@ -2582,32 +2510,68 @@ export default function MultiAnnotatorComparisonView({
               Choose which annotators&apos; work you want to pull from cloud storage for comparison:
             </p>
             
-            {availableAnnotators.length > 0 ? (
-              <div className="space-y-3 mb-6">
-                {availableAnnotators.map((annotator, index) => (
-                  <label key={index} className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={selectedAnnotators.has(annotator.userId)}
-                      onChange={(e) => {
-                        const newSelected = new Set(selectedAnnotators);
-                        if (e.target.checked) {
-                          newSelected.add(annotator.userId);
+            {Object.keys(groupedFiles).length > 0 ? (
+              <div className="space-y-4 mb-6">
+                {Object.entries(groupedFiles).map(([userId, transcripts]) => (
+                  <div key={userId} className="border border-gray-200 rounded-lg">
+                    <button
+                      onClick={() => {
+                        const newExpanded = new Set(expandedUsers);
+                        if (newExpanded.has(userId)) {
+                          newExpanded.delete(userId);
                         } else {
-                          newSelected.delete(annotator.userId);
+                          newExpanded.add(userId);
                         }
-                        setSelectedAnnotators(newSelected);
+                        setExpandedUsers(newExpanded);
                       }}
-                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                    />
-                    <div className="flex-1">
-                      <div className="font-medium text-gray-900">{annotator.userId}</div>
-                      <div className="text-sm text-gray-600">{annotator.fileName}</div>
-                      <div className="text-xs text-gray-500">
-                        Size: {Math.round(annotator.fileSize / 1024)} KB
+                      className="w-full flex items-center justify-between p-3 text-left hover:bg-gray-50 transition-colors"
+                    >
+                      <div>
+                        <div className="font-medium text-gray-900">{userId}</div>
+                        <div className="text-sm text-gray-600">{transcripts.length} transcript{transcripts.length !== 1 ? 's' : ''}</div>
                       </div>
-                    </div>
-                  </label>
+                      <svg
+                        className={`w-5 h-5 transition-transform ${expandedUsers.has(userId) ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    
+                    {expandedUsers.has(userId) && (
+                      <div className="border-t border-gray-200 p-3 space-y-2">
+                        {transcripts.map((transcript, index) => {
+                          const transcriptKey = `${userId}_${transcript.fileName}`;
+                          return (
+                            <label key={index} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={selectedTranscripts.has(transcriptKey)}
+                                onChange={(e) => {
+                                  const newSelected = new Set(selectedTranscripts);
+                                  if (e.target.checked) {
+                                    newSelected.add(transcriptKey);
+                                  } else {
+                                    newSelected.delete(transcriptKey);
+                                  }
+                                  setSelectedTranscripts(newSelected);
+                                }}
+                                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                              />
+                              <div className="flex-1">
+                                <div className="font-medium text-gray-900 text-sm">{transcript.fileName}</div>
+                                <div className="text-xs text-gray-600">
+                                  {new Date(transcript.uploadedAt).toLocaleDateString()} • {Math.round(transcript.size / 1024)} KB
+                                </div>
+                              </div>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
                 ))}
               </div>
             ) : (
@@ -2620,16 +2584,16 @@ export default function MultiAnnotatorComparisonView({
               <button
                 onClick={() => {
                   setShowAnnotatorSelection(false);
-                  setSelectedAnnotators(new Set());
-                  setAvailableAnnotators([]);
+                  setSelectedTranscripts(new Set());
+                  setExpandedUsers(new Set());
                 }}
                 className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50 transition"
               >
                 Cancel
               </button>
               <button
-                onClick={handlePullSelectedAnnotators}
-                disabled={selectedAnnotators.size === 0 || pullingFromCloud}
+                onClick={handlePullSelectedTranscripts}
+                disabled={selectedTranscripts.size === 0 || pullingFromCloud}
                 className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
                 {pullingFromCloud ? (
@@ -2640,7 +2604,7 @@ export default function MultiAnnotatorComparisonView({
                     Pulling...
                   </>
                 ) : (
-                  `Pull ${selectedAnnotators.size} Annotator${selectedAnnotators.size !== 1 ? 's' : ''}`
+                  `Pull ${selectedTranscripts.size} Transcript${selectedTranscripts.size !== 1 ? 's' : ''}`
                 )}
               </button>
             </div>

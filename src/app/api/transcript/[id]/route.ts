@@ -48,11 +48,15 @@ export async function GET(
         } else {
           // For text files, return as string
           const fileContent = fs.readFileSync(filePath, 'utf8');
+          
+          // Disable caching for content.json files to ensure real-time updates
+          const cacheControl = file === 'content.json' ? 'no-cache, no-store, must-revalidate' : 'public, max-age=300';
+          
           return new NextResponse(fileContent, {
             status: 200,
             headers: {
               'Content-Type': contentType,
-              'Cache-Control': 'public, max-age=300' // Cache for 5 minutes
+              'Cache-Control': cacheControl
             }
           });
         }

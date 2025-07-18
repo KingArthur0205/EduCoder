@@ -78,11 +78,8 @@ export async function GET(request: NextRequest) {
     } catch {
       // Return default content if file doesn't exist
       const defaultContent = {
-        "grade_level": "Title...",
-        "lesson_title": "Lesson Title",
-        "learning_goals": "Learning Goals",
-        "materials": "Materials",
-        "instructions": "Instructions"
+        "title": "Title",
+        "instruction": "Instruction"
       };
       return NextResponse.json({ 
         success: true, 

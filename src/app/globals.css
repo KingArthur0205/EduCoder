@@ -28,3 +28,18 @@ body {
     rgb(var(--background-start-rgb));
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
+
+/* Ensure all input elements have black text */
+input, textarea, select {
+  color: #000000 !important;
+}
+
+/* Ensure placeholder text is visible but distinct */
+input::placeholder, textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Ensure option elements also have black text */
+option {
+  color: #000000 !important;
+}

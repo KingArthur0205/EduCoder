@@ -88,9 +88,9 @@ export default function TranscriptPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [storageWarning, setStorageWarning] = useState<string | null>(null);
-  const [gradeLevel, setGradeLevel] = useState("");
-  const [lessonGoal, setLessonGoal] = useState("");
-  const [showLessonGoal, setShowLessonGoal] = useState(true);
+  const [title, setTitle] = useState("");
+  const [instruction, setInstruction] = useState("");
+  const [showInstruction, setShowInstruction] = useState(true);
   const [speakerColors, setSpeakerColors] = useState<{ [key: string]: string }>({});
   const [availableSegment, setAvailableSegment] = useState<string []>([]);
   const [whichSegment, setWhichSegment] = useState<string>("full_transcript");
@@ -146,10 +146,10 @@ export default function TranscriptPage() {
   const [isDraggingRight, setIsDraggingRight] = useState(false);
 
   // Add state for in-place editing
-  const [isEditingGradeLevel, setIsEditingGradeLevel] = useState(false);
-  const [isEditingLessonGoal, setIsEditingLessonGoal] = useState(false);
-  const [tempGradeLevel, setTempGradeLevel] = useState("");
-  const [tempLessonGoal, setTempLessonGoal] = useState("");
+  const [isEditingTitle, setIsEditingTitle] = useState(false);
+  const [isEditingInstruction, setIsEditingInstruction] = useState(false);
+  const [tempTitle, setTempTitle] = useState("");
+  const [tempInstruction, setTempInstruction] = useState("");
 
   // Add state for LLM cell popup
   const [showLLMCellPopup, setShowLLMCellPopup] = useState<{
@@ -822,8 +822,8 @@ export default function TranscriptPage() {
         
         const updatedContent = {
           ...currentContent,
-          gradeLevel: gradeLevel,
-          lessonGoal: lessonGoal
+          title: title,
+          instruction: instruction
         };
         
         // Always save to localStorage first (immediate and reliable)
@@ -839,8 +839,8 @@ export default function TranscriptPage() {
             },
             body: JSON.stringify({
               transcriptId: `t${number}`,
-              gradeLevel: gradeLevel,
-              lessonGoal: lessonGoal
+              title: title,
+              instruction: instruction
             }),
           });
           
@@ -877,8 +877,8 @@ export default function TranscriptPage() {
           const existingContent = existingContentRaw ? JSON.parse(existingContentRaw) : {};
           const updatedContent = {
             ...existingContent,
-            gradeLevel: gradeLevel,
-            lessonGoal: lessonGoal
+            title: title,
+            instruction: instruction
           };
           await safeStorageSet(`t${number}-content.json`, JSON.stringify(updatedContent));
           console.log('Content saved to localStorage as fallback before unload');
@@ -892,8 +892,8 @@ export default function TranscriptPage() {
               },
               body: JSON.stringify({
                 transcriptId: `t${number}`,
-                gradeLevel: gradeLevel,
-                lessonGoal: lessonGoal
+                title: title,
+                instruction: instruction
               }),
             });
             
@@ -917,7 +917,7 @@ export default function TranscriptPage() {
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
-  }, [tableData, notes, nextNoteId, availableIds, annotationData, gradeLevel, lessonGoal, hasSegmentColumn, hasSelectableColumn, extraColumns, extraColumnVisibility, number]);
+  }, [tableData, notes, nextNoteId, availableIds, annotationData, title, instruction, hasSegmentColumn, hasSelectableColumn, extraColumns, extraColumnVisibility, number]);
 
   // Also save data when component unmounts (when navigating to other pages)
   useEffect(() => {
@@ -988,8 +988,8 @@ export default function TranscriptPage() {
         // Update with current values
         const updatedContent = {
           ...currentContent,
-          gradeLevel: gradeLevel,
-          lessonGoal: lessonGoal
+          title: title,
+          instruction: instruction
         };
         
         const response = await fetch('/api/update-content', {
@@ -1027,8 +1027,8 @@ export default function TranscriptPage() {
               },
               body: JSON.stringify({
                 transcriptId: `t${number}`,
-                gradeLevel: gradeLevel,
-                lessonGoal: lessonGoal
+                title: title,
+                instruction: instruction
               }),
             });
             
@@ -1050,8 +1050,8 @@ export default function TranscriptPage() {
           const existingContent = existingContentRaw ? JSON.parse(existingContentRaw) : {};
           const updatedContent = {
             ...existingContent,
-            gradeLevel: gradeLevel,
-            lessonGoal: lessonGoal
+            title: title,
+            instruction: instruction
           };
           await safeStorageSet(`t${number}-content.json`, JSON.stringify(updatedContent));
           console.log('Grade level and lesson goal auto-saved to localStorage as fallback');
@@ -1065,8 +1065,8 @@ export default function TranscriptPage() {
               },
               body: JSON.stringify({
                 transcriptId: `t${number}`,
-                gradeLevel: gradeLevel,
-                lessonGoal: lessonGoal
+                title: title,
+                instruction: instruction
               }),
             });
             
@@ -1087,7 +1087,7 @@ export default function TranscriptPage() {
     const timeoutId = setTimeout(saveContentToServer, 2000); // Save 2 seconds after last change
     
     return () => clearTimeout(timeoutId);
-  }, [gradeLevel, lessonGoal, number, mounted]);
+  }, [title, instruction, number, mounted]);
 
   // Auto-save annotation data whenever it changes
   useEffect(() => {
@@ -2610,8 +2610,8 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
           const response = await fetch(`/api/transcript/t${number}?file=content.json`);
           if (response.ok) {
             const data = await response.json();
-            setGradeLevel(data.gradeLevel);
-            setLessonGoal(data.lessonGoal || "");
+            setTitle(data.title || data.gradeLevel || "");
+            setInstruction(data.instruction || data.lessonGoal || "");
             setAvailableSegment(data.segments || []);
             console.log('Loaded content from public folder:', data);
             return;
@@ -2624,22 +2624,22 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
         const contentData = await safeStorageGet(`t${number}-content.json`);
         if (contentData) {
           const data = JSON.parse(contentData);
-          setGradeLevel(data.gradeLevel);
-          setLessonGoal(data.lessonGoal || "");
+          setTitle(data.title || data.gradeLevel || "");
+          setInstruction(data.instruction || data.lessonGoal || "");
           setAvailableSegment(data.segments || []);
           console.log('Loaded content from localStorage:', data);
         } else {
           // Default values if no content found anywhere
-          setGradeLevel("Title...");
-          setLessonGoal("Lesson Goal");
+          setTitle("Title");
+          setInstruction("Instruction");
           setAvailableSegment([]);
           console.log('No content found anywhere, using defaults');
         }
       } catch (err) {
         console.error("Error loading content:", err);
         // Set defaults on error
-        setGradeLevel("Title...");
-        setLessonGoal("Lesson Goal");
+        setTitle("Title");
+        setInstruction("Instruction");
         setAvailableSegment([]);
       }
     };
@@ -3143,12 +3143,12 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
   
   // Set page title based on custom title
   useEffect(() => {
-    if (gradeLevel && gradeLevel !== "Title..." && gradeLevel.trim() !== "") {
-      document.title = `${gradeLevel} - EduCoder`;
+    if (title && title !== "Title..." && title.trim() !== "") {
+      document.title = `${title} - EduCoder`;
     } else {
       document.title = `Transcript t${number} - EduCoder`;
     }
-  }, [gradeLevel, number]);
+  }, [title, number]);
   
   const getRowColor = (speaker: string, speakerColors: { [key: string]: string }) => {
     return speakerColors[speaker] || "bg-gray-100"; // Default to gray if speaker is not found
@@ -4378,26 +4378,26 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
   };
 
   // Functions for in-place content editing
-  const startEditingGradeLevel = () => {
-    setTempGradeLevel(gradeLevel);
-    setIsEditingGradeLevel(true);
+  const startEditingTitle = () => {
+    setTempTitle(title);
+    setIsEditingTitle(true);
   };
 
-  const startEditingLessonGoal = () => {
-    setTempLessonGoal(lessonGoal);
-    setIsEditingLessonGoal(true);
+  const startEditingInstruction = () => {
+    setTempInstruction(instruction);
+    setIsEditingInstruction(true);
   };
 
-  const saveGradeLevel = async () => {
+  const saveTitle = async () => {
     try {
       // Get current content first
       const getResponse = await fetch(`/api/update-content?transcriptId=t${number}`);
       const { content: currentContent } = await getResponse.json();
       
-      // Update with new grade level
+      // Update with new title
       const updatedContent = {
         ...currentContent,
-        gradeLevel: tempGradeLevel
+        title: tempTitle
       };
       
       const response = await fetch('/api/update-content', {
@@ -4414,8 +4414,8 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
       const result = await response.json();
       
       if (response.ok) {
-        setGradeLevel(tempGradeLevel);
-        setIsEditingGradeLevel(false);
+        setTitle(tempTitle);
+        setIsEditingTitle(false);
         
         // If public folder is not writable, save to localStorage
         if (result.useLocalStorage || result.localStorageOnly) {
@@ -4436,8 +4436,8 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
             },
             body: JSON.stringify({
               transcriptId: `t${number}`,
-              gradeLevel: tempGradeLevel,
-              lessonGoal: lessonGoal // Include current lesson goal
+              title: tempTitle,
+              instruction: instruction // Include current lesson goal
             }),
           });
           
@@ -4461,11 +4461,11 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
         const existingContent = existingContentRaw ? JSON.parse(existingContentRaw) : {};
         const updatedContent = {
           ...existingContent,
-          gradeLevel: tempGradeLevel
+          title: tempTitle
         };
         await safeStorageSet(`t${number}-content.json`, JSON.stringify(updatedContent));
-        setGradeLevel(tempGradeLevel);
-        setIsEditingGradeLevel(false);
+        setTitle(tempTitle);
+        setIsEditingTitle(false);
         console.log('Grade level saved to localStorage as fallback');
         
         // Also try to save to settings file as fallback
@@ -4477,8 +4477,8 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
             },
             body: JSON.stringify({
               transcriptId: `t${number}`,
-              gradeLevel: tempGradeLevel,
-              lessonGoal: lessonGoal
+              title: tempTitle,
+              instruction: instruction
             }),
           });
           
@@ -4496,7 +4496,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
     }
   };
 
-  const saveLessonGoal = async () => {
+  const saveInstruction = async () => {
     try {
       // Get current content first
       const getResponse = await fetch(`/api/update-content?transcriptId=t${number}`);
@@ -4505,7 +4505,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
       // Update with new instruction and context
       const updatedContent = {
         ...currentContent,
-        lessonGoal: tempLessonGoal
+        instruction: tempInstruction
       };
       
       const response = await fetch('/api/update-content', {
@@ -4522,8 +4522,8 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
       const result = await response.json();
       
       if (response.ok) {
-        setLessonGoal(tempLessonGoal);
-        setIsEditingLessonGoal(false);
+        setInstruction(tempInstruction);
+        setIsEditingInstruction(false);
         
         // If public folder is not writable, save to localStorage
         if (result.useLocalStorage || result.localStorageOnly) {
@@ -4544,8 +4544,8 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
             },
             body: JSON.stringify({
               transcriptId: `t${number}`,
-              gradeLevel: gradeLevel, // Include current grade level
-              lessonGoal: tempLessonGoal
+              title: title, // Include current grade level
+              instruction: tempInstruction
             }),
           });
           
@@ -4569,11 +4569,11 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
         const existingContent = existingContentRaw ? JSON.parse(existingContentRaw) : {};
         const updatedContent = {
           ...existingContent,
-          lessonGoal: tempLessonGoal
+          instruction: tempInstruction
         };
         await safeStorageSet(`t${number}-content.json`, JSON.stringify(updatedContent));
-        setLessonGoal(tempLessonGoal);
-        setIsEditingLessonGoal(false);
+        setInstruction(tempInstruction);
+        setIsEditingInstruction(false);
         console.log('Instruction and context saved to localStorage as fallback');
         
         // Also try to save to settings file as fallback
@@ -4585,8 +4585,8 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
             },
             body: JSON.stringify({
               transcriptId: `t${number}`,
-              gradeLevel: gradeLevel,
-              lessonGoal: tempLessonGoal
+              title: title,
+              instruction: tempInstruction
             }),
           });
           
@@ -4604,14 +4604,14 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
     }
   };
 
-  const cancelEditingGradeLevel = () => {
-    setTempGradeLevel("");
-    setIsEditingGradeLevel(false);
+  const cancelEditingTitle = () => {
+    setTempTitle("");
+    setIsEditingTitle(false);
   };
 
-  const cancelEditingLessonGoal = () => {
-    setTempLessonGoal("");
-    setIsEditingLessonGoal(false);
+  const cancelEditingInstruction = () => {
+    setTempInstruction("");
+    setIsEditingInstruction(false);
   };
 
   // Handle click outside to close hidden columns dropdown
@@ -4924,24 +4924,24 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
           <div className="flex justify-between items-start mb-3">
             {/* Editable Title */}
             <div className="flex-1 mr-4">
-              {isEditingGradeLevel ? (
+              {isEditingTitle ? (
                 <div className="flex items-center gap-2">
                   <input
                     type="text"
-                    value={tempGradeLevel}
-                    onChange={(e) => setTempGradeLevel(e.target.value)}
+                    value={tempTitle}
+                    onChange={(e) => setTempTitle(e.target.value)}
                     className="flex-1 text-xl text-gray-800 font-semibold bg-white border border-gray-300 rounded px-2 py-1"
                     placeholder="Enter title..."
                     autoFocus
                   />
                   <button
-                    onClick={saveGradeLevel}
+                    onClick={saveTitle}
                     className="px-2 py-1 bg-green-500 text-white rounded text-sm hover:bg-green-600"
                   >
                     Save
                   </button>
                   <button
-                    onClick={cancelEditingGradeLevel}
+                    onClick={cancelEditingTitle}
                     className="px-2 py-1 bg-gray-500 text-white rounded text-sm hover:bg-gray-600"
                   >
                     Cancel
@@ -4950,20 +4950,20 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
               ) : (
                 <h1 
                   className="text-xl text-gray-800 font-semibold cursor-pointer hover:bg-gray-200 p-1 rounded"
-                  onClick={startEditingGradeLevel}
+                  onClick={startEditingTitle}
                   title="Click to edit title"
                 >
-                  {gradeLevel || "Click to add title"}
+                  {title || "Click to add title"}
                 </h1>
               )}
             </div>
             
             <button
-              onClick={() => setShowLessonGoal(!showLessonGoal)}
+              onClick={() => setShowInstruction(!showInstruction)}
               className="px-3 py-1 text-sm bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-md transition-colors flex items-center gap-1"
-              title={showLessonGoal ? "Hide lesson details" : "Show lesson details"}
+              title={showInstruction ? "Hide lesson details" : "Show lesson details"}
             >
-              {showLessonGoal ? (
+              {showInstruction ? (
                 <>
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/>
@@ -4981,29 +4981,29 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
             </button>
         </div>
           
-          {showLessonGoal && (
+          {showInstruction && (
             <>
                               {/* Editable Instruction and Context */}
               <div>
                 <h2 className="text-lg text-gray-800 font-medium mb-2">Instruction and Context:</h2>
-                {isEditingLessonGoal ? (
+                {isEditingInstruction ? (
                   <div className="flex flex-col gap-2">
                     <textarea
-                      value={tempLessonGoal}
-                      onChange={(e) => setTempLessonGoal(e.target.value)}
+                      value={tempInstruction}
+                      onChange={(e) => setTempInstruction(e.target.value)}
                       className="w-full text-gray-700 leading-relaxed bg-white border border-gray-300 rounded px-3 py-2 min-h-[100px]"
                                               placeholder="Enter instruction and context..."
                       autoFocus
                     />
                     <div className="flex gap-2">
                       <button
-                        onClick={saveLessonGoal}
+                        onClick={saveInstruction}
                         className="px-3 py-1 bg-green-500 text-white rounded text-sm hover:bg-green-600"
                       >
                         Save
                       </button>
                       <button
-                        onClick={cancelEditingLessonGoal}
+                        onClick={cancelEditingInstruction}
                         className="px-3 py-1 bg-gray-500 text-white rounded text-sm hover:bg-gray-600"
                       >
                         Cancel
@@ -5013,10 +5013,10 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
                 ) : (
                   <p 
                     className="text-gray-700 leading-relaxed whitespace-pre-line cursor-pointer hover:bg-gray-200 p-2 rounded"
-                    onClick={startEditingLessonGoal}
+                    onClick={startEditingInstruction}
                                             title="Click to edit instruction and context"
                   >
-                                          {lessonGoal || "Click to add instruction and context"}
+                                          {instruction || "Click to add instruction and context"}
                   </p>
                 )}
               </div>
@@ -5213,7 +5213,7 @@ let ALLOWED_SHEETS: string[] = []; // Will be populated dynamically
                   </button>
                 )}
             <h2 className="text-xl font-semibold text-gray-800 text-center">
-              {gradeLevel && gradeLevel !== "Title..." ? gradeLevel : "Transcript"}
+              {title && title !== "Title..." ? title : "Transcript"}
             </h2>
               </div>
               

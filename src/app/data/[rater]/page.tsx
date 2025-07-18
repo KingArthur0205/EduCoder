@@ -600,7 +600,7 @@ export default function EssayReview() {
                   <div className="flex flex-col space-y-2 items-start">
                     <p className="pt-4">What trait does the revision target?</p>
                     <select
-                      className="border border-gray-300 p-2 rounded-lg text-gray-700"
+                      className="border border-gray-300 p-2 rounded-lg text-black"
                       value={selectedTraits[index] || ""}
                       onChange={(e) => handleTraitChange(index, e.target.value)}
                       disabled={isSubmitting}

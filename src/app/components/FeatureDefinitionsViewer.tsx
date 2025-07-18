@@ -105,7 +105,7 @@ export default function FeatureDefinitionsViewer({ isOpen, onClose, refreshTrigg
         }
 
         // Fallback to loading from XLSX
-        const xlsxResponse = await fetch('/MOL%20Roles%20Features.xlsx');
+        const xlsxResponse = await fetch('/Codebook.xlsx');
         if (xlsxResponse.ok) {
           // We'll parse this on the client side using the same logic
           const arrayBuffer = await xlsxResponse.arrayBuffer();
@@ -181,7 +181,7 @@ export default function FeatureDefinitionsViewer({ isOpen, onClose, refreshTrigg
     return {
       categories,
       data,
-      originalFileName: 'MOL Roles Features.xlsx'
+      originalFileName: 'Codebook.xlsx'
     };
   };
 

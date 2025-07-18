@@ -9,7 +9,11 @@ function isServerlessEnvironment(): boolean {
 
 export async function POST(request: NextRequest) {
   try {
-    const { transcriptId, gradeLevel, lessonGoal } = await request.json();
+    const { transcriptId, gradeLevel, lessonGoal, title, instruction } = await request.json();
+    
+    // Use new field names if provided, fallback to old ones for compatibility
+    const finalTitle = title || gradeLevel;
+    const finalInstruction = instruction || lessonGoal;
     
     if (!transcriptId) {
       return NextResponse.json({
@@ -52,14 +56,20 @@ export async function POST(request: NextRequest) {
     // Update or add transcript-specific settings with proper prefixing
     const transcriptPrefix = `TRANSCRIPT_${transcriptId.toUpperCase()}`;
     
-    if (gradeLevel !== undefined) {
-      const key = `${transcriptPrefix}_GRADE_LEVEL`;
-      envVars[key] = `"${gradeLevel.replace(/"/g, '\\"')}"`;
+    if (finalTitle !== undefined) {
+      const key = `${transcriptPrefix}_TITLE`;
+      envVars[key] = `"${finalTitle.replace(/"/g, '\\"')}"`;
+      // Also save under old key for backward compatibility
+      const oldKey = `${transcriptPrefix}_GRADE_LEVEL`;
+      envVars[oldKey] = `"${finalTitle.replace(/"/g, '\\"')}"`;
     }
     
-    if (lessonGoal !== undefined) {
-      const key = `${transcriptPrefix}_LESSON_GOAL`;
-      envVars[key] = `"${lessonGoal.replace(/"/g, '\\"')}"`;
+    if (finalInstruction !== undefined) {
+      const key = `${transcriptPrefix}_INSTRUCTION`;
+      envVars[key] = `"${finalInstruction.replace(/"/g, '\\"')}"`;
+      // Also save under old key for backward compatibility
+      const oldKey = `${transcriptPrefix}_LESSON_GOAL`;
+      envVars[oldKey] = `"${finalInstruction.replace(/"/g, '\\"')}"`;
     }
     
     // Add a timestamp for when this was last updated
@@ -101,14 +111,19 @@ export async function GET(request: NextRequest) {
     
     const transcriptPrefix = `TRANSCRIPT_${transcriptId.toUpperCase()}`;
     const settings = {
-      gradeLevel: '',
-      lessonGoal: '',
+      title: '',
+      instruction: '',
+      gradeLevel: '', // Keep for backward compatibility
+      lessonGoal: '', // Keep for backward compatibility
       lastUpdated: ''
     };
     
     // First, try to read from process.env (works in both environments)
-    settings.gradeLevel = process.env[`${transcriptPrefix}_GRADE_LEVEL`] || '';
-    settings.lessonGoal = process.env[`${transcriptPrefix}_LESSON_GOAL`] || '';
+    // Try new field names first, then fallback to old ones
+    settings.title = process.env[`${transcriptPrefix}_TITLE`] || process.env[`${transcriptPrefix}_GRADE_LEVEL`] || '';
+    settings.instruction = process.env[`${transcriptPrefix}_INSTRUCTION`] || process.env[`${transcriptPrefix}_LESSON_GOAL`] || '';
+    settings.gradeLevel = settings.title; // For backward compatibility
+    settings.lessonGoal = settings.instruction; // For backward compatibility
     settings.lastUpdated = process.env[`${transcriptPrefix}_LAST_UPDATED`] || '';
     
     // If we're not in a serverless environment, also try to read from .env.local
@@ -128,9 +143,17 @@ export async function GET(request: NextRequest) {
               const keyTrimmed = key.trim();
               
               // Only override if the process.env value is empty
-              if (keyTrimmed === `${transcriptPrefix}_GRADE_LEVEL` && !settings.gradeLevel) {
+              if (keyTrimmed === `${transcriptPrefix}_TITLE` && !settings.title) {
+                settings.title = value;
+                settings.gradeLevel = value; // For backward compatibility
+              } else if (keyTrimmed === `${transcriptPrefix}_INSTRUCTION` && !settings.instruction) {
+                settings.instruction = value;
+                settings.lessonGoal = value; // For backward compatibility
+              } else if (keyTrimmed === `${transcriptPrefix}_GRADE_LEVEL` && !settings.title) {
+                settings.title = value;
                 settings.gradeLevel = value;
-              } else if (keyTrimmed === `${transcriptPrefix}_LESSON_GOAL` && !settings.lessonGoal) {
+              } else if (keyTrimmed === `${transcriptPrefix}_LESSON_GOAL` && !settings.instruction) {
+                settings.instruction = value;
                 settings.lessonGoal = value;
               } else if (keyTrimmed === `${transcriptPrefix}_LAST_UPDATED` && !settings.lastUpdated) {
                 settings.lastUpdated = value;

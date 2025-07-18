@@ -109,8 +109,8 @@ async function prepareTranscriptFiles(
     // Add metadata files
     files['speakers.json'] = JSON.stringify(speakerColors, null, 2);
     files['content.json'] = JSON.stringify({
-      "gradeLevel": "Title...", 
-      "lessonGoal": "Lesson Goal"
+      "title": "Title", 
+      "instruction": "Instruction"
     }, null, 2);
     files['images.json'] = JSON.stringify({ "images": [] }, null, 2);
     files['chunk-info.json'] = JSON.stringify({
