@@ -1,0 +1,966 @@
+{
+  "transcriptId": "001",
+  "transcriptName": "Transcript 001",
+  "categories": {
+    "Agent": {
+      "codes": [
+        "Grade level",
+        "School or School District",
+        "Teacher",
+        "Interloctutor similarity of language use",
+        "Interlocutor similarity of home language",
+        "Interlocutor similarity of prior achievement"
+      ],
+      "definitions": {
+        "Grade level": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "School or School District": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Teacher": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Interloctutor similarity of language use": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Interlocutor similarity of home language": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Interlocutor similarity of prior achievement": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        }
+      }
+    },
+    "Talk": {
+      "codes": [
+        "Total # or % of individual students' turns (or total amount of talk time) in a time segment",
+        "Total # or % of individual students' turns (or total amount of talk time) that are on-task in a time segment",
+        "Total # or % of individual students' turns (or total amount of talk time) that are off-task in a time segment",
+        "Average response latency for an individual student in a time segment",
+        "# of Overlap/interjections/interruptions for an individual student in a time segment",
+        "Graphical Centrality (calculate in-degree and out-degree)\nCreate a network based on direct named references (both in and out - times people named you and times you named others)",
+        "Graphical Centrality (calculate in-degree and out-degree)\nCreate a network based on time-adjusted reply sequences (adjacency) ",
+        "Teacher present"
+      ],
+      "definitions": {
+        "Total # or % of individual students' turns (or total amount of talk time) in a time segment": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Total # or % of individual students' turns (or total amount of talk time) that are on-task in a time segment": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Total # or % of individual students' turns (or total amount of talk time) that are off-task in a time segment": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Average response latency for an individual student in a time segment": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "# of Overlap/interjections/interruptions for an individual student in a time segment": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Graphical Centrality (calculate in-degree and out-degree)\nCreate a network based on direct named references (both in and out - times people named you and times you named others)": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Graphical Centrality (calculate in-degree and out-degree)\nCreate a network based on time-adjusted reply sequences (adjacency) ": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Teacher present": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        }
+      }
+    },
+    "Conceptual": {
+      "codes": [
+        "Off Task",
+        "Recording",
+        "Directions",
+        "Competence",
+        "Language",
+        "Understanding"
+      ],
+      "definitions": {
+        "Off Task": {
+          "Definition": "Discussing anything not pertaining to the assigned task and how to engage with it. It may include topics such as recess, what peers outside of the class were doing, the recording devices, Stanford, who previously had done work or deserved credit..",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Recording": {
+          "Definition": "Discussing the recording equipment or the people using it to observe them. Might include jokes about ASMR, podcasting, or creating content for social media.",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Directions": {
+          "Definition": "Reading or discussing how to make sense of the task prompt, question, or what they are being asked to do by the written task and/or by the teacher framing the task.",
+          "example1": "I know. You're supposed to ask who wants to read.",
+          "example2": "What are we doing? Are we supposed to put them from fastest to slowest.",
+          "nonexample1": "Yeah, just label it on one side so I know which one's the highest and which one's the lowest.",
+          "nonexample2": "Make it into a ball or something cool. How do you bend something by accident. I just noticed. Wait, isn't this one first?"
+        },
+        "Competence": {
+          "Definition": "Discussing an individual's or group's capacity to comprehend, apply, and reason.",
+          "example1": "this is not my field of expertise, [Student 4.155:female], you're best at this'",
+          "example2": "Why are you so good at Math? Remember that [unintelligible] assessment? [unintelligible] facts. Are you done drawing? [unintelligible] or not?",
+          "nonexample1": "Oh, that's great. No. Stop reading. Please, stop reading. That's great.",
+          "nonexample2": "And then you draw because... or no, [Student 1.146:male] draws because he's good at drawing."
+        },
+        "Language": {
+          "Definition": "Discussing languages or why people say or write the way they do for different purposes.\n",
+          "example1": "I thought you were speaking Chinese the entire time",
+          "example2": "It's advanced Math, and advanced English.",
+          "nonexample1": "Dora speaks Spanish. Is any of you guys named Dora?",
+          "nonexample2": "He said no he won't shut up, it's English!"
+        },
+        "Understanding": {
+          "Definition": "Discussing how well a group or individual understands a mathematical idea, question, or problem. Could include discussion of whether or how much someone understands, does not understand, is stuck, or is making progress. Does not include asking for explanations unless accompanied by explicit remarks about who does or does not currently understand something.",
+          "example1": "We did already, we don't understand it.",
+          "example2": "I don't understand this one. I don't know what she was saying. You do it. Hey.",
+          "nonexample1": "You have to watch the show to understand how depressing it is.",
+          "nonexample2": "Interpret is like understanding or something."
+        }
+      }
+    },
+    "Discursive": {
+      "codes": [
+        "Math Claim",
+        "Explain (Action)",
+        "Explain (Reason)",
+        "Agree",
+        "Disagree",
+        "Compare",
+        "Add On",
+        "Question (General)",
+        "Question (Specific)",
+        "Revoice",
+        "Apology",
+        "Next Step",
+        "Redirect",
+        "Help",
+        "Help (Math)"
+      ],
+      "definitions": {
+        "Math Claim": {
+          "Definition": "Makes a factual mathematical statement or conjecture.",
+          "example1": "qua, quarta inter quartile range, IQR, is found by calculating difference between the third quartile and the first quartile it is the range of the middle 50 percent of the data after [unintelligible] the inter-quartile range for the temperature data from 1975, that wait, we're supposed to do a first so by looking at your box plots from problems 80, 8-46 and 8-47, determine which year, wait guys, do we not do a because it has 8-46 and don't do that",
+          "example2": "They're like, 3.5 would be half so it's like [unintelligible] 3.5 divided by 2 we get the answer.",
+          "nonexample1": "They're like, 3.5 would be half so it's like [unintelligible] 3.5 divided by 2 we get the answer.",
+          "nonexample2": "I may do 1.75 times 4and see if that works."
+        },
+        "Explain (Action)": {
+          "Definition": "Reports on the steps of a mathematical procedure.",
+          "example1": "So first off I figured out how many minutes it'd take for one lap",
+          "example2": "I divided her time by 60 and then I  divided Rebecca's time by 60",
+          "nonexample1": "Copy me. First of all...",
+          "nonexample2": "That's what we're doing first."
+        },
+        "Explain (Reason)": {
+          "Definition": "Explains why something is justified or true.",
+          "example1": "Yeah three fourths divided by eight, divided by eight because three four is going to eight.",
+          "example2": "Because out of the 100 he was about to let 20 away. So it's 20%",
+          "nonexample1": "It wouldn't work. It would only work for nine and figure one and figure two.",
+          "nonexample2": "No, we're not supposed to do the questions first. We're supposed to do the table and then we find figure 100."
+        },
+        "Agree": {
+          "Definition": "Student expresses agreement with idea",
+          "example1": "That's right. 6 times 4 and then times 3, 72",
+          "example2": "Yes it does. 6 30. 1 fifth. It has the same ratio, it doesn't mean it's the same number but it has the same ratio",
+          "nonexample1": "Yeah, because we did another problem just like this.",
+          "nonexample2": "He doesn't want the chicken at Sweet Hearts. Don't you agree that Sweet Heart's pumpkin chicken is better than Quickly's?"
+        },
+        "Disagree": {
+          "Definition": "Student expresses disagreement with idea",
+          "example1": "No, maybe you graphed it wrong.",
+          "example2": "Here, wait. No, this one is incorrect.",
+          "nonexample1": "Same. And nobody agreed with me because somebody has to maybe change my answer.",
+          "nonexample2": "this is, no it's not oh wait yes it is, my bad [unintelligible]"
+        },
+        "Compare": {
+          "Definition": "Student compares similarities or differences between ideas",
+          "example1": "But we agree... I did it way different than you guys did. I did 60 minus 12, divided by 2.",
+          "example2": "Yeah, he's right. It's one-fifth, it could be one-fifth. So... 20%",
+          "nonexample1": "No, I got this.",
+          "nonexample2": "Because it's the same, wait, the zero goes in the front. [unintelligible]"
+        },
+        "Add On": {
+          "Definition": "Adds on to a mathematical idea (offers additional reasons or rationale rather than just expressing agreement or support for an idea)",
+          "example1": "Student 1: So we knew that 3.5 went into 7 twice so then we divided 3.5 by 2...  \nStudent 2: To see how much it would be with 4 people.",
+          "example2": "Student 1:We think this because 1.5 is...        \nStudent 2: Goes into 6 four times. ",
+          "nonexample1": "Yeah you're right.",
+          "nonexample2": "Oh, yeah. That's what I. No, no. You're right. It's 1.25. [Student 3.309:male], we did it wrong. We did it wrong. [Student 3.309:male]."
+        },
+        "Question (General)": {
+          "Definition": "Asks a general question",
+          "example1": "Is it OK if I didn't draw in the lines?",
+          "example2": "Wait. Do you have an equation for this one?",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Question (Specific)": {
+          "Definition": "Asks a specific question",
+          "example1": "um, is that still the base? would this be the height?",
+          "example2": "Shouldn't we get negative X minus 1?",
+          "nonexample1": "Yeah. See this. Right? Okay. So what if we put...",
+          "nonexample2": "Only number two? Yes."
+        },
+        "Revoice": {
+          "Definition": "Student rephrases/completes teammate's statement",
+          "example1": "yeah, it's a mixed number, how you make a mixed number into an improper fraction?",
+          "example2": "I said it was gonna be a decimal and they said a whole number",
+          "nonexample1": "I seriously thought that's what you said.",
+          "nonexample2": "You said mark on the map where Rebecca and Amy. And then I leaned over and you stopped me from touching your map."
+        },
+        "Apology": {
+          "Definition": "Student apologizes",
+          "example1": "I'm sorry I'm failing at this",
+          "example2": "oh I'm sorry that was ugly",
+          "nonexample1": "Oh, my bad. We made a mistake. It says [Unknown Person 2.48] because I didn't have my iPad. That's two zeros.",
+          "nonexample2": "What is it again? My bad."
+        },
+        "Next Step": {
+          "Definition": "Student suggests the next step for the group to take",
+          "example1": "Make an estimate so shall we split it up into 3 columns to put all these 3?",
+          "example2": "I guess we should all take a piece of scratch paper and do the problem, see what we get.",
+          "nonexample1": "I'm doing the hybrid and explaining it. And they are doing the minivan next.",
+          "nonexample2": "Then we said the measurements were three shmallows."
+        },
+        "Redirect": {
+          "Definition": "Redirecting other participant to get on task",
+          "example1": "shh guys, guys, focus focus [Student 4.320:male] try to do, try to do like a representation for the math",
+          "example2": "Can we focus on the math? And why are you still touching it?",
+          "nonexample1": "Stop.",
+          "nonexample2": "Come on, man. It's okay to joke in life. You know, sometimes when you do math, you gotta be chill. You can't always be too focused on your work. You're gonna stress yourself out, man. Focus, but don't focus so much that you lose yourself. What is this thing? Is it a microphone?"
+        },
+        "Help": {
+          "Definition": "Offering nonmathematical help",
+          "example1": "student 1: Nine. [Student 2], you help me.\nStudent 2: Okay.\nStudent 1: You can do the bubble.  ",
+          "example2": "To let me help you draw it. Here, let me.",
+          "nonexample1": "Yeah, I know, but she can help us get something. She can be like what do you do here? And then what do you do there? And then you do this. And then you. Can you do this?",
+          "nonexample2": "Times eight. Times four minus five, which is seven Y minus three Y equals four hundred forty over two, which is ten Y... No, not ten Y. Four Y. Equals two twenty. And then... Y equals fifty-five. Oh, that wasn't too hard. Okay. Y. Wait, what? Hm? I'm just like doing the math, and I got eleven Y. It doesn't help me figure out Y."
+        },
+        "Help (Math)": {
+          "Definition": "Offering mathematical help",
+          "example1": "Would you like me to help you? Okay. So here, I'll set it up for you. Okay, [Student 4.313:male]? Would you like me to set it up for you? No, no, no. I'll set up the division for you. Okay? One. So that'd be [unintelligible]. And then just figure it out from there.",
+          "example2": "Student 1: It's going to be below the X axis, and it's. [Student 4.274:male], you gotta help me.\nStudent 2: What?\nStudent 1: So it's, is this wider and below the X axis?     \nStudent 2: These will be both below the X axis. Practically the same thing as the ones above, but just reflected across the x axis.       ",
+          "nonexample1": "Okay. What [unintelligible]? she's helpless.",
+          "nonexample2": "Wait, what's our second attempt? We need to write down more of our attempts. Guys, guys. [Student 3.280:male]. [Student 2.280:female]. Help. I'm not writing down anything."
+        }
+      }
+    },
+    "Lexical": {
+      "codes": [
+        "UptakeDora network?\nSimple “revoice” similarity uptake network",
+        "Process-oriented words",
+        "Concept-oriented words",
+        "Sentiment, valence, or affect",
+        "Pronouns",
+        "Certitude",
+        "Sequential",
+        "Conditional",
+        "Cause",
+        "Assent",
+        "Cognition",
+        "CogProc",
+        "FocusFuture",
+        "FocusPast",
+        "FocusPresent",
+        "Social",
+        "Tentat",
+        "Time"
+      ],
+      "definitions": {
+        "UptakeDora network?\nSimple “revoice” similarity uptake network": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Process-oriented words": {
+          "Definition": "Frequencies ",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Concept-oriented words": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Sentiment, valence, or affect": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Pronouns": {
+          "Definition": "I, We, You, Shehe, Ipron",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Certitude": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Sequential": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Conditional": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Cause": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Assent": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Cognition": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "CogProc": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "FocusFuture": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "FocusPast": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "FocusPresent": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Social": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Tentat": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        },
+        "Time": {
+          "Definition": "",
+          "example1": "",
+          "example2": "",
+          "nonexample1": "",
+          "nonexample2": ""
+        }
+      }
+    },
+    "Other Responses to Leadership-r": {
+      "codes": [],
+      "definitions": {}
+    }
+  },
+  "annotators": {
+    "expert_a_1751046243087": {
+      "info": {
+        "id": "expert_a_1751046243087",
+        "name": "a",
+        "role": "expert",
+        "uploadedAt": "2025-06-27T17:44:03.255Z",
+        "metadata": {}
+      },
+      "annotations": {
+        "Conceptual": {
+          "1": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": true,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "2": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": true,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": true
+          },
+          "3": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": true,
+            "MATH_CONCEPT_INTRO": true,
+            "PROBLEM_SOLVING": false
+          },
+          "4": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": true,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "5": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": true,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": true
+          },
+          "6": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "7": {
+            "ABSTRACT_THINKING": true,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "8": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": true,
+            "MATH_CONCEPT_CONNECT": true,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "9": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "10": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "11": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "12": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": true,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "13": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "14": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "15": {
+            "ABSTRACT_THINKING": true,
+            "MATHEMATICAL_REASONING": true,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": true,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "16": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": true,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": true,
+            "PROBLEM_SOLVING": false
+          },
+          "17": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": true,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "18": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": true,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "19": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          },
+          "20": {
+            "ABSTRACT_THINKING": false,
+            "MATHEMATICAL_REASONING": false,
+            "MATH_CONCEPT_CONNECT": false,
+            "MATH_CONCEPT_EXPLAIN": false,
+            "MATH_CONCEPT_INTRO": false,
+            "PROBLEM_SOLVING": false
+          }
+        },
+        "Discursive": {
+          "1": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": true,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "2": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": false,
+            "JUSTIFICATION": true,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": true,
+            "TEACHER_EXPLANATION": false
+          },
+          "3": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": true,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": true,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "4": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": true
+          },
+          "5": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "6": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": true,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "7": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": true,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "8": {
+            "CLARIFICATION_REQUEST": true,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "9": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": true
+          },
+          "10": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": true,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "11": {
+            "CLARIFICATION_REQUEST": true,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "12": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "13": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": false,
+            "JUSTIFICATION": true,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "14": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "15": {
+            "CLARIFICATION_REQUEST": true,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "16": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "17": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "18": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": true,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": false
+          },
+          "19": {
+            "CLARIFICATION_REQUEST": true,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": true,
+            "STUDENT_QUESTION": true,
+            "TEACHER_EXPLANATION": false
+          },
+          "20": {
+            "CLARIFICATION_REQUEST": false,
+            "ELABORATION": false,
+            "JUSTIFICATION": false,
+            "PEER_DISCUSSION": false,
+            "STUDENT_QUESTION": false,
+            "TEACHER_EXPLANATION": true
+          }
+        },
+        "Talk": {
+          "1": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "2": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "3": {
+            "ACADEMIC_LANGUAGE": true,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": true
+          },
+          "4": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "5": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": true,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "6": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": true,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": true
+          },
+          "7": {
+            "ACADEMIC_LANGUAGE": true,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "8": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": true,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "9": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": true,
+            "VISUAL_REFERENCE": false
+          },
+          "10": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": true,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": true
+          },
+          "11": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": true,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": true
+          },
+          "12": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "13": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": true,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "14": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "15": {
+            "ACADEMIC_LANGUAGE": true,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "16": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": true,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "17": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "18": {
+            "ACADEMIC_LANGUAGE": true,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "19": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": true,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": false
+          },
+          "20": {
+            "ACADEMIC_LANGUAGE": false,
+            "ANALOGIES": false,
+            "EVERYDAY_LANGUAGE": false,
+            "GESTURE_REFERENCE": false,
+            "MATHEMATICAL_VOCABULARY": false,
+            "VISUAL_REFERENCE": true
+          }
+        }
+      }
+    }
+  },
+  "createdAt": "2025-06-27T17:44:03.255Z",
+  "lastUpdated": "2025-06-27T17:44:03.255Z",
+  "version": "1.0"
+}
