@@ -1,0 +1,15 @@
+# Learning Goals for Transcript 001
+
+## Unit Purpose
+Describe the relationship between the radius of any circle and its area as the square of the radius times π.
+Estimate and calculate the area of a circle.
+
+## Lesson Purpose  
+In this lesson, students estimate and use repeated reasoning (MP8) to make sense of the relationship between the radius of a circle, the square of the radius, and the area of the circle.
+
+This lesson uses radius squares (a square whose side length is the radius of a circle) to help students visualize these relationships.
+
+At the end of the lesson, students should know a formula for the relationship between the radius of a circle and its area.
+
+## Grade Level
+Grade: 7, Unit 3: Measuring Circles, Lesson 6: Exploring Circle Area 

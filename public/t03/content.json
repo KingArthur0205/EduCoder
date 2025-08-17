@@ -1,0 +1,18 @@
+{
+  "gradeLevel": "Grade: 8, Unit 5: Functions and Volume, Lesson 2: Introduction to Functions",
+  "activityPurpose": "Introduce students to functions by writing rules based on input-output pairs in tables.\nDefine a function as a rule producing one output for each input.\nSet the foundation for future lessons expanding on function representations.",
+  "segments": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "full_transcript"
+  ],
+  "lessonLink": {
+    "url": "https://teacher.desmos.com/activitybuilder/custom/5d8d425acd6acb759685edff?intro-banner-expanded=true&collections=5f8a43dd06b0d9a8bd84c3d0%2C5f8a442106b0d9a8bd84c3d5",
+    "text": "Lesson link (click here to view the full lesson page)"
+  },
+  "description": "Students write rules based on input-output pairs represented in tables and are introduced to the concept of function through these rules.",
+  "title": "Grade: 8, Unit 5: Functions and Volume, Lesson 2: Introduction to Functions",
+  "instruction": ""
+}
