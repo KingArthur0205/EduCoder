@@ -1015,20 +1015,38 @@ export default function MultiAnnotatorComparisonView({
   const getFeaturesForCategory = useCallback((category: string): string[] => {
     const features = new Set<string>();
     
-    // Add features from current annotator data
+    // Add features from current annotator data (codebook)
     if (currentAnnotatorData && currentAnnotatorData[category]) {
       currentAnnotatorData[category].codes.forEach(code => features.add(code));
     }
     
-    // Add features from other annotators
+    // Add features from other annotators (uploaded files)
     otherAnnotators.forEach(annotator => {
       if (annotator.categories[category]) {
         annotator.categories[category].features.forEach(feature => features.add(feature));
       }
     });
     
+    // IMPORTANT: Also check for features that exist in the annotation data but not in the categories definition
+    // This handles cases where uploaded files have features that don't match the codebook
+    otherAnnotators.forEach(annotator => {
+      Object.keys(annotator.annotations).forEach(lineNum => {
+        const lineAnnotations = annotator.annotations[parseInt(lineNum)];
+        if (lineAnnotations && lineAnnotations[category]) {
+          Object.keys(lineAnnotations[category]).forEach(feature => {
+            features.add(feature);
+          });
+        }
+      });
+    });
+    
     const featuresArray = Array.from(features).sort();
-    console.log('>>> FEATURES FOR CATEGORY:', { category, featuresArray, currentHasCategory: !!(currentAnnotatorData && currentAnnotatorData[category]) });
+    console.log('>>> FEATURES FOR CATEGORY:', { 
+      category, 
+      featuresArray, 
+      currentHasCategory: !!(currentAnnotatorData && currentAnnotatorData[category]),
+      totalFeatures: featuresArray.length
+    });
     
     return featuresArray;
   }, [currentAnnotatorData, otherAnnotators]);
@@ -1037,7 +1055,9 @@ export default function MultiAnnotatorComparisonView({
     console.log('>>> getCurrentAnnotatorValue called:', { lineNumber, category, feature });
     
     if (!currentAnnotatorData || !currentAnnotatorData[category]) {
-      console.log('>>> No current annotator data or category');
+      console.log('>>> No current annotator data or category - current user has no data for this category/feature combination');
+      // Return null instead of throwing error - this indicates the current user hasn't annotated this category
+      // This is expected when uploaded files have categories/features not in the current codebook
       return null;
     }
     
