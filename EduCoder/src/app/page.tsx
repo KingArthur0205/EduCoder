@@ -8,7 +8,7 @@ import FeatureDefinitionUpload from "./components/FeatureDefinitionUpload";
 import FeatureDefinitionsViewer from "./components/FeatureDefinitionsViewer";
 import ZipUpload from "./components/ZipUpload";
 import Settings from "./components/Settings";
-import { safeStorageGet } from "./utils/storageUtils";
+import { safeStorageGet, loadTranscriptFromPublic, getAvailablePublicTranscripts, saveTranscriptData, safeStorageSet } from "./utils/storageUtils";
 import * as XLSX from 'xlsx';
 
 interface TranscriptInfo {
@@ -33,32 +33,38 @@ export default function Home() {
   const [downloadingAll, setDownloadingAll] = useState(false);
 
   // Function to extract a meaningful lesson title from content data
-  const extractLessonTitle = useCallback((content: Record<string, unknown>, transcriptId: string): string => {
-    // Priority 1: Custom lesson title
+  const extractLessonTitle = useCallback((content: Record<string, unknown>, transcriptId: string, settingsTitle?: string): string => {
+    // Priority 1: Custom title from settings file
+    if (settingsTitle && settingsTitle.trim() !== '' && settingsTitle !== 'Title...') {
+      return settingsTitle.trim();
+    }
+    
+    // Priority 2: Custom lesson title
     if (typeof content.customLessonTitle === 'string' && content.customLessonTitle.trim() !== '') {
       return content.customLessonTitle.trim();
     }
     
-    // Priority 2: Lesson title field (if not default)
+    // Priority 3: Lesson title field (if not default)
     if (typeof content.lesson_title === 'string' && content.lesson_title !== 'Lesson Title' && content.lesson_title.trim() !== '') {
       return content.lesson_title.trim();
     }
     
-    // Priority 3: Extract lesson name from gradeLevel if it contains lesson info
-    if (typeof content.gradeLevel === 'string') {
-      // Look for patterns like "Lesson X: Title" or "Unit X: Title, Lesson Y: Title"
-      const lessonMatch = content.gradeLevel.match(/Lesson \d+: ([^,]+)/);
-      if (lessonMatch && lessonMatch[1]) {
-        return lessonMatch[1].trim();
-      }
+    // Priority 4: Use title if it exists and is meaningful (not default values)
+    if (typeof content.title === 'string' && content.title !== 'Title' && content.title !== 'Title...' && content.title.trim() !== '') {
+      return content.title.trim();
     }
     
-    // Priority 4: Use grade_level if it exists and is meaningful
-    if (typeof content.grade_level === 'string' && content.grade_level !== 'Grade Level' && content.grade_level.trim() !== '') {
+    // Priority 5: Fallback to gradeLevel for backward compatibility
+    if (typeof content.gradeLevel === 'string' && content.gradeLevel !== 'Grade Level' && content.gradeLevel !== 'Title...' && content.gradeLevel.trim() !== '') {
+      return content.gradeLevel.trim();
+    }
+    
+    // Priority 6: Use grade_level if it exists and is meaningful
+    if (typeof content.grade_level === 'string' && content.grade_level !== 'Grade Level' && content.grade_level !== 'Title...' && content.grade_level.trim() !== '') {
       return content.grade_level.trim();
     }
     
-    // Priority 5: Use activityPurpose if available
+    // Priority 7: Use activityPurpose if available
     if (typeof content.activityPurpose === 'string' && content.activityPurpose.trim() !== '') {
       // Take first line or first 50 characters
       const purpose = content.activityPurpose.trim().split('\n')[0];
@@ -72,12 +78,26 @@ export default function Home() {
   // Function to load content for a single transcript
   const loadTranscriptContent = useCallback(async (transcriptId: string): Promise<string> => {
     try {
+      // Load settings title first
+      let settingsTitle = '';
+      try {
+        const settingsResponse = await fetch(`/api/save-transcript-settings?transcriptId=${transcriptId}`);
+        if (settingsResponse.ok) {
+          const settingsData = await settingsResponse.json();
+          if (settingsData.success && settingsData.settings) {
+            settingsTitle = settingsData.settings.title || settingsData.settings.gradeLevel || '';
+          }
+        }
+      } catch {
+        // Settings not available, continue without it
+      }
+      
       // First try API (public folder)
       try {
         const response = await fetch(`/api/transcript/${transcriptId}?file=content.json`);
         if (response.ok) {
           const content = await response.json();
-          return extractLessonTitle(content, transcriptId);
+          return extractLessonTitle(content, transcriptId, settingsTitle);
         }
       } catch {
         // Fallback to localStorage
@@ -87,7 +107,7 @@ export default function Home() {
       const contentData = localStorage.getItem(`${transcriptId}-content.json`);
       if (contentData) {
         const content = JSON.parse(contentData);
-        return extractLessonTitle(content, transcriptId);
+        return extractLessonTitle(content, transcriptId, settingsTitle);
       }
       
       // If no content found, return generic name
@@ -98,8 +118,75 @@ export default function Home() {
     }
   }, [extractLessonTitle]);
 
+  // Function to restore transcripts from public folder to localStorage
+  const restoreTranscriptsFromPublic = useCallback(async () => {
+    try {
+      const publicTranscriptIds = await getAvailablePublicTranscripts();
+      console.log('Found transcripts in public folder for recovery:', publicTranscriptIds);
+
+      for (const transcriptId of publicTranscriptIds) {
+        // Check if transcript already exists in localStorage
+        const existingTranscriptData = await safeStorageGet(`${transcriptId}-transcript.csv`);
+        if (existingTranscriptData) {
+          console.log(`Transcript ${transcriptId} already exists in localStorage, skipping recovery`);
+          continue;
+        }
+
+        console.log(`Restoring transcript ${transcriptId} from public folder...`);
+        
+        // Load transcript data from public folder
+        const publicData = await loadTranscriptFromPublic(transcriptId);
+        if (!publicData) {
+          console.warn(`Failed to load ${transcriptId} from public folder`);
+          continue;
+        }
+
+        // Save to localStorage/IndexedDB
+        if (publicData.csvContent) {
+          await saveTranscriptData(transcriptId, publicData.csvContent);
+        }
+        if (publicData.speakersData) {
+          await safeStorageSet(`${transcriptId}-speakers.json`, JSON.stringify(publicData.speakersData));
+        }
+        if (publicData.contentData) {
+          await safeStorageSet(`${transcriptId}-content.json`, JSON.stringify(publicData.contentData));
+        }
+        if (publicData.imagesData) {
+          await safeStorageSet(`${transcriptId}-images.json`, JSON.stringify(publicData.imagesData));
+        }
+
+        console.log(`Successfully restored transcript ${transcriptId} to localStorage`);
+      }
+
+      // Update localStorage transcript list
+      if (publicTranscriptIds.length > 0) {
+        const existingTranscripts = JSON.parse(localStorage.getItem('transcripts') || '[]');
+        const existingIds = new Set(existingTranscripts.map((t: TranscriptInfo) => t.id));
+        
+        const newTranscripts = publicTranscriptIds
+          .filter(id => !existingIds.has(id))
+          .map(id => ({
+            id,
+            displayName: `Transcript ${id}`,
+            isNew: !['t001', 't044', 't053', 't016', 't019'].includes(id)
+          }));
+
+        if (newTranscripts.length > 0) {
+          const allTranscripts = [...existingTranscripts, ...newTranscripts];
+          localStorage.setItem('transcripts', JSON.stringify(allTranscripts));
+          console.log('Updated localStorage transcript list with recovered transcripts:', newTranscripts);
+        }
+      }
+    } catch (error) {
+      console.error('Error during transcript recovery from public folder:', error);
+    }
+  }, []);
+
   const loadTranscripts = useCallback(async () => {
     try {
+      // First, attempt to restore any transcripts from public folder that aren't in localStorage
+      await restoreTranscriptsFromPublic();
+      
       const allTranscripts: TranscriptInfo[] = [];
       
       // Load transcripts from localStorage
@@ -161,7 +248,7 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  }, [loadTranscriptContent]);
+  }, [loadTranscriptContent, restoreTranscriptsFromPublic]);
 
   // Load visited transcripts from localStorage
   const loadVisitedTranscripts = () => {
@@ -196,11 +283,145 @@ export default function Home() {
     router.push(`/transcript/${transcriptId.replace('t', '')}`);
   };
 
+  // Function to initialize default Codebook.xlsx on app startup
+  const initializeDefaultCodebook = useCallback(async () => {
+    try {
+      // Check if feature definitions already exist in localStorage
+      const existingFeatureDefinitions = localStorage.getItem('feature-definitions');
+      if (existingFeatureDefinitions) {
+        console.log('Feature definitions already exist in localStorage, skipping default initialization');
+        return;
+      }
+      
+      console.log('No feature definitions found, initializing default Codebook.xlsx...');
+      
+      // Load default Codebook.xlsx from public folder
+      const response = await fetch('/Codebook.xlsx');
+      if (!response.ok) {
+        console.warn('Default Codebook.xlsx not found in public folder');
+        return;
+      }
+      
+      const arrayBuffer = await response.arrayBuffer();
+      const workbook = XLSX.read(arrayBuffer);
+      
+      const categories: string[] = [];
+      const features: { [category: string]: Array<{
+        Code?: string;
+        Definition?: string;
+        Example1?: string;
+        example1?: string;
+        Example2?: string;
+        example2?: string;
+        NonExample1?: string;
+        nonexample1?: string;
+        NonExample2?: string;
+        nonexample2?: string;
+      }> } = {};
+      
+      // Process each sheet as a category
+      workbook.SheetNames.forEach((sheetName) => {
+        console.log(`Processing default sheet: ${sheetName}`);
+        
+        const worksheet = workbook.Sheets[sheetName];
+        const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as unknown[][];
+        
+        if (jsonData.length === 0) {
+          console.warn(`Empty sheet: ${sheetName} - skipping`);
+          return;
+        }
+        
+        // Get headers from first row
+        const headers = jsonData[0] as string[];
+        const codeIndex = headers.findIndex(h => h && h.toString().toLowerCase().includes('code'));
+        const definitionIndex = headers.findIndex(h => h && h.toString().toLowerCase().includes('definition'));
+        
+        if (codeIndex === -1) {
+          console.warn(`No 'Code' column found in sheet: ${sheetName} - skipping`);
+          return;
+        }
+        
+        // Extract features from remaining rows
+        const sheetFeatures: Array<Record<string, string>> = [];
+        
+        for (let i = 1; i < jsonData.length; i++) {
+          const row = jsonData[i] as unknown[];
+          if (row && row[codeIndex] && String(row[codeIndex]).trim() !== '') {
+            const feature: Record<string, string> = {
+              Code: String(row[codeIndex]).trim(),
+              Definition: definitionIndex !== -1 && row[definitionIndex] 
+                ? String(row[definitionIndex]).trim() 
+                : ''
+            };
+            
+            // Add any additional columns
+            headers.forEach((header, index) => {
+              if (index !== codeIndex && index !== definitionIndex && row[index]) {
+                feature[String(header)] = String(row[index]).trim();
+              }
+            });
+            
+            sheetFeatures.push(feature);
+          }
+        }
+        
+        console.log(`Extracted ${sheetFeatures.length} features from default sheet "${sheetName}"`);
+        if (sheetFeatures.length > 0) {
+          categories.push(sheetName);
+          features[sheetName] = sheetFeatures;
+        }
+      });
+      
+      if (categories.length > 0) {
+        // Save feature definitions to localStorage
+        const featureDefinitions = {
+          uploadedAt: new Date().toISOString(),
+          originalFileName: 'Codebook.xlsx',
+          isXLSX: true,
+          categories: categories,
+          features: features
+        };
+        
+        localStorage.setItem('feature-definitions', JSON.stringify(featureDefinitions));
+        console.log('Default feature definitions saved to localStorage:', featureDefinitions);
+        console.log('Categories detected:', categories);
+        
+        // Generate annotation columns for all existing transcripts
+        setTimeout(() => {
+          generateAnnotationColumnsForAllTranscripts();
+        }, 1000); // Small delay to ensure everything is properly saved
+      }
+      
+    } catch (error) {
+      console.error('Error initializing default codebook:', error);
+    }
+  }, []);
+
   useEffect(() => {
     setMounted(true);
     loadTranscripts();
     loadVisitedTranscripts();
-  }, [loadTranscripts]);
+    
+    // Initialize default Codebook.xlsx if no feature definitions exist
+    initializeDefaultCodebook();
+  }, [loadTranscripts, initializeDefaultCodebook]);
+
+  // Refresh transcript titles when page becomes visible again (user returns from transcript)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden && transcripts.length > 0) {
+        // Reload transcript titles to reflect any changes made in individual transcripts
+        console.log('Page became visible, refreshing transcript titles...');
+        loadTranscripts();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [transcripts.length, loadTranscripts]);
 
   const handleTranscriptUploaded = () => {
     // Refresh transcript list when a new transcript is uploaded
@@ -267,7 +488,7 @@ export default function Home() {
   };
   
   // Function to automatically generate annotation columns for all transcripts when codebook is updated
-  const generateAnnotationColumnsForAllTranscripts = () => {
+  const generateAnnotationColumnsForAllTranscripts = useCallback(() => {
     try {
       const featureDefinitionsData = localStorage.getItem('feature-definitions');
       if (!featureDefinitionsData) {
@@ -314,7 +535,7 @@ export default function Home() {
     } catch (error) {
       console.error('Error in auto-generation:', error);
     }
-  };
+  }, []);
   
   // Interface for feature definitions (matching the one in FeatureDefinitionUpload)
   interface FeatureDefinitions {
@@ -434,6 +655,7 @@ export default function Home() {
     }
   };
 
+
   const handleDeleteTranscript = async (transcriptId: string, event: React.MouseEvent) => {
     event.stopPropagation(); // Prevent navigation when clicking delete
     
@@ -453,8 +675,8 @@ export default function Home() {
         isLocalStorageTranscript = parsedTranscripts.some((t: TranscriptInfo) => t.id === transcriptId);
       }
       
+      // Delete from localStorage if it exists there
       if (isLocalStorageTranscript) {
-        // Delete from localStorage
         if (storedTranscripts) {
           const parsedTranscripts = JSON.parse(storedTranscripts);
           const updatedTranscripts = parsedTranscripts.filter((t: TranscriptInfo) => t.id !== transcriptId);
@@ -479,8 +701,10 @@ export default function Home() {
           
           console.log(`Deleted localStorage transcript ${transcriptId} and related data`);
         }
-      } else {
-        // Try to delete from server (public folder)
+      }
+      
+      // Always try to delete from public folder as well (since we now save to both locations)
+      try {
         const response = await fetch('/api/delete-transcript', {
           method: 'DELETE',
           headers: {
@@ -491,12 +715,15 @@ export default function Home() {
         
         const data = await response.json();
         
-        if (!data.success) {
-          alert(`Error deleting transcript: ${data.error}`);
-          return;
+        if (data.success) {
+          console.log(`Deleted public folder transcript ${transcriptId}`);
+        } else if (response.status !== 404) {
+          // Only show error if it's not a "not found" error (404 is ok, means it wasn't in public folder)
+          console.warn(`Warning: Could not delete from public folder: ${data.error}`);
         }
-        
-        console.log(`Deleted public folder transcript ${transcriptId}`);
+      } catch (publicDeleteError) {
+        console.warn('Warning: Failed to delete transcript from public folder:', publicDeleteError);
+        // Don't fail the entire deletion if public folder cleanup fails
       }
       
       // Refresh transcript list after successful deletion
@@ -516,12 +743,6 @@ export default function Home() {
       const JSZip = (await import('jszip')).default;
       const zip = new JSZip();
       
-      // Get feature definitions
-      const featureDefinitionsData = await safeStorageGet('feature-definitions');
-      let featureDefinitions: { features?: Record<string, Array<{ id: string; name: string; type: string }>> } = {};
-      if (featureDefinitionsData) {
-        featureDefinitions = JSON.parse(featureDefinitionsData);
-      }
 
       let processedCount = 0;
       
@@ -538,46 +759,61 @@ export default function Home() {
 
           const annotationData = JSON.parse(annotationDataRaw);
           
-          // Create Excel workbook
+          // Load transcript data
+          let tableData: Array<{col2: number, col5: string, col6: string}> = [];
+          try {
+            const transcriptContent = await safeStorageGet(`${transcript.id}-transcript.csv`);
+            if (transcriptContent) {
+              const lines = transcriptContent.split('\n').slice(1); // Skip header
+              tableData = lines.map((line, index) => {
+                const parts = line.split(',');
+                return {
+                  col2: index + 1, // Line # (1-based)
+                  col5: parts[0] || '', // Speaker
+                  col6: parts[1] || '', // Utterance
+                };
+              }).filter(row => row.col6.trim() !== ''); // Remove empty rows
+            }
+          } catch {
+            console.warn('Could not load transcript data for', transcript.id);
+            continue;
+          }
+          
+          if (tableData.length === 0) {
+            console.log(`No transcript data found for ${transcript.id}`);
+            continue;
+          }
+          
+          // Create Excel workbook matching individual transcript format
           const workbook = XLSX.utils.book_new();
           
-          // Process each category
+          // Process each category to match individual export format
           Object.keys(annotationData).forEach(category => {
             const categoryData = annotationData[category];
-            const categoryFeatures = featureDefinitions.features?.[category] || [];
+            const codes = categoryData.codes || [];
             
-            // Prepare data for Excel
+            // Prepare data for Excel - match individual export format
             const excelData: (string | number)[][] = [];
             
-            // Add header row
-            const headerRow = ['Row', 'Speaker', 'Dialogue'];
-            categoryFeatures.forEach((feature) => {
-              headerRow.push(feature.name);
-            });
+            // Add header row matching individual export: 'Line #', 'Speaker', 'Utterance', [codes]
+            const headerRow = ['Line #', 'Speaker', 'Utterance', ...codes];
             excelData.push(headerRow);
             
-            // Add data rows
-            Object.keys(categoryData).forEach(rowId => {
-              const rowData = categoryData[rowId];
-              const row = [
-                rowData.row || rowId,
-                rowData.speaker || '',
-                rowData.dialogue || ''
+            // Add data rows matching individual export format
+            tableData.forEach((row, index) => {
+              const rowData = [
+                row.col2, // Line #
+                row.col5, // Speaker
+                row.col6  // Utterance
               ];
               
-              // Add feature annotations
-              categoryFeatures.forEach((feature) => {
-                const annotation = rowData.annotations?.[feature.id];
-                if (feature.type === 'multiple_choice' && annotation) {
-                  row.push(annotation.join(', '));
-                } else if (feature.type === 'text' && annotation) {
-                  row.push(annotation);
-                } else {
-                  row.push('');
-                }
+              // Add code annotations (1 for true, 0 for false)
+              codes.forEach((code: string) => {
+                const annotation = categoryData.annotations?.[index]?.[code] || false;
+                rowData.push(annotation ? '1' : '0');
               });
               
-              excelData.push(row);
+              excelData.push(rowData);
             });
             
             // Create worksheet
@@ -646,15 +882,6 @@ export default function Home() {
     <div className="min-h-screen bg-white p-8">
       {/* Header with Title and Actions */}
       <div className="relative flex justify-end items-center mb-8">
-        {/* Icon positioned independently */}
-        <Image 
-          src="/Icon.png" 
-          alt="EduCoder" 
-          width={320}
-          height={320}
-          className="fixed left-4 -top-8 h-80 w-auto z-0"
-        />
-        
         {/* Top Right Actions */}
         <div className="flex items-center gap-3">
           {/* Download All Annotations Button */}
@@ -891,6 +1118,15 @@ export default function Home() {
         isOpen={showFeatureViewer} 
         onClose={() => setShowFeatureViewer(false)} 
         refreshTrigger={featureViewerRefreshTrigger}
+      />
+
+      {/* EduCoder Icon positioned independently - hidden on narrow screens and at bottom layer */}
+      <Image 
+        src="/Icon.png" 
+        alt="EduCoder" 
+        width={320}
+        height={320}
+        className="fixed left-4 -top-8 h-80 w-auto z-[-10] hidden md:block pointer-events-none"
       />
 
     </div>

@@ -288,3 +288,74 @@ export function restoreAnnotationData(optimizedData: Record<string, unknown>, to
 
   return restored;
 }
+
+// Public folder persistence functions for session recovery
+export async function saveTranscriptToPublic(
+  transcriptId: string, 
+  csvContent: string, 
+  speakersData: Record<string, unknown>, 
+  contentData: Record<string, unknown>, 
+  imagesData: Record<string, unknown>
+): Promise<void> {
+  try {
+    const response = await fetch('/api/save-transcript-public', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        transcriptId,
+        csvContent,
+        speakersData,
+        contentData,
+        imagesData,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to save transcript to public folder: ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error('Error saving transcript to public folder:', error);
+    throw error;
+  }
+}
+
+export async function loadTranscriptFromPublic(transcriptId: string): Promise<{
+  csvContent: string;
+  speakersData: Record<string, unknown>;
+  contentData: Record<string, unknown>;
+  imagesData: Record<string, unknown>;
+} | null> {
+  try {
+    const response = await fetch(`/api/load-transcript-public?transcriptId=${transcriptId}`);
+    
+    if (!response.ok) {
+      if (response.status === 404) {
+        return null; // Transcript not found in public folder
+      }
+      throw new Error(`Failed to load transcript from public folder: ${response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error loading transcript from public folder:', error);
+    return null;
+  }
+}
+
+export async function getAvailablePublicTranscripts(): Promise<string[]> {
+  try {
+    const response = await fetch('/api/list-public-transcripts');
+    
+    if (!response.ok) {
+      throw new Error(`Failed to list public transcripts: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.transcriptIds || [];
+  } catch (error) {
+    console.error('Error listing public transcripts:', error);
+    return [];
+  }
+}

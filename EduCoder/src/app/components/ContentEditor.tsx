@@ -123,14 +123,14 @@ export default function ContentEditor({ transcriptId, isOpen, onClose, onSave }:
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Grade Level
+                Title
               </label>
               <input
                 type="text"
                 value={content.grade_level}
                 onChange={(e) => handleInputChange('grade_level', e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="e.g., 3rd Grade"
+                placeholder="e.g., My Custom Title"
               />
             </div>
 
