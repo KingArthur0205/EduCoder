@@ -1,0 +1,28 @@
+{
+    "t03": [
+      "/t03/rule1.png",
+      "/t03/rule2.png",
+      "/t03/rule3.png",
+      "/t03/rule4.png",
+      "/t03/rule5.png",
+      "/t03/rule6.png",
+      "/t03/rule7.png"
+    ],
+    "segments": [
+      "b",
+      "b",
+      "b",
+      "c",
+      "d",
+      "",
+      ""
+    ], 
+    "links": [
+      "b",
+      "b",
+      "b",
+      "c",
+      "d"
+    ]
+}
+  

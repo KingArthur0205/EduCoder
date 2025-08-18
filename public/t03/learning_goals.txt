@@ -1,0 +1,3 @@
+Write rules for producing outputs from inputs.
+Understand that a function has one and only one output for each allowable input.
+Identify rules that do and do not represent functions.

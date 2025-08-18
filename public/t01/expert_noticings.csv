@@ -1,0 +1,13 @@
+Expert 1,Expert 2,Expert 3,Expert 4,Expert 5,Expert 6,Expert 7,Expert 8,Expert 9,Expert 10,Expert 11
+Initial Strategies,Strategy: Underestimating by counting full squares only,1,1,relationship between pi and measure of circle,1,34 (counting inner shape of full squares),1,1,1,Full Squares
+Radius Squares * Pi,Strategy 2: Overestimating using the area of a square circumscribing the circle,2,2,3 radius squares = area of circle,2,24 (diameter times 3),2,2,2,Length X Width
+Cutting Radius Squares,Strategy 3: Using the circumference formula,3,3,,3,64 (8x8),,3,3,Pi x diameter
+,Deciding between 3 and 4 radius squares to cover the circle,4,4,,4,Under and overestimation,,4,4,4 radius squares
+,Discovery of area formula,,5,,5,Under and overestimation but determined by based on a radius square,,5,,3 radius squares
+,Debating how to cut 3.14 squares,,6,,,Formula,,6,,Pi times radius squared
+,,,7,,,Visual understanding of the formula,,,,
+,,,8,,,,,,,
+,,,9,,,,,,,
+,,,10,,,,,,,
+,,,11,,,,,,,
+,,,12,,,,,,,

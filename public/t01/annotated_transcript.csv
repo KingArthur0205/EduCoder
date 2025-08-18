@@ -1,0 +1,335 @@
+explain_reason,out cue,claim_math,in cue,apology,question_s,compare,agree,revoice,Selectable,redirect,dialogue,help_math,error type,nextstep,#,language,annotations,Segment,Speaker,question_g,addon,disagree,explain_action,help_non,Duration,Offtask,Recording,Directions,Mathcompetent,Langcompetent,Understanding
+,00:00:05:25,,00:00:01:10,,,,,,,,"Wrap the sheet of paper you got, from [crosstalk]",,,,1,English,,a,Teacher,,,,,,00:00:04:15,,,,,,
+,00:00:12:21,,00:00:06:27,,,,,,,,Grab this and... Okay. Is the...,,,,2,English,,a,Student 2,,,,,,00:00:05:54,,,,,,
+,00:00:12:43,,00:00:12:23,,,,,,,,Are these different?,,,,3,English,,a,Student 3,,,,,,00:00:00:20,,,,,,
+,00:00:17:39,,00:00:12:45,,,,,,,,And can we write our name over where it says activity one.,,,,4,English,,a,Teacher,,,,,,00:00:04:54,,,,,,
+,00:00:28:57,,00:00:18:33,,,,,,,,"There, right there. Alright, after write the number of units squares, you'll take the cover [unintelligible]'s circle shown below. Include your own estimate...",,,,5,English,,a,Student 2,,,,,,00:00:10:24,,,,,,
+,00:01:33:49,,00:00:28:59,,,,,,,,"Thank you. So, your name is over where it says activity one, please. Raise your hand if you still not received one. There, great. So, read the instructions to yourselves, silently, for activity one. Activity one. So, you look for the side that says activity one. And give me a thumbs up once you've got that. [unintelligible], we're ready. [unintelligible]'s ready. [unintelligible], are you finished reading it? Activity one. [unintelligible] Okay, [Jackie], could you read it out loud for everybody, now that we've all had a chance to look at it ourselves?",,,,6,English,,a,Teacher,,,,,,00:01:04:50,,,,,,
+,00:01:54:03,,00:01:34:53,,,,,,,,"Estimate the number of unit squares it would take to cover [unintelligible]'s circle. Show the number. Record your own estimate and strategy. Then, find a person who got a different estimate, or used a different strategy, and report where [unintelligible].",,,,7,English,,a,Student 1,,,,,,00:00:19:10,,,,,,
+,00:02:02:45,,00:01:54:05,,,,,,,,Great so let's make sense of what it means by unit squares. Raise your hand if you can describe what unit squares might mean. [Student 2]?,,,,8,English,,a,Teacher,,,,,,00:00:08:36,,,,,,
+,00:02:05:52,,00:02:02:47,,,,,,,,Like the squares in the picture?,,,,9,English,,a,Student 2,,,,,,00:00:03:05,,,,,,
+,00:02:20:03,,00:02:05:54,,,,,,,,"The squares in the picture, excellent. So, what are we estimating? If we're estimating the number of unit squares it would take to cover the circle, what are we estimating? [Student 3].",,,,10,English,,a,Teacher,,,,,,00:00:14:09,,,,,,
+,00:02:20:49,,00:02:20:05,,,,,,,,Area?,,,,11,English,,a,Student 2,,,,,,00:00:00:44,,,,,,
+,00:02:41:26,,00:02:20:51,,,,,,,,"Area, right? And so you are going to figure out a strategy for deciding how big that circle is, how much space that circle takes up. Let's do two minutes silent, work on a strategy, and then I'll give you guys a chance to talk with a neighbor, ready? Two silent minutes, let's see what you guys come up with.",,,,12,English,,a,Teacher,,,,,,00:00:20:35,,,,,,
+,00:02:50:50,,00:02:48:51,,,,,,,,"Wait, Pi is 3 point what what what?",,,,13,English,,a,Student 1,,,,,,00:00:01:59,,,,,,
+,00:02:56:17,,00:02:50:52,,,,,,,,"Only two minutes, it's okay if you don't finish. You're just working out on a strategy that might help you out.",,,,14,English,,a,Teacher,,,,,,00:00:05:25,,,,,,
+,00:03:01:05,,00:03:00:20,,,,,,,,Alright.,,,,15,English,,a,Student 1,,,,,,00:00:00:45,,,,,,
+,00:03:13:08,,00:03:02:13,,,,,,,,What's wrong with your water? What happened?,,,,16,English,,a,Student 3,,,,,,00:00:10:55,,,,,,
+,00:03:14:26,,00:03:13:10,,,,,,,,I don't know.,,,,17,English,,a,Student 2,,,,,,00:00:01:16,,,,,,
+,00:03:18:46,,00:03:17:12,,,,,,,,My strategy...,,,,18,English,,a,Student 1,,,,,,00:00:01:34,,,,,,
+,00:03:33:24,,00:03:31:51,,,,,,,,Alright. Um...,,,,19,English,,a,Student 3,,,,,,00:00:01:33,,,,,,
+,00:03:55:24,,00:03:42:02,,,,,,,,"I'm actually going to change it up a little bit. I'd like you to talk to a partner and say ""I think first we could,"" and then see if you can together come up with a more efficient strategy. So, why don't you share with a shoulder partner what you think you should do, and then [unintelligible] to come with a better or more efficient way of doing it.",,,,20,English,,a,Teacher,,,,,,00:00:13:22,,,,,,
+0.0,00:03:58:14,0.0,00:03:55:26,0.0,0.0,0.0,0.0,0.0,yes,0.0,"We'll just share around, since there's three instead of four.",0.0,,1.0,21,English,,a,Student 2,0.0,0.0,0.0,0.0,1.0,00:00:02:48,0.0,0.0,0.0,0.0,0.0,0.0
+,00:04:00:05,,00:03:59:07,,,,,,yes,,Who wants to share first? ,,,,22,English,,a,Student 3,,,,,,00:00:00:54,,,,,,
+,00:04:01:05,,00:04:00:07,,,,,,yes,,"Okay, I'll go first.",,,,23,English,,a,Student 2,,,,,,00:00:00:58,,,,,,
+,00:04:01:29,,00:04:01:07,,,,,,yes,,Okay.,,,,24,English,,a,Student 3,,,,,,00:00:00:22,,,,,,
+0.0,00:04:14:20,1.0,00:04:01:31,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Let's see. My estimate is 34 square units. My strategy was I counted the amount of full squares in the circle, not counting like the outside ring that wasn't like whole squares, more like half squares.",0.0,,0.0,25,English,,a,Student 2,0.0,0.0,0.0,1.0,0.0,00:00:12:49,0.0,0.0,0.0,1.0,0.0,0.0
+0.0,00:04:22:26,1.0,00:04:16:11,0.0,0.0,0.0,0.0,0.0,yes,0.0,"I think you... I got 24. So, I don't know how I got 24.",0.0,,0.0,26,English,,a,Student 1,0.0,0.0,0.0,0.0,0.0,00:00:06:15,0.0,0.0,0.0,1.0,0.0,0.0
+,00:04:24:10,,00:04:22:28,,,,,,yes,,I got 64.,,,,27,English,,a,Student 3,,,,,,00:00:01:42,,,,,,
+0.0,00:04:26:20,1.0,00:04:24:12,0.0,0.0,1.0,1.0,0.0,yes,0.0,"So, we all got something with 4.",0.0,,0.0,28,English,,a,Student 1,0.0,0.0,0.0,0.0,0.0,00:00:02:08,0.0,0.0,0.0,1.0,0.0,0.0
+0.0,00:04:28:39,0.0,00:04:26:22,0.0,1.0,0.0,0.0,0.0,yes,0.0,Well. How did you get 64?,0.0,,0.0,29,English,,a,Student 2,1.0,0.0,0.0,0.0,0.0,00:00:02:17,0.0,0.0,0.0,1.0,0.0,0.0
+1.0,00:04:36:33,1.0,00:04:29:20,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Since we're counting area, I just did eight down and then going down and then diagonal.",0.0,,0.0,30,English,,a,Student 3,0.0,1.0,0.0,1.0,0.0,00:00:07:13,0.0,0.0,0.0,1.0,0.0,0.0
+1.0,00:04:40:21,1.0,00:04:36:35,0.0,0.0,0.0,0.0,1.0,yes,0.0,"That wouldn't be completely accurate, since part of it is like half squares.",0.0,,0.0,31,English,,a,Student 2,0.0,1.0,1.0,0.0,0.0,00:00:03:46,0.0,0.0,0.0,1.0,0.0,0.0
+,00:04:41:18,,00:04:40:23,,,,,,yes,,Mm-hmm.,,,,32,English,,a,Student 3,,,,,,00:00:00:55,,,,,,
+0.0,00:04:44:46,0.0,00:04:41:59,0.0,1.0,0.0,0.0,0.0,yes,0.0,"But then, I mean, what's Pi again? Pi is like 3...",0.0,,0.0,33,English,,a,Student 1,1.0,0.0,0.0,0.0,0.0,00:00:02:47,0.0,0.0,0.0,1.0,0.0,0.0
+,00:04:46:20,,00:04:44:48,,,,,,,,3.14.,,,,34,English,,a,Student 3 and Student 2,,,,,,00:00:01:32,,,,,,
+1.0,00:04:49:26,1.0,00:04:47:04,0.0,0.0,0.0,0.0,1.0,yes,0.0,Which is the first three digits but it's infinite.,0.0,,0.0,35,English,,a,Student 2,0.0,1.0,0.0,0.0,0.0,00:00:02:22,0.0,0.0,0.0,1.0,0.0,0.0
+1.0,00:04:58:49,1.0,00:04:49:28,0.0,0.0,0.0,0.0,0.0,yes,0.0,"So, then I counted the diameter. I counted across, and then I multiplied that by three. It was eight, and then I multiplied it by three.",0.0,,0.0,36,English,,a,Student 1,0.0,1.0,0.0,1.0,0.0,00:00:09:21,0.0,0.0,0.0,1.0,0.0,0.0
+,00:05:01:44,,00:04:59:23,,,,,,yes,,"It was eight, so...",,,,37,English,,a,Student 3,,,,,,00:00:02:17,,,,,,
+,00:05:02:51,,00:05:01:46,,,,,,yes,,Let's see who's closest [crosstalk],,,,38,English,,a,Student 1,,,,,,00:00:01:05,,,,,,
+,00:05:05:03,,00:05:02:53,,,,,,yes,,Eight times Pi...,,,,39,English,,a,Student 2,,,,,,00:00:02:10,,,,,,
+,00:05:06:13,,00:05:05:05,,,,,,,,Equals.,,,,40,English,,a,Student 3 and Student 2,,,,,,00:00:01:08,,,,,,
+,00:05:08:51,,00:05:06:15,,,,,,yes,,...25.132.,,,,41,English,,a,Student 2,,,,,,00:00:02:36,,,,,,
+,00:05:12:02,,00:05:08:53,,,,,,yes,,That's probably [unintelligible] [crosstalk],,,,42,English,,a,Student 3,,,,,,00:00:03:09,,,,,,
+,00:05:14:13,,00:05:13:20,,,,,,yes,,Square.,,,,43,English,,a,Student 1,,,,,,00:00:00:53,,,,,,
+0.0,00:05:17:19,0.0,00:05:14:15,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Partners estimate. We'll just, like, Student 3, you write down my estimation.",0.0,,1.0,44,English,,a,Student 2,0.0,0.0,0.0,0.0,1.0,00:00:03:04,0.0,0.0,1.0,0.0,0.0,0.0
+,00:05:18:17,,00:05:17:21,,,,,,yes,,"Wait, no. You got...",,,,45,English,,a,Student 1,,,,,,00:00:00:56,,,,,,
+,00:05:19:28,,00:05:18:19,,,,,,yes,,You got 34.,,,,46,English,,a,Student 3,,,,,,00:00:01:09,,,,,,
+,00:05:20:32,,00:05:20:00,,,,,,yes,,Yeah.,,,,47,English,,a,Student 2,,,,,,00:00:00:32,,,,,,
+0.0,00:05:24:11,1.0,00:05:20:34,0.0,1.0,0.0,0.0,1.0,yes,0.0,"You got thirty-four. Wait, I'm writing down your estimate?",0.0,,0.0,48,English,,a,Student 1,1.0,0.0,0.0,0.0,0.0,00:00:03:37,0.0,0.0,1.0,1.0,0.0,0.0
+0.0,00:05:25:23,0.0,00:05:24:13,0.0,0.0,0.0,0.0,1.0,yes,0.0,"No, you're writing down my estimate.",0.0,,0.0,49,English,,a,Student 2,0.0,0.0,1.0,0.0,1.0,00:00:01:10,0.0,0.0,1.0,0.0,0.0,0.0
+,00:05:26:13,,00:05:25:25,,,,,,yes,,"Mine, okay, 34.",,,,50,English,,a,Student 1,,,,,,00:00:00:48,,,,,,
+0.0,00:05:31:42,0.0,00:05:26:15,0.0,0.0,0.0,0.0,1.0,yes,0.0,"Mine. So, you're writing down mine, and I'm writing down yours.",0.0,,0.0,51,English,,a,Student 3,0.0,0.0,0.0,0.0,1.0,00:00:05:27,0.0,0.0,1.0,0.0,0.0,0.0
+,00:05:33:08,,00:05:31:44,,,,,,yes,,Four units.,,,,52,English,,a,Student 1,,,,,,00:00:01:24,,,,,,
+0.0,00:05:40:04,0.0,00:05:33:10,0.0,0.0,0.0,0.0,1.0,yes,0.0,"Who's writing? You're writing down [Student 1]'s. Wait no. [Student 2] is writing down mine, but [Student 2] is writing [Student 1]'s.",0.0,,0.0,53,English,,a,Student 3,0.0,0.0,0.0,0.0,1.0,00:00:06:54,0.0,0.0,1.0,0.0,0.0,0.0
+0.0,00:05:44:20,0.0,00:05:40:06,0.0,0.0,0.0,0.0,1.0,yes,0.0,"You're supposed to write [Student 1]'s, and [Student 1] is supposed to write mine.",0.0,,0.0,54,English,,a,Student 2,0.0,0.0,0.0,0.0,1.0,00:00:04:14,0.0,0.0,1.0,0.0,0.0,0.0
+,00:06:03:25,,00:05:44:22,,,,,,,,"Alright, let me give you guys some work time. Get your best, most accurate statement, and then I'm gonna send you to a different table to get someone else's strategy. So, you write strategies at your table, you figure it out for yourself, and then I'll send you somewhere else, to go get some ideas. Let's go.",,,,55,English,,a,Teacher,,,,,,00:00:18:59,,,,,,
+,00:06:07:15,,00:06:06:08,,,,,,yes,,Let me see the calculator.,,,,56,English,,a,Student 1,,,,,,00:00:01:07,,,,,,
+0.0,00:06:09:28,0.0,00:06:07:57,0.0,1.0,0.0,0.0,0.0,yes,0.0,"[Student 1], what was you estimate?",0.0,,0.0,57,English,,a,Student 2,1.0,0.0,0.0,0.0,0.0,00:00:01:31,0.0,0.0,0.0,1.0,0.0,0.0
+0.0,00:06:13:12,1.0,00:06:09:30,0.0,0.0,0.0,0.0,1.0,yes,0.0,"It was 24. Oh, it was 25.",0.0,,0.0,58,English,,a,Student 1,0.0,0.0,0.0,0.0,0.0,00:00:03:42,0.0,0.0,0.0,1.0,0.0,0.0
+0.0,00:06:15:03,0.0,00:06:13:14,0.0,1.0,0.0,0.0,0.0,yes,0.0,"[Student 3], what was you way of doing it?",0.0,,0.0,59,English,,a,Student 2,1.0,0.0,0.0,0.0,0.0,00:00:01:49,0.0,0.0,0.0,1.0,0.0,0.0
+1.0,00:06:20:04,1.0,00:06:16:24,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Just 8 times 8, so you get the area.",0.0,,0.0,60,English,,a,Student 3,0.0,1.0,0.0,1.0,0.0,00:00:03:40,0.0,0.0,0.0,1.0,0.0,0.0
+,00:06:20:56,,00:06:20:38,,,,,,yes,,I was closest.,,,,61,English,,a,Student 1,,,,,,00:00:00:18,,,,,,
+,00:06:22:42,,00:06:20:58,,,,,,yes,,8 times 8.,,,,62,English,,a,Student 2,,,,,,00:00:01:44,,,,,,
+0.0,00:06:38:45,1.0,00:06:34:55,0.0,1.0,0.0,1.0,1.0,yes,0.0,"You just did 8 times Pi, right? Okay.",0.0,,0.0,63,English,,a,Student 3,1.0,0.0,0.0,1.0,0.0,00:00:03:50,0.0,0.0,0.0,1.0,0.0,0.0
+,00:06:39:14,,00:06:38:47,,,,,,yes,,Yeah.,,,,64,English,,a,Student 1,,,,,,00:00:00:27,,,,,,
+,00:06:39:52,,00:06:39:16,,,,,,yes,,Yeah.,,,,65,English,,a,Student 2,,,,,,00:00:00:36,,,,,,
+0.0,00:06:41:48,1.0,00:06:40:08,0.0,0.0,0.0,0.0,1.0,yes,0.0,Eight times pi. Eight times [crosstalk],0.0,,0.0,66,English,,a,Student 1,0.0,0.0,0.0,1.0,0.0,00:00:01:40,0.0,0.0,0.0,1.0,0.0,0.0
+0.0,00:06:44:18,0.0,00:06:41:50,0.0,0.0,0.0,0.0,0.0,yes,0.0,"[Student 3], this looks like [unintelligible]'s recorder.",0.0,,0.0,67,English,,a,Student 2,0.0,0.0,0.0,0.0,0.0,00:00:02:28,1.0,1.0,0.0,0.0,0.0,0.0
+,00:06:46:17,,00:06:44:20,,,,,,yes,,"Yeah, it does actually.",,,,68,English,,a,Student 3,,,,,,00:00:01:57,,,,,,
+0.0,00:06:48:17,0.0,00:06:46:58,0.0,0.0,0.0,0.0,0.0,yes,0.0,Better not to figure it out. Remember?,0.0,,0.0,69,English,,a,Student 2,0.0,0.0,0.0,0.0,0.0,00:00:01:19,1.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:06:52:23,0.0,00:06:48:19,0.0,0.0,0.0,0.0,0.0,yes,0.0,"I won't, I know. Not knowing the number, my...",0.0,,0.0,70,English,,a,Student 1,0.0,0.0,0.0,0.0,0.0,00:00:04:04,0.0,0.0,0.0,0.0,0.0,0.0
+,00:06:53:15,,00:06:52:25,,,,,,yes,,"Yeah, I know.",,,,71,English,,a,Student 2,,,,,,00:00:00:50,,,,,,
+,00:06:54:37,,00:06:53:17,,,,,,yes,,This also counts the time.,,,,72,English,,a,Student 3,,,,,,00:00:01:20,,,,,,
+,00:06:55:36,,00:06:54:39,,,,,,yes,,Pumpkin pie.,,,,73,English,,a,Student 1,,,,,,00:00:00:57,,,,,,
+0.0,00:07:03:08,1.0,00:06:56:14,0.0,0.0,0.0,0.0,0.0,yes,0.0,"That's cool. Pi times Pi, equals Pi. No, it doesn't.",0.0,,0.0,74,English,,a,Student 2,0.0,0.0,1.0,0.0,0.0,00:00:06:50,0.0,0.0,0.0,1.0,0.0,0.0
+,00:07:06:07,,00:07:04:14,,,,,,yes,,Pi times Pi equals...,,,,75,English,,a,Student 3,,,,,,00:00:01:53,,,,,,
+,00:07:08:23,,00:07:06:09,,,,,,yes,,9.869604 [crosstalk],,,,76,English,,a,Student 2,,,,,,00:00:02:14,,,,,,
+0.0,00:07:10:30,1.0,00:07:08:25,0.0,0.0,0.0,0.0,0.0,yes,0.0,Pi times Pi equals two Pis.,0.0,,0.0,77,English,,a,Student 1,0.0,1.0,0.0,0.0,0.0,00:00:02:05,0.0,0.0,0.0,1.0,0.0,0.0
+0.0,00:07:16:19,1.0,00:07:11:09,0.0,0.0,0.0,0.0,0.0,yes,0.0,"It's just Pi times 3, infinitely again.",0.0,,0.0,78,English,,a,Student 3,0.0,1.0,0.0,0.0,0.0,00:00:05:10,0.0,0.0,0.0,1.0,0.0,0.0
+,00:07:17:37,,00:07:16:21,,,,,,yes,,Times Pi.,,,,79,English,,a,Student 2,,,,,,00:00:01:16,,,,,,
+0.0,00:07:21:38,1.0,00:07:17:39,0.0,0.0,0.0,0.0,0.0,yes,0.0,"So, it goes for an infinite number if you times Pi by Pi.",0.0,,0.0,80,English,,a,Student 3,0.0,1.0,0.0,0.0,0.0,00:00:03:59,0.0,0.0,0.0,1.0,0.0,0.0
+0.0,00:07:27:07,0.0,00:07:23:57,0.0,0.0,0.0,0.0,0.0,yes,0.0,Pi is such a funny name. Pi.,0.0,,0.0,81,English,,a,Student 1,0.0,0.0,0.0,0.0,0.0,00:00:03:10,1.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:07:31:30,0.0,00:07:27:41,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Point... Pi equals... Hey guys, look.",0.0,,0.0,82,English,,a,Student 2,0.0,0.0,0.0,0.0,0.0,00:00:03:49,0.0,0.0,0.0,1.0,0.0,0.0
+,00:07:33:02,,00:07:31:32,,,,,,yes,,Math is sweet as Pi.,,,,83,English,,a,Student 3,,,,,,00:00:01:30,,,,,,
+,00:07:34:01,,00:07:33:04,,,,,,yes,,"No, it's not.",,,,84,English,,a,Student 2,,,,,,00:00:00:57,,,,,,
+,00:07:35:20,,00:07:34:03,,,,,,yes,,[unintelligible],,,,85,English,,a,Student 3,,,,,,00:00:01:17,,,,,,
+0.0,00:07:39:55,1.0,00:07:35:22,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Pi, times Pi, times Pi, times Pi, times Pi.",0.0,,0.0,86,English,,a,Student 2,0.0,0.0,0.0,0.0,0.0,00:00:04:33,0.0,0.0,0.0,1.0,0.0,0.0
+0.0,00:07:41:48,0.0,00:07:39:57,0.0,0.0,0.0,0.0,0.0,yes,1.0,"Okay, okay, we're getting... [Student 2].",0.0,,0.0,87,English,,a,Student 3,0.0,0.0,0.0,0.0,1.0,00:00:01:51,0.0,0.0,1.0,0.0,0.0,0.0
+0.0,00:07:46:37,1.0,00:07:41:50,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Times Pi, times Pi, times Pi, times Pi, times",0.0,,0.0,88,English,,a,Student 2,0.0,0.0,0.0,0.0,0.0,00:00:04:47,0.0,0.0,0.0,1.0,0.0,0.0
+0.0,00:07:50:36,0.0,00:07:46:39,0.0,0.0,0.0,0.0,0.0,yes,1.0,"Student 2, we're getting sidetracked, let's... we're getting sidetracked.",0.0,,1.0,89,English,,a,Student 3,0.0,0.0,0.0,0.0,1.0,00:00:03:57,0.0,0.0,1.0,0.0,0.0,0.0
+0.0,00:07:52:52,0.0,00:07:50:38,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Pi point [crosstalk], but we did our stuff.",0.0,,0.0,90,English,,a,Student 2,0.0,0.0,0.0,0.0,0.0,00:00:02:14,0.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:07:57:25,0.0,00:07:52:54,0.0,1.0,0.0,0.0,0.0,yes,0.0,"Oh, what. That's a lot of Pi's. But you get to eat them?",0.0,,0.0,91,English,,a,Student 1,0.0,0.0,0.0,0.0,0.0,00:00:04:31,1.0,0.0,0.0,0.0,0.0,0.0
+,00:07:58:25,,00:07:57:27,,,,,,yes,,Pi.,,,,92,English,,a,Student 2,,,,,,00:00:00:58,,,,,,
+,00:07:59:24,,00:07:58:27,,,,,,,,"Alright, give me a big thumbs-up if you have your estimate. ",,,,93,English,,a,Teacher,,,,,,00:00:00:57,,,,,,
+,00:08:03:00,,00:07:59:26,,,,,,,,I don't think you can eat an infinite number of pies.,,,,94,English,,a,Student 3,,,,,,00:00:03:30,,,,,,
+,00:08:03:42,,00:08:03:02,,,,,,,,"Alright, shh.",,,,95,English,,a,Student 1,,,,,,00:00:00:40,,,,,,
+,00:08:08:23,,00:08:06:57,,,,,,,,"Okay, great.",,,,96,English,,a,Teacher,,,,,,00:00:01:26,,,,,,
+,00:00:03:43,,00:00:00:01,,,,,,,,Now let's make sense of what else is happening.,,,,97,English,,a,Teacher,,,,,,00:00:03:42,,,,,,
+,00:00:24:59,,00:00:17:33,,,,,,,,"Why don't y'all--  What do you notice and what do you wonder here, with this animation.",,,,98,English,,a,Teacher,,,,,,00:00:07:26,,,,,,
+,00:00:26:02,,00:00:25:03,,,,,,,,Oh.,,,,99,English,,a,Student 1,,,,,,00:00:00:59,,,,,,
+,00:00:31:24,,00:00:26:02,,,,,,,,"So we know three radius squares has something todo with it.
+Talk with your team.",,,,100,English,,a,Teacher,,,,,,00:00:05:22,,,,,,
+,00:00:38:08,,00:00:31:24,,,,,,,,I noticed they took the extra parts and then locked off and just shoved it inside in an organized way to create like--,,,,101,English,,a,Student 2,,,,,,00:00:06:44,,,,,,
+,00:00:55:10,,00:00:38:08,,,,,,,,"So I think if you draw like three squares, kind of in the circle area-- How do I explain that? And then you cut off the excess around the circle and put that in the missing place of the circle, you'll get the...",,,,102,English,,a,Student 1,,,,,,00:00:17:02,,,,,,
+,00:00:58:43,,00:00:55:56,,,,,,,,"But it doesn't evenly fit, though.",,,,103,English,,a,Student 2,,,,,,00:00:02:47,,,,,,
+,00:00:59:07,,00:00:58:44,,,,,,,,Yeah.,,,,104,English,,a,Student 3,,,,,,00:00:00:23,,,,,,
+,00:01:02:40,,00:00:59:07,,,,,,,,"Yeah, but I think it's implying that that's....",,,,105,English,,a,Student 1,,,,,,00:00:03:29,,,,,,
+,00:01:04:29,,00:01:03:12,,,,,,,,Like trying to fit?,,,,106,English,,a,Student 2,,,,,,00:00:01:17,,,,,,
+,00:01:05:39,,00:01:04:29,,,,,,,,Like it fits.,,,,107,English,,a,Student 3,,,,,,00:00:01:10,,,,,,
+,00:01:08:03,,00:01:05:39,,,,,,,,"Yeah, but you have to find, like, the most perfect squares.",,,,108,English,,a,Student 2,,,,,,00:00:02:24,,,,,,
+,00:01:26:46,,00:01:08:05,,,,,,,,"I'm gonna call for two things we noticed, two thing we are left wondering... [crosstalk]
+Yeah, you can just wonder, that's fine.
+[Other Student 1], what's something that was discussed at your table? What's something either you noticed or you wonder about this demonstration?",,,,109,English,,a,Teacher,,,,,,00:00:18:41,,,,,,
+,00:01:47:37,,00:01:39:42,,,,,,,,"What do you see, [Other Student 1]? What did you guys witness?
+[Student A5], do you wanna share? go for it.",,,,110,English,,a,Teacher,,,,,,00:00:07:55,,,,,,
+,00:01:52:49,,00:01:48:09,,,,,,,,I noticed... I wondered why we left [unintelligible].,,,,111,English,,a,Student 1,,,,,,00:00:04:40,,,,,,
+,00:01:55:21,,00:01:53:08,,,,,,,,"Okay, great. Go ahead, [Student A4].",,,,112,English,,a,Teacher,,,,,,00:00:02:13,,,,,,
+,00:02:06:27,,00:01:55:53,,,,,,,,"[unintelligible] moving it, but it's still the same [unintelligible].",,,,113,English,,a,Student 2,,,,,,00:00:10:30,,,,,,
+,00:02:20:41,,00:02:06:27,,,,,,,,"Excellent. So you're saying that we move these little pieces, but [Student A5] is noticing there's still some tiny gaps. What else do we notice or wonder? [unintelligible]?",,,,114,English,,a,Teacher,,,,,,00:00:14:14,,,,,,
+,00:02:27:08,,00:02:20:41,,,,,,,,"Well, I just feel like it'd be really hard to do that without [unintelligible].",,,,115,English,,a,Student 3,,,,,,00:00:06:27,,,,,,
+,00:02:34:55,,00:02:29:23,,,,,,,,"But I mean, they all fit in there, don't they? I mean, are there still gaps?",,,,116,English,,a,Teacher,,,,,,00:00:05:32,,,,,,
+,00:02:36:31,,00:02:35:32,,,,,,,,Yes.,,,,117,English,,a,Student 2,,,,,,00:00:00:59,,,,,,
+,00:02:49:10,,00:02:36:35,,,,,,,,Okay. Let's get back to something we already know about circles. What's a special number you guys know about circles?,,,,118,English,,a,Teacher,,,,,,00:00:12:35,,,,,,
+,00:02:50:24,,00:02:49:19,,,,,,,,3.14?,,,,119,English,,a,Student 3,,,,,,00:00:01:05,,,,,,
+,00:02:57:49,,00:02:50:41,,,,,,,,"[Student 15], do you know that special number about circles? [crosstalk] Yeah, looking at you!",,,,120,English,,a,Teacher,,,,,,00:00:07:08,,,,,,
+,00:03:00:40,,00:02:58:07,,,,,,,,[unintelligible] I wonder a lot of [unintelligible].,,,,121,English,,a,Student 4,,,,,,00:00:02:29,,,,,,
+,00:03:02:45,,00:03:01:21,,,,,,,,What do you wonder about that?,,,,122,English,,a,Teacher,,,,,,00:00:01:24,,,,,,
+,00:03:05:03,,00:03:03:03,,,,,,,,Why they get that. How they get that.,,,,123,English,,a,Student 4,,,,,,00:00:02:00,,,,,,
+,00:03:23:28,,00:03:05:26,,,,,,,,"How they got that? Cool. Good idea.
+So, what's a special number we know about circles? We've been talking about it for about a week now. Say it, [Other Student 2].
+Hi, could you guys tell your neighbors? What we know about Pi and how we use it?",,,,124,English,,a,Teacher,,,,,,00:00:18:02,,,,,,
+,00:03:25:59,,00:03:24:03,,,,,,,,Pi we just kind of take the...,,,,125,English,,a,Student 2,,,,,,00:00:01:56,,,,,,
+,00:03:29:23,,00:03:26:23,,,,,,,,"[unintelligible] three, but not the number.  [crosstalk] All right, go on.",,,,126,English,,a,Student 1,,,,,,00:00:03:00,,,,,,
+,00:03:37:28,,00:03:29:30,,,,,,,,"The first three digits.
+3.14, we should just take that, multiply a number by it, and that's how we think of Pi.",,,,127,English,,a,Student 2,,,,,,00:00:07:58,,,,,,
+,00:03:38:17,,00:03:37:28,,,,,,,,Yeah.,,,,128,English,,a,Student 1,,,,,,00:00:00:49,,,,,,
+,00:03:51:24,,00:03:38:20,,,,,,,,"And, the equation, like, we always take the tenths and the hundredths place, along with the whole numbers.  Also, blueberry pie with whipped cream is the best.",,,,129,English,,a,Student 2,,,,,,00:00:13:04,,,,,,
+,00:03:54:57,,00:03:52:06,,,,,,,,"Two, one...",,,,130,English,,a,Teacher,,,,,,00:00:02:51,,,,,,
+,00:03:56:37,,00:03:55:41,,,,,,,,"So, I kind of...",,,,131,English,,a,Student 3,,,,,,00:00:00:56,,,,,,
+,00:04:38:57,,00:03:56:37,,,,,,,,"Zero... [Student], what do we know about the number three as it relates to circles?
+So we know the special relationship with circumference, but guess what. There's also a special relationship with circles. So let's go into the second part of activity 1. Where is that?
+So where did the word radius square come from? go ahead and answer question number two...",,,,132,English,,a,Teacher,,,,,,00:00:42:16,,,,,,
+,00:04:41:29,,00:04:39:12,,,,,,,,"Oh, I could've looked at that!",,,,133,English,,a,Student 1,,,,,,00:00:02:17,,,,,,
+,00:04:42:49,,00:04:41:32,,,,,,,,...silently to yourself.,,,,134,English,,a,Teacher,,,,,,00:00:01:17,,,,,,
+,00:04:44:03,,00:04:43:08,,,,,,,,[crosstalk] Radius.,,,,135,English,,a,Student 1,,,,,,00:00:00:55,,,,,,
+,00:04:52:15,,00:04:44:03,,,,,,,,"I have some unfinished questions here. Go ahead, question number 2. Why do we think we call this a radius square?",,,,136,English,,b,Teacher,,,,,,00:00:08:12,,,,,,
+,00:04:57:31,,00:04:56:02,,,,,,,,Because...,,,,137,English,,b,Student 2,,,,,,00:00:01:29,,,,,,
+,00:05:40:18,,00:05:38:18,,,,,,,,ASMR.,,,,138,English,,b,Student 1,,,,,,00:00:02:00,,,,,,
+,00:05:49:05,,00:05:41:36,,,,,,,,"All right, just about everybody has finished question number 2, let's read question number 3 together please. Um...",,,,139,English,,b,Teacher,,,,,,00:00:07:29,,,,,,
+,00:06:03:53,,00:05:50:04,,,,,,,,"With the circle, when a radius square has an area of 16 square units. So how many of these radius squares do you think it would take to cover just the circles? Well, if it's 16 per [unintelligible] square, we should do...",,,,140,English,,b,Student 3,,,,,,00:00:13:45,,,,,,
+,00:06:05:16,,00:06:03:53,,,,,,,,"Four squared, sixteen.",,,,141,English,,b,Student 2,,,,,,00:00:01:23,,,,,,
+,00:06:06:21,,00:06:05:16,,,,,,,,"Exactly, which would be...",,,,142,English,,b,Student 3,,,,,,00:00:01:05,,,,,,
+,00:06:32:06,,00:06:06:21,,,,,,,,"All right, you are going to, now, read this with your team. So one person from each team is going to read it again. And you are going to decide how you think... Like how many of these radius squares you think would cover the circle. So I want you to think back to the animation you just saw. So go ahead and start by reading it, and then saying, ""I think...""",,,,143,English,,b,Teacher,,,,,,00:00:25:45,,,,,,
+0.0,00:06:52:51,1.0,00:06:32:06,0.0,1.0,0.0,0.0,0.0,yes,0.0,"How... I know like four squares would take that, but like... How many of those, how many square units, not...
+And even though you could take four for each side, how many square units? So I think we should just do 16 times 4 to get the answer. [unintelligible]
+Don't you think we should do 16 times 4 to get that answer?",0.0,,1.0,144,English,,b,Student 3,1.0,1.0,0.0,0.0,0.0,00:00:20:45,0.0,0.0,1.0,0.0,0.0,0.0
+,00:06:54:22,,00:06:52:53,,,,,,yes,,"No, 16 times 3.",,,,145,English,,b,Student 1,,,,,,00:00:01:29,,,,,,
+,00:06:56:14,,00:06:55:14,,,,,,yes,,Really? Why?,,,,146,English,,b,Student 2,,,,,,00:00:01:00,,,,,,
+,00:06:57:42,,00:06:56:41,,,,,,yes,,I'm not tripping.,,,,147,English,,b,Student 1,,,,,,00:00:01:01,,,,,,
+,00:06:58:39,,00:06:57:59,,,,,,yes,,"Oh, cause...",,,,148,English,,b,Student 3,,,,,,00:00:00:40,,,,,,
+0.0,00:07:00:05,0.0,00:06:58:39,0.0,1.0,0.0,0.0,0.0,yes,0.0,"Wait, are you guys on the other one?",0.0,,0.0,149,English,,b,Student 1,1.0,0.0,0.0,0.0,0.0,00:00:01:22,0.0,0.0,1.0,0.0,0.0,0.0
+0.0,00:07:04:39,0.0,00:07:00:05,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Yeah, we're on 2. No. This one right here.",0.0,,0.0,150,English,,b,Student 3,0.0,0.0,0.0,0.0,0.0,00:00:04:34,0.0,0.0,1.0,0.0,0.0,0.0
+,00:07:06:45,,00:07:06:05,,,,,,yes,,"Oh, yeah.",,,,151,English,,b,Student 1,,,,,,00:00:00:40,,,,,,
+,00:07:07:36,,00:07:07:15,,,,,,yes,,Yeah.,,,,152,English,,b,Student 3,,,,,,00:00:00:21,,,,,,
+,00:07:08:42,,00:07:08:00,,,,,,yes,,Two.,,,,153,English,,b,Student 1,,,,,,00:00:00:42,,,,,,
+,00:07:09:57,,00:07:09:05,,,,,,yes,,"Good, [Student 1].",,,,154,English,,b,Student 2,,,,,,00:00:00:52,,,,,,
+0.0,00:07:13:36,0.0,00:07:09:57,0.0,0.0,0.0,0.0,0.0,yes,0.0,But the animation showed only 3 squares. And then...,0.0,,0.0,155,English,,b,Student 1,0.0,1.0,0.0,0.0,0.0,00:00:03:39,0.0,0.0,1.0,0.0,0.0,0.0
+1.0,00:07:24:21,1.0,00:07:13:36,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Because it could mean that 3 would be only necessary, but 4 to get a perfect circle, we could just lop off the excess and get rid of it somehow.",0.0,,0.0,156,English,,b,Student 2,0.0,1.0,0.0,0.0,0.0,00:00:10:45,0.0,0.0,1.0,0.0,0.0,0.0
+0.0,00:07:32:27,0.0,00:07:24:53,0.0,0.0,0.0,0.0,0.0,yes,0.0,"No, but I think... there wouldn't be any...
+I don't know, I think...",0.0,,0.0,157,English,,b,Student 1,0.0,0.0,1.0,0.0,0.0,00:00:07:34,0.0,0.0,0.0,0.0,0.0,0.0
+,00:07:33:13,,00:07:32:27,,,,,,yes,,"It says only, like...",,,,158,English,,b,Student 3,,,,,,00:00:00:46,,,,,,
+,00:07:33:54,,00:07:33:13,,,,,,yes,,I think it's 3.,,,,159,English,,b,Student 1,,,,,,00:00:00:41,,,,,,
+1.0,00:07:41:29,1.0,00:07:33:54,0.0,0.0,1.0,0.0,1.0,yes,0.0,"I mean, there wouldn't be any excess if there was 3, but you can't perfectly fill the circle unless there's 4.",0.0,,0.0,160,English,,b,Student 2,0.0,1.0,0.0,0.0,0.0,00:00:07:35,0.0,0.0,1.0,0.0,0.0,0.0
+,00:07:42:00,,00:07:41:31,,,,,,yes,,Yeah.,,,,161,English,,b,Student 3,,,,,,00:00:00:29,,,,,,
+1.0,00:07:53:29,1.0,00:07:42:00,0.0,0.0,0.0,0.0,0.0,yes,0.0,"And then you could have some excess to do whatever you want with it.
+Because if the only goal here is to fill the circle, 4 is necessary.",0.0,,0.0,162,English,,b,Student 2,0.0,1.0,0.0,0.0,0.0,00:00:11:29,0.0,0.0,1.0,0.0,0.0,0.0
+,00:07:54:05,,00:07:53:30,,,,,,yes,,Yeah.,,,,163,English,,b,Student 3,,,,,,00:00:00:35,,,,,,
+1.0,00:07:59:14,1.0,00:07:54:26,0.0,0.0,0.0,0.0,0.0,yes,0.0,"If you aren't caring about what the excess is, it's 4.",0.0,,0.0,164,English,,b,Student 2,0.0,1.0,0.0,0.0,0.0,00:00:04:48,0.0,0.0,1.0,0.0,0.0,0.0
+0.0,00:08:02:07,0.0,00:08:00:07,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Cause only 3 would be, like...",0.0,,0.0,165,English,,b,Student 3,0.0,0.0,0.0,0.0,0.0,00:00:02:00,0.0,0.0,0.0,0.0,0.0,0.0
+,00:08:03:43,,00:08:02:29,,,,,,yes,,Like a very...,,,,166,English,,b,Student 2,,,,,,00:00:01:14,,,,,,
+,00:08:05:08,,00:08:03:43,,,,,,yes,,Three fourths of it.,,,,167,English,,b,Student 3,,,,,,00:00:01:25,,,,,,
+,00:08:05:36,,00:08:05:17,,,,,,yes,,Yeah.,,,,168,English,,b,Student 2,,,,,,00:00:00:19,,,,,,
+0.0,00:08:15:45,0.0,00:08:05:36,0.0,1.0,0.0,0.0,0.0,yes,0.0,"It could, like... maybe to, like...  it could be like a little bit left still to probably also have to make up for that. The answer's... Is my clock still going?",0.0,,0.0,169,English,,b,Student 3,1.0,1.0,0.0,0.0,0.0,00:00:10:09,0.0,1.0,1.0,0.0,0.0,0.0
+1.0,00:08:22:03,1.0,00:08:15:47,0.0,0.0,1.0,0.0,0.0,yes,0.0,"I mean, if we don't care about the excess 4, is correct. Three is still just gaps.",0.0,,0.0,170,English,,b,Student 2,0.0,1.0,0.0,0.0,0.0,00:00:06:16,0.0,0.0,1.0,0.0,0.0,0.0
+,00:08:24:04,,00:08:22:04,,,,,,,,So somewhere between 3 and 4.,,,,171,English,,b,Teacher,,,,,,00:00:02:00,,,,,,
+,00:08:25:07,,00:08:24:23,,,,,,,,3 and a half?,,,,172,English,,b,Student 3,,,,,,00:00:00:44,,,,,,
+,00:08:26:50,,00:08:25:50,,,,,,,,"Not three and a half, no.",,,,173,English,,b,Teacher,,,,,,00:00:01:00,,,,,,
+,00:08:27:43,,00:08:26:50,,,,,,,,What was our special number?,,,,174,English,,b,Teacher,,,,,,00:00:00:53,,,,,,
+,00:08:28:56,,00:08:27:45,,,,,,yes,,It was 4...,,,,175,English,,b,Student 3,,,,,,00:00:01:11,,,,,,
+,00:08:31:25,,00:08:28:58,,,,,,yes,,3.14?,,,,176,English,,b,Student 2,,,,,,00:00:02:27,,,,,,
+,00:08:32:39,,00:08:31:40,,,,,,yes,,3.14?,,,,177,English,,b,Student 3,,,,,,00:00:00:59,,,,,,
+,00:08:36:52,,00:08:35:48,,,,,,yes,,3.14.,,,,178,English,,b,Student 1,,,,,,00:00:01:04,,,,,,
+0.0,00:08:48:10,1.0,00:08:36:52,0.0,0.0,0.0,0.0,0.0,yes,0.0,"So 16 times 3.14. Should we do that and just try to find like... Because it's not saying, like, how many squares need to be filled up. It's how many squares units need to fill up.",0.0,,1.0,179,English,,b,Student 3,0.0,1.0,0.0,0.0,0.0,00:00:11:18,0.0,0.0,1.0,0.0,0.0,0.0
+0.0,00:08:51:05,0.0,00:08:48:10,0.0,1.0,0.0,0.0,0.0,yes,0.0,So it's 16... What's 16 times pi?,0.0,,1.0,180,English,,b,Student 1,1.0,0.0,0.0,0.0,0.0,00:00:02:55,0.0,0.0,1.0,0.0,0.0,0.0
+0.0,00:08:55:27,0.0,00:08:51:34,0.0,0.0,0.0,1.0,1.0,yes,0.0,"Yeah. Or six... We could just do that with that, but it takes a little bit longer.",0.0,,0.0,181,English,,b,Student 3,0.0,0.0,0.0,0.0,0.0,00:00:03:53,0.0,0.0,1.0,0.0,0.0,0.0
+,00:08:56:07,,00:08:55:35,,,,,,yes,,Okay.,,,,182,English,,b,Student 2,,,,,,00:00:00:32,,,,,,
+0.0,00:08:57:42,0.0,00:08:56:07,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Just give us the answer, [Student 2].",1.0,,1.0,183,English,,b,Student 3,0.0,0.0,0.0,0.0,1.0,00:00:01:35,0.0,0.0,0.0,0.0,0.0,0.0
+,00:08:59:19,,00:08:58:03,,,,,,yes,,16...,,,,184,English,,b,Student 2,,,,,,00:00:01:16,,,,,,
+1.0,00:09:06:30,1.0,00:08:59:33,0.0,0.0,0.0,0.0,0.0,yes,0.0,"So if you're trying to find the area of the circle you get the radius square's area first, and then you multiply that by pi.",0.0,,1.0,185,English,,b,Student 1,0.0,1.0,0.0,1.0,0.0,00:00:06:53,0.0,0.0,1.0,0.0,0.0,0.0
+,00:09:07:56,,00:09:06:30,,,,,,yes,,50.26.,,,,186,English,,b,Student 2,,,,,,00:00:01:26,,,,,,
+0.0,00:09:11:11,0.0,00:09:08:09,0.0,0.0,0.0,0.0,0.0,yes,0.0,Let's do 50.26 since we're always doing the ...,0.0,,1.0,187,English,,b,Student 3,0.0,0.0,0.0,0.0,0.0,00:00:03:02,0.0,0.0,1.0,0.0,0.0,0.0
+,00:09:12:30,,00:09:11:14,,,,,,yes,,50 point...,,,,188,English,,b,Student 1,,,,,,00:00:01:16,,,,,,
+,00:09:14:30,,00:09:12:30,,,,,,yes,,50 point 26.,,,,189,English,,b,Student 2,,,,,,00:00:02:00,,,,,,
+,00:09:15:49,,00:09:14:35,,,,,,yes,,2 6.,,,,190,English,,b,Student 1,,,,,,00:00:01:14,,,,,,
+,00:09:17:04,,00:09:15:49,,,,,,yes,,Square units.,,,,191,English,,b,Student 3,,,,,,00:00:01:15,,,,,,
+,00:09:24:39,,00:09:23:10,,,,,,yes,,"now, time for Pi.",,,,192,English,,b,Student 2,,,,,,00:00:01:29,,,,,,
+,00:09:26:39,,00:09:24:39,,,,,,yes,,[unintelligible] just gonna be with...,,,,193,English,,b,Student 3,,,,,,00:00:02:00,,,,,,
+,00:09:29:47,,00:09:27:33,,,,,,,,All right. Waterfall.,,,,194,English,,b,Teacher,,,,,,00:00:02:14,,,,,,
+,00:09:30:57,,00:09:30:01,,,,,,,,I have no idea...,,,,195,English,,b,Student 2,,,,,,00:00:00:56,,,,,,
+,00:09:32:57,,00:09:30:57,,,,,,,,If [unintelligible]'s gonna be with us...,,,,196,English,,b,Student 3,,,,,,00:00:02:00,,,,,,
+,00:09:36:07,,00:09:33:01,,,,,,,,About how many radius squares...,,,,197,English,,b,Teacher,,,,,,00:00:03:06,,,,,,
+,00:09:37:45,,00:09:36:07,,,,,,,,"No, like, just this class.",,,,198,English,,b,Student 3,,,,,,00:00:01:38,,,,,,
+,00:09:39:00,,00:09:38:04,,,,,,,,"Oh, I'm waiting.",,,,199,English,,b,Teacher,,,,,,00:00:00:56,,,,,,
+,00:09:40:33,,00:09:39:16,,,,,,,,Just us.,,,,200,English,,b,Student 3,,,,,,00:00:01:17,,,,,,
+,00:09:54:52,,00:09:40:40,,,,,,,,"About how many radius squares can...
+Your team figured it out, but I don't know if everybody else did, so we wanna hear from you, okay?
+About how many radius squares would fit in that circle? [Student 1]?",,,,201,English,,b,Teacher,,,,,,00:00:14:12,,,,,,
+,00:09:57:44,,00:09:55:24,,,,,,,,3.14 radius squares.,,,,202,English,,b,Student 1,,,,,,00:00:02:20,,,,,,
+,00:10:05:30,,00:09:57:44,,,,,,,,"So, we're talking about now multiplying the radius square by what number?",,,,203,English,,b,Teacher,,,,,,00:00:07:46,,,,,,
+,00:10:06:39,,00:10:06:07,,,,,,,,Pi?,,,,204,English,,b,Student 2,,,,,,00:00:00:32,,,,,,
+,00:10:07:25,,00:10:06:39,,,,,,,,Pi.,,,,205,English,,b,Student 1,,,,,,00:00:00:46,,,,,,
+,00:10:21:08,,00:10:07:50,,,,,,,,By Pi. So we could see 3 is way too little. 4 is what? Way too much. So at your table you guys have some scissors. Were gonna skip around a little bit.,,,,206,English,,c,Teacher,,,,,,00:00:13:18,,,,,,
+,00:10:22:29,,00:10:21:08,,,,,,,,The video is right there.,,,,207,English,,c,Student 3,,,,,,00:00:01:21,,,,,,
+,00:10:50:43,,00:10:22:47,,,,,,,,"And you have some circles... And your job is going to be to actually see how much of the radius square fits in here.
+So can I have you guys do B, you guys do C. B, A. You guys do... what do you have?",,,,208,English,,c,Teacher,,,,,,00:00:27:56,,,,,,
+,00:10:51:44,,00:10:50:47,,,,,,,,Which one are we doing?,,,,209,English,,c,Student 3,,,,,,00:00:00:57,,,,,,
+,00:10:54:01,,00:10:52:59,,,,,,,,"And [Student 1], you guys do...",,,,210,English,,c,Teacher,,,,,,00:00:01:02,,,,,,
+,00:10:56:01,,00:10:54:01,,,,,,,,"Oh, there's that paper right there.",,,,211,English,,c,Student 1,,,,,,00:00:02:00,,,,,,
+,00:11:04:46,,00:10:57:53,,,,,,,,"A. All right, plot out out the radius squares and make it actually fit in your circle.",,,,212,English,,c,Teacher,,,,,,00:00:06:49,,,,,,
+,00:11:10:17,,00:11:07:35,,,,,,,,"Oh, I get it.",,,,213,English,,c,Student 1,,,,,,00:00:02:42,,,,,,
+,00:11:12:01,,00:11:11:04,,,,,,,,What do you get?,,,,214,English,,c,Student 2,,,,,,00:00:00:57,,,,,,
+,00:11:15:09,,00:11:12:30,,,,,,,,"Because I get the assignment, because I'm [unintelligible].",,,,215,English,,c,Student 1,,,,,,00:00:02:39,,,,,,
+,00:11:16:01,,00:11:15:09,,,,,,,,You sure?,,,,216,English,,c,Student 3,,,,,,00:00:00:52,,,,,,
+,00:11:19:44,,00:11:17:45,,,,,,,,"You sure you understand it, [Student 1]? ",,,,217,English,,c,Student 3,,,,,,00:00:01:59,,,,,,
+,00:11:21:13,,00:11:20:19,,,,,,,,[Student 1].,,,,218,English,,c,Student 3,,,,,,00:00:00:54,,,,,,
+,00:11:27:45,,00:11:23:18,,,,,,,,So do what the animation did. Do what the actual animation did.,,,,219,English,,c,Teacher,,,,,,00:00:04:27,,,,,,
+0.0,00:11:31:54,1.0,00:11:27:45,0.0,1.0,0.0,0.0,0.0,yes,0.0,So we only cut out 3? I believe.,0.0,,0.0,220,English,,c,Student 1,1.0,0.0,0.0,0.0,0.0,00:00:04:09,0.0,0.0,0.0,0.0,0.0,0.0
+,00:11:34:40,,00:11:32:53,,,,,,yes,,3.14 to be exact.,,,,221,English,,c,Student 3,,,,,,00:00:01:47,,,,,,
+0.0,00:11:43:07,0.0,00:11:37:36,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Okay, you need... 3.1... How are we gonna exactly get...  3.14.",0.0,,0.0,222,English,,c,Student 1,0.0,0.0,0.0,0.0,0.0,00:00:05:31,0.0,0.0,1.0,1.0,0.0,0.0
+0.0,00:11:47:21,1.0,00:11:43:56,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Well, we could just do .14 of the square...",0.0,,1.0,223,English,,c,Student 3,0.0,1.0,0.0,0.0,0.0,00:00:03:25,0.0,0.0,1.0,1.0,0.0,0.0
+,00:11:52:43,,00:11:51:36,,,,,,yes,,We're doing circle A.,,,,224,English,,c,Student 1,,,,,,00:00:01:07,,,,,,
+1.0,00:12:01:02,1.0,00:11:52:43,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Couldn't we just, like, do, like, 1 point... We can just do point 1 4 of the one square. And get 3.14.",0.0,,1.0,225,English,,c,Student 3,0.0,1.0,0.0,0.0,0.0,00:00:08:15,0.0,0.0,1.0,1.0,0.0,0.0
+,00:12:02:44,,00:12:02:15,,,,,,yes,,What?,,,,226,English,,c,Student 2,,,,,,00:00:00:29,,,,,,
+,00:12:05:24,,00:12:04:27,,,,,,yes,,Or three point fourteen.,,,,227,English,,c,Student 3,,,,,,00:00:00:57,,,,,,
+,00:12:08:49,,00:12:08:02,,,,,,yes,,Actually...,,,,228,English,,c,Student 1,,,,,,00:00:00:47,,,,,,
+,00:12:09:48,,00:12:08:49,,,,,,yes,,ASMR.,,,,229,English,,c,Student 3,,,,,,00:00:00:59,,,,,,
+,00:12:14:12,,00:12:13:58,,,,,,yes,,Okay.,,,,230,English,,c,Student 1,,,,,,00:00:00:14,,,,,,
+0.0,00:12:16:12,0.0,00:12:14:12,0.0,0.0,0.0,0.0,0.0,yes,0.0,"We did that on advisory, Student 3.",0.0,,0.0,231,English,,c,Student 2,0.0,0.0,0.0,0.0,0.0,00:00:02:00,1.0,0.0,0.0,0.0,0.0,0.0
+,00:12:17:49,,00:12:16:17,,,,,,yes,,"I know. Wait, what?",,,,232,English,,c,Student 3,,,,,,00:00:01:32,,,,,,
+,00:12:19:23,,00:12:18:47,,,,,,yes,,"Me, [unintelligible]...",,,,233,English,,c,Student 2,,,,,,00:00:00:36,,,,,,
+0.0,00:12:27:00,0.0,00:12:19:23,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Are you gonna buy an entire, just, set of microphones, just to whisper ASMR.",0.0,,0.0,234,English,,c,Student 1,1.0,0.0,0.0,0.0,0.0,00:00:07:37,1.0,1.0,0.0,0.0,0.0,0.0
+,00:12:28:06,,00:12:27:28,,,,,,yes,,"Oh, my god.",,,,235,English,,c,Student 3,,,,,,00:00:00:38,,,,,,
+0.0,00:12:30:50,0.0,00:12:28:06,0.0,0.0,0.0,0.0,0.0,yes,0.0,"I mean, we did that to [unintelligible]'s recorder in advisory.",0.0,,0.0,236,English,,c,Student 2,0.0,0.0,0.0,0.0,0.0,00:00:02:44,1.0,1.0,0.0,0.0,0.0,0.0
+0.0,00:12:35:09,0.0,00:12:31:03,0.0,1.0,1.0,0.0,1.0,yes,0.0,"Wait, what? You did that to [unintelligible]'s recorder in advisory?",0.0,,0.0,237,English,,c,Student 3,1.0,0.0,0.0,0.0,0.0,00:00:04:06,1.0,1.0,0.0,0.0,0.0,0.0
+,00:12:35:50,,00:12:35:18,,,,,,yes,,Yeah.,,,,238,English,,c,Student 2,,,,,,00:00:00:32,,,,,,
+,00:12:38:01,,00:12:35:50,,,,,,yes,,You screamed into his...,,,,239,English,,c,Student 3,,,,,,00:00:02:11,,,,,,
+1.0,00:12:40:46,0.0,00:12:38:01,0.0,0.0,0.0,0.0,0.0,yes,0.0,No. We whispered into it as silently as possible..,0.0,,0.0,240,English,,c,Student 2,0.0,1.0,1.0,0.0,0.0,00:00:02:45,1.0,1.0,0.0,0.0,0.0,0.0
+0.0,00:12:43:15,0.0,00:12:40:46,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Hold up. [Student 1], scream into the recorder.",0.0,,0.0,241,English,,c,Student 3,0.0,0.0,0.0,0.0,0.0,00:00:02:29,1.0,1.0,0.0,0.0,0.0,0.0
+,00:12:43:28,,00:12:43:15,,,,,,yes,,No!,,,,242,English,,c,Student 1,,,,,,00:00:00:13,,,,,,
+,00:12:44:21,,00:12:43:28,,,,,,yes,,Scream into your recorder.,,,,243,English,,c,Student 3,,,,,,00:00:00:53,,,,,,
+1.0,00:12:46:33,0.0,00:12:44:21,0.0,0.0,0.0,0.0,0.0,yes,0.0,I'm not gonna do that. It's gonna break.,0.0,,0.0,244,English,,c,Student 1,0.0,0.0,1.0,0.0,0.0,00:00:02:12,1.0,1.0,0.0,0.0,0.0,0.0
+,00:12:47:14,,00:12:46:33,,,,,,yes,,I know.,,,,245,English,,c,Student 3,,,,,,00:00:00:41,,,,,,
+,00:12:48:24,,00:12:47:14,,,,,,yes,,And I'm gonna owe money.,,,,246,English,,c,Student 1,,,,,,00:00:01:10,,,,,,
+,00:12:50:29,,00:12:49:34,,,,,,yes,,How's our...,,,,247,English,,c,Student 3,,,,,,00:00:00:55,,,,,,
+,00:12:52:32,,00:12:51:39,,,,,,yes,,What does that mean?,,,,248,English,,c,Student 2,,,,,,00:00:00:53,,,,,,
+0.0,00:12:55:13,0.0,00:12:53:13,0.0,0.0,0.0,0.0,0.0,yes,0.0,"I don't know, awesome sauce, am I right?",0.0,,0.0,249,English,,c,Student 1,0.0,0.0,0.0,0.0,0.0,00:00:02:00,1.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:13:02:21,0.0,00:12:55:21,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Awesome sauce... [unintelligible] fu-- I mean, fudge.",0.0,,0.0,250,English,,c,Student 3,0.0,0.0,0.0,0.0,0.0,00:00:06:56,1.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:13:05:27,0.0,00:13:03:12,0.0,0.0,0.0,1.0,0.0,yes,0.0,"Yeah. True. Ooh, I got special scissors.",0.0,,0.0,251,English,,c,Student 1,0.0,0.0,0.0,0.0,0.0,00:00:02:15,1.0,0.0,0.0,0.0,0.0,0.0
+,00:13:07:09,,00:13:05:27,,,,,,,,[crosstalk],,,,252,,,c,,,,,,,00:00:01:42,,,,,,
+,00:13:08:36,,00:13:07:09,,,,,,,,Because I'm special.,,,,253,English,,c,Student 3,,,,,,00:00:01:27,,,,,,
+,00:13:11:10,,00:13:09:15,,,,,,,,[crosstalk],,,,254,,,c,,,,,,,00:00:01:55,,,,,,
+,00:13:13:12,,00:13:11:10,,,,,,yes,,These are my goofy scissors.,,,,255,English,,c,Student 1,,,,,,00:00:02:02,,,,,,
+0.0,00:13:16:21,0.0,00:13:13:12,0.0,0.0,0.0,0.0,0.0,yes,0.0,I think we're gonna need more than...,0.0,,0.0,256,English,,c,Student 2,0.0,0.0,0.0,0.0,0.0,00:00:03:09,0.0,0.0,0.0,0.0,0.0,0.0
+,00:13:18:01,,00:13:16:40,,,,,,yes,,3.14 squares?,,,,257,English,,c,Student 3,,,,,,00:00:01:21,,,,,,
+,00:13:20:42,,00:13:18:12,,,,,,yes,,"Let's see, so... Yeah, well...",,,,258,English,,c,Student 2,,,,,,00:00:02:30,,,,,,
+0.0,00:13:27:22,0.0,00:13:20:52,0.0,1.0,0.0,0.0,0.0,yes,0.0,Where are we supposed to put these squares either way? Are we supposed to cut out these squares and do nothing with that?,0.0,,1.0,259,English,,c,Student 3,1.0,0.0,0.0,0.0,0.0,00:00:06:30,0.0,0.0,1.0,0.0,0.0,0.0
+0.0,00:13:31:04,0.0,00:13:27:59,0.0,1.0,0.0,0.0,0.0,yes,0.0,"So these scissors aren't sharp, and how do they cut?",0.0,,0.0,260,English,,c,Student 1,1.0,0.0,0.0,0.0,0.0,00:00:03:05,1.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:13:34:34,0.0,00:13:33:15,0.0,1.0,0.0,0.0,0.0,yes,0.0,How do you know they're not sharp?,0.0,,0.0,261,English,,c,Student 2,1.0,0.0,0.0,0.0,0.0,00:00:01:19,1.0,0.0,0.0,0.0,0.0,0.0
+1.0,00:13:37:44,0.0,00:13:34:34,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Because do you see this blade? Like, that's not sharp.",0.0,,0.0,262,English,,c,Student 1,0.0,1.0,0.0,0.0,0.0,00:00:03:10,1.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:13:42:05,0.0,00:13:37:44,0.0,1.0,0.0,0.0,0.0,yes,0.0,"What is this, [Student 2]? [Student 2]...",0.0,,0.0,263,English,,c,Student 3,1.0,0.0,0.0,0.0,0.0,00:00:04:21,1.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:13:45:59,0.0,00:13:42:05,0.0,0.0,0.0,0.0,0.0,yes,0.0,[Student 1]... They're supposed to cut like this. Let me show you.,1.0,,0.0,264,English,,c,Student 2,0.0,1.0,0.0,0.0,1.0,00:00:03:54,1.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:13:47:54,0.0,00:13:46:01,0.0,1.0,0.0,0.0,0.0,yes,0.0,[Student 2] [unintelligible]. What is this?,0.0,,0.0,265,English,,c,Student 3,1.0,0.0,0.0,0.0,0.0,00:00:01:53,1.0,0.0,0.0,0.0,0.0,0.0
+,00:13:48:18,,00:13:47:59,,,,,,yes,,That's...,,,,266,English,,c,Student 2,,,,,,00:00:00:19,,,,,,
+1.0,00:13:50:18,0.0,00:13:48:18,0.0,0.0,0.0,0.0,0.0,yes,0.0,I think I get it. I think it's pressure.,0.0,,0.0,267,English,,c,Student 1,0.0,1.0,0.0,0.0,0.0,00:00:02:00,0.0,0.0,0.0,0.0,0.0,1.0
+0.0,00:13:58:40,0.0,00:13:51:28,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Wait, let me show you.  And then see. Fancy design.",1.0,,0.0,268,English,,c,Student 2,0.0,1.0,0.0,0.0,1.0,00:00:07:12,1.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:14:01:52,0.0,00:13:58:47,0.0,0.0,0.0,1.0,0.0,yes,0.0,I know. That's why these are special scissors.,0.0,,0.0,269,English,,c,Student 1,0.0,1.0,0.0,0.0,0.0,00:00:03:01,1.0,0.0,0.0,0.0,0.0,0.0
+,00:14:03:20,,00:14:02:25,,,,,,yes,,Okay.,,,,270,English,,c,Student 3,,,,,,00:00:00:55,,,,,,
+0.0,00:14:13:22,0.0,00:14:06:48,0.0,1.0,0.0,0.0,0.0,yes,1.0,"Okay guys, how are we gonna figure out... How are we gonna cut out like a little excess?",0.0,,1.0,271,English,,c,Student 2,1.0,0.0,0.0,0.0,0.0,00:00:06:34,0.0,0.0,1.0,0.0,0.0,0.0
+0.0,00:14:16:36,0.0,00:14:14:36,0.0,0.0,0.0,1.0,1.0,yes,0.0,"Yeah, that's what I'm worried about.",0.0,,0.0,272,English,,c,Student 1,0.0,0.0,0.0,0.0,0.0,00:00:02:00,0.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:14:20:44,0.0,00:14:16:38,0.0,0.0,0.0,0.0,0.0,yes,0.0,"For some reason, I feel like first periods are really short, like...",0.0,,0.0,273,English,,c,Student 3,0.0,0.0,0.0,0.0,0.0,00:00:04:06,1.0,0.0,0.0,0.0,0.0,0.0
+,00:14:23:03,,00:14:21:03,,,,,,yes,,I beg to differ.,,,,274,English,,c,Student 1,,,,,,00:00:02:00,,,,,,
+,00:14:24:35,,00:14:23:28,,,,,,yes,,"Yeah, me too.",,,,275,English,,c,Student 2,,,,,,00:00:01:07,,,,,,
+,00:14:26:06,,00:14:24:36,,,,,,yes,,"First period, nine...",,,,276,English,,c,Student 3,,,,,,00:00:01:30,,,,,,
+0.0,00:14:31:29,0.0,00:14:26:32,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Let's cut through the stuff that we know already, is excess, like this.",1.0,,1.0,277,English,,c,Student 2,0.0,1.0,0.0,0.0,0.0,00:00:04:57,0.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:14:33:19,0.0,00:14:31:43,0.0,0.0,0.0,0.0,0.0,yes,0.0,And we gotta keep the excess.,0.0,,0.0,278,English,,c,Student 1,0.0,1.0,0.0,0.0,0.0,00:00:01:36,0.0,0.0,0.0,0.0,0.0,0.0
+,00:14:36:54,,00:14:33:21,,,,,,yes,,Snippy snippety snippety snippety.,,,,279,English,,c,Student 2,,,,,,00:00:03:33,,,,,,
+,00:14:57:41,,00:14:38:36,,,,,,,,"You guys have the radius square, and you're trying to figure out how much it takes up in the circle, how many of those squares are we gonna use? 3.14, right? So, you won't be able to...",,,,280,English,,c,Teacher,,,,,,00:00:19:05,,,,,,
+,00:14:58:02,,00:14:57:41,,,,,,,,What are you doing?,,,,281,English,,c,Student 3,,,,,,00:00:00:21,,,,,,
+,00:14:59:22,,00:14:58:04,,,,,,,,The best you can do is estimate.,,,,282,English,,c,Teacher,,,,,,00:00:01:18,,,,,,
+,00:15:00:31,,00:14:59:24,,,,,,,,Cutting out the excess.,,,,283,English,,c,Student 2,,,,,,00:00:01:03,,,,,,
+,00:15:06:30,,00:15:00:31,,,,,,,,Okay? so try to get it fit into the circle. And this part of the activity might not work.,,,,284,English,,c,Teacher,,,,,,00:00:05:59,,,,,,
+,00:15:07:38,,00:15:06:30,,,,,,yes,,Are you freaking out?,,,,285,English,,c,Student 2,,,,,,00:00:01:08,,,,,,
+,00:15:09:31,,00:15:08:13,,,,,,yes,,"You know, sometimes I wonder...",,,,286,English,,c,Student 3,,,,,,00:00:01:18,,,,,,
+0.0,00:15:13:46,0.0,00:15:10:08,0.0,1.0,0.0,0.0,0.0,yes,0.0,"Wait. Where's the cal... Can you pass me the calculator, please?",0.0,,1.0,287,English,,c,Student 1,1.0,0.0,0.0,0.0,0.0,00:00:03:38,0.0,0.0,0.0,0.0,0.0,0.0
+,00:15:14:19,,00:15:13:46,,,,,,yes,,Yup.,,,,288,English,,c,Student 2,,,,,,00:00:00:33,,,,,,
+0.0,00:15:17:17,1.0,00:15:14:41,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Wait, so this is what Pi looks like.",0.0,,0.0,289,English,,c,Student 1,0.0,0.0,0.0,0.0,0.0,00:00:02:36,0.0,0.0,0.0,1.0,0.0,0.0
+0.0,00:15:20:45,0.0,00:15:18:17,0.0,0.0,0.0,0.0,0.0,yes,0.0,What if there was a Pi-shaped pie?,0.0,,0.0,290,English,,c,Student 2,1.0,0.0,0.0,0.0,0.0,00:00:02:28,1.0,0.0,0.0,0.0,0.0,0.0
+,00:15:22:39,,00:15:21:36,,,,,,yes,,That would be yummy.,,,,291,English,,c,Student 1,,,,,,00:00:01:03,,,,,,
+,00:15:27:16,,00:15:24:20,,,,,,yes,,A blueberry Pi-shaped pie.,,,,292,English,,c,Student 2,,,,,,00:00:02:56,,,,,,
+0.0,00:15:31:29,1.0,00:15:29:54,0.0,1.0,0.0,0.0,0.0,yes,0.0,"So if this is what Pi looks like, right?",0.0,,0.0,293,English,,c,Student 1,1.0,0.0,0.0,0.0,0.0,00:00:01:35,0.0,0.0,0.0,1.0,0.0,0.0
+,00:15:31:55,,00:15:31:35,,,,,,yes,,Yeah.,,,,294,English,,c,Student 2,,,,,,00:00:00:20,,,,,,
+0.0,00:15:34:49,0.0,00:15:31:55,0.0,0.0,0.0,0.0,0.0,yes,0.0,Pi is actually meant to be a face. Just wait.,0.0,,0.0,295,English,,c,Student 1,0.0,1.0,0.0,0.0,0.0,00:00:02:54,1.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:15:59:55,1.0,00:15:34:49,0.0,0.0,0.0,0.0,0.0,yes,0.0,"What do you mean? Pi is three  Oh, yeah. I went to a tour at [unintelligible] the other day, and I saw this thing with Pi, and it was like the first five hundred numbers of Pi. And I'm like, ""Why is there the first five hundred numbers of Pi on the wall?'",0.0,,0.0,296,English,,c,Student 3,0.0,1.0,0.0,0.0,0.0,00:00:25:06,1.0,0.0,0.0,1.0,0.0,0.0
+,00:16:02:58,,00:16:01:55,,,,,,yes,,Did you ask anybody?,,,,297,English,,c,Student 2,,,,,,00:00:01:03,,,,,,
+0.0,00:16:10:50,0.0,00:16:03:18,0.0,0.0,0.0,0.0,0.0,yes,0.0,"No, I just looked at it, and there just Pi there with a bunch of numbers.",0.0,,0.0,298,English,,c,Student 3,0.0,1.0,1.0,0.0,0.0,00:00:07:32,1.0,0.0,0.0,1.0,0.0,0.0
+,00:16:11:54,,00:16:10:50,,,,,,yes,,It was just a mural.,,,,299,English,,c,Student 2,,,,,,00:00:01:04,,,,,,
+0.0,00:16:15:14,1.0,00:16:11:54,0.0,0.0,0.0,0.0,0.0,yes,0.0,"It started with 3.14, 5, 6, 7, 2, 9...",0.0,,0.0,300,English,,c,Student 3,0.0,1.0,0.0,0.0,0.0,00:00:03:20,1.0,0.0,0.0,1.0,0.0,0.0
+,00:16:16:34,,00:16:15:14,,,,,,yes,,It was just a mural.,,,,301,English,,c,Student 2,,,,,,00:00:01:20,,,,,,
+0.0,00:16:17:54,0.0,00:16:16:34,0.0,0.0,0.0,1.0,0.0,yes,0.0,"Yeah, I forget the rest of them.",0.0,,0.0,302,English,,c,Student 3,0.0,1.0,0.0,0.0,0.0,00:00:01:20,1.0,0.0,0.0,1.0,0.0,0.0
+0.0,00:16:20:42,0.0,00:16:19:06,0.0,0.0,0.0,0.0,0.0,yes,1.0,"Okay, guys, I'm starting to do this right.",0.0,,0.0,303,English,,c,Student 2,0.0,0.0,0.0,0.0,0.0,00:00:01:36,0.0,0.0,0.0,0.0,0.0,0.0
+,00:16:21:29,,00:16:20:44,,,,,,yes,,All right.,,,,304,English,,c,Student 3,,,,,,00:00:00:45,,,,,,
+0.0,00:16:29:45,0.0,00:16:27:28,0.0,1.0,0.0,0.0,0.0,yes,0.0,Are you doing a Pi-shaped face?,0.0,,0.0,305,English,,c,Student 2,1.0,0.0,0.0,0.0,0.0,00:00:02:17,1.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:16:31:05,0.0,00:16:29:45,0.0,0.0,0.0,1.0,0.0,yes,0.0,Yeah. You see? Look at it.,0.0,,0.0,306,English,,c,Student 1,0.0,0.0,0.0,0.0,0.0,00:00:01:20,1.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:16:33:11,0.0,00:16:31:44,0.0,0.0,0.0,0.0,0.0,yes,0.0,"All right, my special scissors now.",0.0,,0.0,307,English,,c,Student 3,0.0,0.0,0.0,0.0,0.0,00:00:01:27,1.0,0.0,0.0,0.0,0.0,0.0
+,00:16:36:42,,00:16:34:56,,,,,,yes,,"""My special scissors.""",,,,308,English,,c,Student 2,,,,,,00:00:01:46,,,,,,
+0.0,00:16:40:38,0.0,00:16:37:36,0.0,0.0,0.0,0.0,0.0,yes,0.0,So then you just snip snip. This is confusing.,0.0,,0.0,309,English,,c,Student 1,0.0,0.0,0.0,1.0,0.0,00:00:03:02,0.0,0.0,1.0,1.0,0.0,1.0
+,00:16:41:41,,00:16:41:20,,,,,,yes,,Yeah.,,,,310,English,,c,Student 3,,,,,,00:00:00:21,,,,,,
+,00:16:42:34,,00:16:41:41,,,,,,yes,,It's actually very simple.,,,,311,English,,c,Student 2,,,,,,00:00:00:53,,,,,,
+0.0,00:16:44:33,0.0,00:16:43:27,0.0,0.0,0.0,0.0,0.0,yes,0.0,[Student 2]'s doing all the work.,0.0,,0.0,312,English,,c,Student 3,0.0,0.0,0.0,0.0,0.0,00:00:01:06,1.0,0.0,0.0,0.0,0.0,0.0
+0.0,00:16:48:21,0.0,00:16:45:36,0.0,0.0,0.0,1.0,1.0,yes,0.0,"Yeah. No, this is just because he's cutting scissors.",0.0,,0.0,313,English,,c,Student 1,0.0,0.0,1.0,0.0,0.0,00:00:02:45,1.0,0.0,0.0,0.0,0.0,0.0
+,00:16:49:10,,00:16:48:24,,,,,,yes,,"Oh, Yeah.",,,,314,English,,c,Student 3,,,,,,00:00:00:46,,,,,,
+0.0,00:16:55:59,0.0,00:16:49:32,0.0,0.0,0.0,0.0,0.0,yes,0.0,"Okay, so we have the excess. I put you right there.",0.0,,0.0,315,English,,c,Student 2,0.0,0.0,0.0,1.0,0.0,00:00:06:27,0.0,0.0,0.0,0.0,0.0,0.0
+,00:16:57:30,,00:16:56:15,,,,,,yes,,"No, I'm not lifting my...",,,,316,English,,c,Student 3,,,,,,00:00:01:15,,,,,,
+0.0,00:17:00:23,0.0,00:16:57:30,0.0,0.0,0.0,0.0,0.0,yes,0.0,"I think if we cut out the fourth one, we can like...",0.0,,1.0,317,English,,c,Student 1,0.0,1.0,0.0,0.0,0.0,00:00:02:49,0.0,0.0,1.0,0.0,0.0,0.0
+0.0,00:17:03:44,0.0,00:17:01:04,0.0,0.0,1.0,1.0,1.0,yes,1.0,"Yeah, but first we wanna see what we can do with this.",0.0,,1.0,318,English,,c,Student 2,0.0,1.0,1.0,1.0,0.0,00:00:02:40,0.0,0.0,1.0,0.0,0.0,0.0

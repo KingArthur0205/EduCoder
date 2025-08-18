@@ -1,0 +1,13 @@
+# Common Core State Standards for Transcript 001
+
+## Grade 7 - Geometry
+
+**7.G.A.1** - Solve problems involving scale drawings of geometric figures, including computing actual lengths and areas from a scale drawing and reproducing a scale drawing at a different scale.
+
+**7.G.B.4** - Know the formulas for the area and circumference of a circle and use them to solve problems; give an informal derivation of the relationship between the circumference and area of a circle.
+
+**7.G.B.6** - Solve real-world and mathematical problems involving area, volume and surface area of two- and three-dimensional objects composed of triangles, quadrilaterals, polygons, cubes, and right prisms.
+
+## Mathematical Practices
+
+**MP8** - Look for and express regularity in repeated reasoning (used specifically in this lesson for circle area relationships) 

@@ -1,0 +1,1 @@
+Calculate the original amount, the new amount, or the percent change in the context of sales tax and tip, including situations that involve multiple percent increases or decreases (e.g., sales tax and a discount).

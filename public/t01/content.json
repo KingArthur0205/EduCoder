@@ -1,0 +1,16 @@
+{
+  "gradeLevel": "Grade: 7, Unit 3: Measuring Circles, Lesson 6: Exploring Circle Area",
+  "lessonGoal": "In this lesson, students estimate and use repeated reasoning (MP8) to make sense of the relationship between the radius of a circle, the square of the radius, and the area of the circle. This lesson uses radius squares (a square whose side length is the radius of a circle) to help students visualize these relationships. At the end of the lesson, students should know a formula for the relationship between the radius of a circle and its area.",
+  "segments": [
+    "a",
+    "b",
+    "c",
+    "full_transcript"
+  ],
+  "lessonLink": {
+    "url": "https://teacher.desmos.com/activitybuilder/custom/5facc2959469809c537c7a94?intro-banner-expanded=true&collections=5f8a43db06b0d9a8bd84c3cf%2C5f8a442306b0d9a8bd84c3db",
+    "text": "Lesson link (click here to view the original desmos lesson which the teacher adapted)"
+  },
+  "title": "Grade: 7, Unit 3: Measuring Circles, Lesson 6: Exploring Circle Area",
+  "instruction": "In this lesson, students estimate and use repeated reasoning (MP8) to make sense of the relationship between the radius of a circle, the square of the radius, and the area of the circle. This lesson uses radius squares (a square whose side length is the radius of a circle) to help students visualize these relationships. At the end of the lesson, students should know a formula for the relationship between the radius of a circle and its area."
+}

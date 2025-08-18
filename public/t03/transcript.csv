@@ -1,0 +1,289 @@
+#,In cue,Out cue,Duration,Speaker,Language,Dialogue,Annotations,Error Type,Transcript,selectable
+1,00:01:37:20,00:01:38:05,00:00:00:15,Teacher E,English,"Hey, guys.",,,a,no
+2,00:01:38:07,00:01:43:20,00:00:05:13,Teacher E,English,I'm noticing that some of the warm-ups have a typo.,,,a,no
+3,00:01:44:06,00:01:46:22,00:00:02:16,Teacher E,English,The first one was supposed to be ten.,,,a,no
+4,00:01:46:24,00:01:48:29,00:00:02:05,Teacher E,English,So if you have a warm-up that says...,,,a,no
+5,00:01:49:01,00:01:51:22,00:00:02:21,Teacher E,English,Cause I printed these on multiple different paper.,,,a,no
+6,00:01:51:24,00:01:55:24,00:00:04:00,Teacher E,English,"Most of you are fine, but there's a couple of people out there who have a paper that says a hundred.",,,a,no
+7,00:01:55:26,00:01:57:16,00:00:01:20,Teacher E,English,There's an extra zero on it.,,,a,no
+8,00:01:58:13,00:02:01:08,00:00:02:23,Teacher E,English,"So, sorry if I gave you that paper.",,,a,no
+9,00:02:01:10,00:02:05:09,00:00:03:29,Teacher E,English,"If yours says a hundred, please change that first number for ten.",,,a,no
+10,00:02:05:11,00:02:07:19,00:00:02:08,Teacher E,English,"It's not supposed to say a hundred, it's supposed to say ten. ",,,a,no
+11,00:02:08:00,00:02:08:16,00:00:00:16,Teacher E,English,Okay?,,,a,no
+12,00:02:08:18,00:02:10:28,00:00:02:10,Teacher E,English,"So, please check that before you continue your warm-up.",,,a,no
+13,00:02:11:00,00:02:11:13,00:00:00:13,Teacher E,English,Cause that is...,,,a,no
+14,00:02:18:20,00:02:22:17,00:00:03:27,Teacher E,English,So you have another minute to see if you can figure out what the rule is.,,,a,no
+15,00:02:22:19,00:02:23:25,00:00:01:06,Teacher E,English,I'm coming around to check.,,,a,no
+16,00:02:34:00,00:02:35:04,00:00:01:04,Student E3,English,What do you think the answer is?,,,a,yes
+17,00:02:35:15,00:02:35:24,00:00:00:09,Student E1,English,Hm?,,,a,yes
+18,00:02:35:26,00:02:37:07,00:00:01:11,Student E3,English,What do you think the answer is?,,,a,yes
+19,00:02:37:13,00:02:38:17,00:00:01:04,Student E1,English,Three times.,,,a,yes
+20,00:02:40:06,00:02:40:23,00:00:00:17,Student E3,English,Me too.,,,a,yes
+21,00:02:43:10,00:02:47:12,00:00:04:02,Student E1,English,"Yeah, 'cause I got a hundred on here, but I crossed it off.",,,a,yes
+22,00:02:48:18,00:02:48:28,00:00:00:10,Student E3,English,Right.,,,a,yes
+23,00:02:52:10,00:02:54:29,00:00:02:19,Student E3,English,I had the ten here.,,,a,yes
+24,00:03:03:18,00:03:04:16,00:00:00:28,Student E3,English,I'm on decimals.,,,a,yes
+25,00:03:04:23,00:03:05:06,00:00:00:13,Teacher E,English,Great news.,,,a,no
+26,00:03:05:08,00:03:05:23,00:00:00:15,Teacher E,English,"Okay, good.",,,a,no
+27,00:03:05:24,00:03:07:03,00:00:01:09,Teacher E,English,And you did times three?,,,a,no
+28,00:03:07:05,00:03:07:12,00:00:00:07,Teacher E,English,Okay.,,,a,no
+29,00:03:07:14,00:03:08:01,00:00:00:17,Teacher E,English,And you did...?,,,a,no
+30,00:03:10:16,00:03:11:03,00:00:00:17,Student E1,English,I'm still trying to [unintelligible].,,,a,yes
+31,00:03:11:06,00:03:11:10,00:00:00:04,Teacher E,English,Okay.,,,a,no
+32,00:03:11:12,00:03:11:18,00:00:00:06,Teacher E,English,For sure.,,,a,no
+33,00:03:18:16,00:03:19:29,00:00:01:13,Student E3,English,Do you know how it's times three?,,,a,yes
+34,00:03:21:17,00:03:22:05,00:00:00:18,Student E3,English,No?,,,a,yes
+35,00:03:22:27,00:03:23:12,00:00:00:15,Student E1,English,Hm?,,,a,yes
+36,00:03:23:14,00:03:25:01,00:00:01:17,Student E3,English,Do you know how it's times three?,,,a,yes
+37,00:03:25:29,00:03:27:01,00:00:01:02,Student E1,English,I select ten.,,,a,yes
+38,00:03:27:04,00:03:27:07,00:00:00:03,Teacher E,English,Okay.,,,a,no
+39,00:03:27:09,00:03:28:17,00:00:01:08,Teacher E,English,"So, right now, I'm seeing two different answers.",,,a,no
+40,00:03:28:19,00:03:31:17,00:00:02:28,Student E1,English,I select the ten in the input and I select thirty in the output.,,,a,yes
+41,00:03:30:29,00:03:30:29,00:00:00:00,Student E1,English,"So, I did ten times three.",,,a,yes
+42,00:03:31:22,00:03:38:00,00:00:06:08,Teacher E,English,"So, I wanna start with [Student E3] and [Student E1].",,,a,no
+43,00:03:38:04,00:03:39:25,00:00:01:21,Teacher E,English,Do you guys have one answer?,,,a,no
+44,00:03:39:27,00:03:41:04,00:00:01:07,Teacher E,English,Can you tell me what you guys are...?,,,a,no
+45,00:00:00:02,00:00:07:15,00:00:07:13,Teacher E,English,"Okay, so, right now you have a couple of minutes, I want you and your team to work on screen 1 and screen 2, okay?",,,b,no
+46,00:00:07:17,00:00:09:01,00:00:01:14,Teacher E,English,Screen 1 and screen 2.,,,b,no
+47,00:00:09:26,00:00:12:20,00:00:02:24,Teacher E,English,"And when this music goes off, we're gonna talk [unintelligible].",,,b,no
+48,00:00:30:04,00:00:31:01,00:00:00:27,Student E3,English,I'm already done.,,,b,yes
+49,00:00:31:08,00:00:32:11,00:00:01:03,Teacher E,English,You just finished 1 and 2?,,,b,no
+50,00:00:32:14,00:00:32:26,00:00:00:12,Student E3,English,Mhm.,,,b,yes
+51,00:00:33:21,00:00:36:19,00:00:02:28,Teacher E,English,Let's compare your answers with [Student E1] and make sure she's got the same.,,,b,no
+52,00:00:49:21,00:00:52:13,00:00:02:22,Student E3,English,"I only got one, like...",,,b,yes
+53,00:00:54:08,00:00:56:11,00:00:02:03,Student E1,English,"I only got one, for 15?",,,b,yes
+54,00:00:57:21,00:00:58:00,00:00:00:09,Student E3,English,Mhm.,,,b,yes
+55,00:00:58:19,00:01:01:06,00:00:02:15,Student E3,English,I only got subtract.,,,b,yes
+56,00:01:03:18,00:01:04:11,00:00:00:23,Student E1,English,I chose both.,,,b,yes
+57,00:01:06:06,00:01:06:11,00:00:00:05,Student E3,English,Mmm.,,,b,yes
+58,00:01:08:06,00:01:09:03,00:00:00:27,Student E3,English,Did you do the second one?,,,b,yes
+59,00:02:14:15,00:02:16:03,00:00:01:18,Student E3,English,Did you change your answer and...?,,,b,yes
+60,00:02:21:26,00:02:22:29,00:00:01:03,Student E1,English,Yeah.,,,b,yes
+61,00:02:37:06,00:02:37:12,00:00:00:06,Student E3,English,What?,,,b,yes
+62,00:02:37:27,00:02:38:21,00:00:00:24,Student E1,English,I changed it to 10.,,,b,yes
+63,00:02:39:01,00:02:39:10,00:00:00:09,Student E3,English,What?,,,b,yes
+64,00:02:39:11,00:02:40:12,00:00:01:01,Student E1,English,I changed it to 10.,,,b,yes
+65,00:02:40:24,00:02:41:14,00:00:00:20,Student E3,English,Just 10?,,,b,yes
+66,00:02:42:03,00:02:42:10,00:00:00:07,Student E1,English,Mmm?,,,b,yes
+67,00:02:42:18,00:02:43:06,00:00:00:18,Student E3,English,Just 10?,,,b,yes
+68,00:02:44:05,00:02:44:15,00:00:00:10,Student E3,English,Alright.,,,b,yes
+69,00:03:26:12,00:03:34:15,00:00:08:03,Teacher E,English,"Okay, who can tell us right now, based on what you can see, if 15 goes to 5, what could the rule be?",,,b,no
+70,00:03:35:14,00:03:37:02,00:00:01:18,Teacher E,English,It could be subtract 10.,,,b,no
+71,00:03:37:24,00:03:39:24,00:00:02:00,Teacher E,English,There is another one that it could be...,,,b,no
+72,00:03:39:27,00:03:40:28,00:00:01:01,Student E3,English,Divided by 3.,,,b,yes
+73,00:03:41:10,00:03:43:01,00:00:01:21,Teacher E,English,It could also be divide by 3.,,,b,no
+74,00:03:43:25,00:03:45:04,00:00:01:09,Teacher E,English,"Actually, there's also one more.",,,b,no
+75,00:03:49:24,00:03:52:27,00:00:03:03,Teacher E,English,"If we divide by 2, does anyone know what 15 divided by 2 is?",,,b,no
+76,00:03:53:08,00:03:53:27,00:00:00:19,Unknown Person 1,English,7.5?,,,b,no
+77,00:03:54:01,00:03:54:29,00:00:00:28,Teacher E,English,7.5?,,,b,no
+78,00:03:55:01,00:04:00:15,00:00:05:12,Teacher E,English,"And then, if we add 5, that would give us 12.5, so that does not work.",,,b,no
+79,00:04:00:24,00:04:08:05,00:00:07:11,Teacher E,English,"Does anyone know what it means when it says to take the ones digit, do you know where the ones digit is in the number 15?",,,b,no
+80,00:04:09:15,00:04:10:09,00:00:00:24,Teacher E,English,It's the 5.,,,b,no
+81,00:04:10:25,00:04:20:23,00:00:09:28,Teacher E,English,"So, the other thing is that you might just be taking the one, like if you have 15, that means you have a 10, and then you have five ones, so they're just saying take this last number.",,,b,no
+82,00:04:21:08,00:04:23:04,00:00:01:26,Teacher E,English,So that one is also possible.,,,b,no
+83,00:04:23:15,00:04:26:15,00:00:03:00,Teacher E,English,"But if we go to the next screen, we're gonna try, right...",,,b,no
+84,00:04:26:17,00:04:29:17,00:00:03:00,Teacher E,English,"Cause we don't wanna have three different rules, we only wanna have one rule.",,,b,no
+85,00:04:29:23,00:04:31:17,00:00:01:24,Teacher E,English,"So, someone give me a number to try out.",,,b,no
+86,00:04:33:04,00:04:33:11,00:00:00:07,Teacher E,English,Any number.,,,b,no
+87,00:04:33:11,00:04:33:25,00:00:00:14,Student E3,English,30,,,b,yes
+88,00:04:34:05,00:04:34:17,00:00:00:12,Teacher E,English,30,,,b,no
+89,00:04:35:16,00:04:35:26,00:00:00:10,Teacher E,English,Okay.,,,b,no
+90,00:04:35:28,00:04:39:26,00:00:03:28,Teacher E,English,"So, I'm gonna try and see what happens and see which rule it's following.",,,b,no
+91,00:04:40:07,00:04:42:09,00:00:02:02,Teacher E,English,"So, 30 turned into 20.",,,b,no
+92,00:04:43:04,00:04:46:15,00:00:03:11,Teacher E,English,"So, which rule is the possible rule right now?",,,b,no
+93,00:04:46:17,00:04:48:09,00:00:01:22,Student E3,English,Subtract by 10.,,,b,yes
+94,00:04:48:09,00:04:49:04,00:00:00:25,Teacher E,English,Subtract 10.,,,b,no
+95,00:04:49:06,00:04:53:24,00:00:04:18,Teacher E,English,"It can't be divided by 3, because if it was, it wouldn't have said 20, what would it have said? ",,,b,no
+96,00:04:54:00,00:04:54:12,00:00:00:12,Unknown Person 2,English,10,,,b,no
+97,00:04:54:14,00:04:55:10,00:00:00:26,Teacher E,English,It would have said 10.,,,b,no
+98,00:04:55:17,00:05:00:28,00:00:05:09,Teacher E,English,"And it can be to take the ones digit, because if they were doing that, what would it say on the output?",,,b,no
+99,00:05:01:06,00:05:01:16,00:00:00:10,Unknown Person 2,English,[unintelligible],,,b,no
+100,00:05:01:18,00:05:02:14,00:00:00:26,Teacher E,English,Just zero.,,,b,no
+101,00:05:02:16,00:05:03:01,00:00:00:15,Teacher E,English,Yeah.,,,b,no
+102,00:05:03:03,00:05:04:22,00:00:01:19,Teacher E,English,"So, now we know, right?",,,b,no
+103,00:05:04:24,00:05:11:25,00:00:07:01,Teacher E,English,"When we work on this today, you're gonna need to try more than one thing to try to figure out what the rule is, okay?",,,b,no
+104,00:05:11:27,00:05:15:20,00:00:03:23,Teacher E,English,"So, I'm gonna open up the next screen, I just wanna go over something with you before you start.",,,b,no
+105,00:05:16:10,00:05:18:08,00:00:01:28,Teacher E,English,This rule is rule number 2.,,,b,no
+106,00:05:18:14,00:05:21:15,00:00:03:01,Teacher E,English,You can use any number as an input.,,,b,no
+107,00:05:21:17,00:05:27:15,00:00:05:28,Teacher E,English,"So, you need to try out, I would say a minimum of five inputs, so try five different numbers.",,,b,no
+108,00:05:27:27,00:05:30:12,00:00:02:15,Teacher E,English,"So, I do want you to work with your table group.",,,b,no
+109,00:05:30:14,00:05:32:07,00:00:01:23,Teacher E,English,You guys can work together.,,,b,no
+110,00:05:32:17,00:05:44:29,00:00:12:12,Teacher E,English,"When you think you know what the rule is, when you and your table have decided what you think it is and you can say it in words, like you know how to explain it, then go to slide 4, and type what you think the rule is, okay?",,,b,no
+111,00:05:45:01,00:05:53:24,00:00:08:23,Teacher E,English,"So, you have 5 minutes to try to work on slides 3 and 4, see if you can figure out how to describe rule number 2.",,,b,no
+112,00:07:09:22,00:07:10:08,00:00:00:16,Student E3,English,I'm done.,,,b,yes
+113,00:09:36:16,00:09:37:24,00:00:01:08,Student E3,English,What do you think the rule is?,,,b,yes
+114,00:09:38:09,00:09:38:25,00:00:00:16,Student E1,English,7?,,,b,yes
+115,00:09:41:00,00:09:43:17,00:00:02:17,Student E3,English,Like anything would turn into 7?,,,b,yes
+116,00:09:47:08,00:09:50:23,00:00:03:15,Student E1,English,I did 50 into input and it gave me 7 at the output.,,,b,yes
+117,00:09:53:03,00:09:58:05,00:00:05:02,Student E3,English,I put 0 in the input and it gave me 7 in the output.,,,b,yes
+118,00:10:03:12,00:10:04:25,00:00:01:13,Teacher E,English,Less than a minute remaining.,,,b,no
+119,00:10:06:06,00:10:08:13,00:00:02:07,Student E3,English,"Can you add another one, please?",,,b,yes
+120,00:10:12:01,00:10:15:25,00:00:03:24,Student E1,English,I did 7 in the input and it gave me 7 at the output.,,,b,yes
+121,00:10:16:11,00:10:16:23,00:00:00:12,Student E3,English,Right.,,,b,yes
+122,00:10:18:18,00:10:26:05,00:00:07:17,Student E1,English,And then I put 6 in the input and it gave me a 7 at the output.,,,b,yes
+123,00:10:27:09,00:10:27:26,00:00:00:17,Student E3,English,Yeah.,,,b,yes
+124,00:10:28:26,00:10:29:23,00:00:00:27,Student E3,English,I saw that one.,,,b,yes
+125,00:10:37:24,00:10:53:08,00:00:15:14,Student E3,English,"[unintelligible] number 7, the rule is what the output [unintelligible] number 7, which is why every time we put a different input, the output remains the same.",,,b,yes
+126,00:10:58:00,00:10:58:12,00:00:00:12,Student E3,English,Alright.,,,b,yes
+127,00:11:07:07,00:11:07:24,00:00:00:17,Teacher E,English,Okay.,,,b,no
+128,00:11:08:02,00:11:11:28,00:00:03:26,Teacher E,English,"Um, so, we're gonna check in about this rule.",,,b,no
+129,00:11:12:12,00:11:14:27,00:00:02:15,Teacher E,English,Somebody give me a number to try.,,,b,no
+130,00:11:15:07,00:11:16:00,00:00:00:23,Student E3,English,0,,,b,yes
+131,00:11:16:14,00:11:18:04,00:00:01:20,Teacher E,English,"Okay, we're gonna try 50.",,,b,no
+132,00:11:18:27,00:11:20:06,00:00:01:09,Teacher E,English,Who knows what the output is gonna be?,,,b,no
+133,00:11:20:10,00:11:21:00,00:00:00:20,Student E3 and Student E1,English,7,,,b,yes
+134,00:11:21:02,00:11:21:17,00:00:00:15,Teacher E,English,Great.,,,b,no
+135,00:11:22:08,00:11:25:10,00:00:03:02,Teacher E,English,"Okay, so, it sounds like we already know the rule, but we're gonna try another.",,,b,no
+136,00:11:25:12,00:11:27:24,00:00:02:12,Teacher E,English,"I heard somebody said 0, what's the output gonna be?",,,b,no
+137,00:11:27:25,00:11:28:23,00:00:00:28,Unknown Person 3,English,7,,,b,no
+138,00:11:28:25,00:11:31:26,00:00:03:01,Teacher E,English,"Okay, what if I place the number...?",,,b,no
+139,00:11:32:11,00:11:33:18,00:00:01:07,Student E3,English,155,,,b,yes
+140,00:11:33:20,00:11:34:28,00:00:01:08,Teacher E,English,155,,,b,no
+141,00:11:35:00,00:11:35:27,00:00:00:27,Teacher E,English,What's the output gonna be?,,,b,no
+142,00:11:35:29,00:11:36:19,00:00:00:20,Unknown Person 3,English,7,,,b,no
+143,00:11:37:01,00:11:40:14,00:00:03:13,Teacher E,English,"Okay, so what is this magic machine doing?",,,b,no
+144,00:11:40:16,00:11:41:26,00:00:01:10,Unknown Person 4,English,The rule is number 7.,,,b,no
+145,00:11:42:12,00:11:45:22,00:00:03:10,Teacher E,English,"The rule is, [Unknown Person 5] said it, equals 7 every time.",,,b,no
+146,00:11:46:02,00:11:48:23,00:00:02:21,Teacher E,English,"So, if the input is 6, what would the output be?",,,b,no
+147,00:11:48:25,00:11:49:12,00:00:00:17,Unknown Person 3,English,7,,,b,no
+148,00:11:49:17,00:11:50:03,00:00:00:16,Teacher E,English,7,,,b,no
+149,00:11:50:15,00:11:56:10,00:00:05:25,Teacher E,English,"And so, I heard [Unknown Person 5] say the output is 7 every time.",,,b,no
+150,00:11:56:12,00:11:58:18,00:00:02:06,Teacher E,English,Does anyone have a different way of saying that?,,,b,no
+151,00:12:02:20,00:12:03:25,00:00:01:05,Teacher E,English,Can anyone say it differently than that?,,,b,no
+152,00:12:08:25,00:12:10:25,00:00:02:00,Student E3,English,The output is always gonna be 7?,,,b,yes
+153,00:12:13:09,00:12:16:19,00:00:03:10,Teacher E,English,"Yeah, I mean, we're kinda all saying the same thing, that's totally fine.",,,b,no
+154,00:12:16:21,00:12:23:19,00:00:06:28,Teacher E,English,"I saw some people who said the output, the number becomes 7, that's another thing I saw from someone, the number becomes 7?",,,b,no
+155,00:12:24:21,00:12:29:17,00:00:04:26,Teacher E,English,"Alright, so, our rule does not always have to be a math equation, that's what we're trying to get to. ",,,b,no
+156,00:12:29:28,00:12:30:06,00:00:00:08,Teacher E,English,Okay?,,,b,no
+157,00:12:30:08,00:12:35:06,00:00:04:28,Teacher E,English,"Sometimes the rule we just say it in words, we're just gonna explain it, and tell me what's happening.",,,b,no
+158,00:12:35:17,00:12:40:11,00:00:04:24,Teacher E,English,"So, on the next slide, before you start, I just wanna make sure you guys understand.",,,b,no
+159,00:12:40:24,00:12:44:01,00:00:03:07,Teacher E,English,"Rule number 3, this is a really difficult one.",,,b,no
+160,00:12:45:10,00:12:51:16,00:00:06:06,Teacher E,English,And I would like to make sure that you know that I can see everything that you type in here.,,,b,no
+161,00:12:52:07,00:12:52:15,00:00:00:08,Teacher E,English,Okay?,,,b,no
+162,00:12:52:17,00:12:53:25,00:00:01:08,Teacher E,English,I just wanna put that out there.,,,b,no
+163,00:12:54:08,00:12:57:11,00:00:03:03,Teacher E,English,I can see it and it is attached to your name.,,,b,no
+164,00:12:57:25,00:13:04:00,00:00:06:03,Teacher E,English,"So, you know, whatever single word you decide to type in here, just know that your teacher's eyes are gonna look at it.",,,b,no
+165,00:13:04:02,00:13:04:18,00:00:00:16,Teacher E,English,Okay?,,,b,no
+166,00:13:04:20,00:13:05:21,00:00:01:01,Teacher E,English,"So, just keep that in mind.",,,b,no
+167,00:13:05:23,00:13:10:06,00:00:04:13,Teacher E,English,"Okay, but you can type any word into the machine.",,,b,no
+168,00:13:10:08,00:13:10:29,00:00:00:21,Teacher E,English,One word.,,,b,no
+169,00:13:11:01,00:13:16:19,00:00:05:18,Teacher E,English,"You can't type two words, like you can't type like, you know, chocolate milk, you have to type chocolate, like that would be the word.",,,b,no
+170,00:13:17:03,00:13:17:20,00:00:00:17,Teacher E,English,Okay?,,,b,no
+171,00:13:17:22,00:13:18:13,00:00:00:21,Teacher E,English,Try it.,,,b,no
+172,00:13:18:19,00:13:23:01,00:00:04:12,Teacher E,English,"This is probably the most difficult one, the one that people struggle with the most, okay?",,,b,no
+173,00:13:23:03,00:13:24:29,00:00:01:26,Teacher E,English,"So, it is a tough one to figure out.",,,b,no
+174,00:13:25:08,00:13:27:24,00:00:02:16,Teacher E,English,There is a rule that the machine is following.,,,b,no
+175,00:13:28:01,00:13:31:18,00:00:03:17,Teacher E,English,"So, I'm gonna give you 5 minutes to see if anyone can figure it out, it is kind of tricky.",,,b,no
+176,00:13:33:02,00:13:34:05,00:00:01:03,Teacher E,English,"Okay, 5 minutes.",,,b,no
+177,00:13:36:12,00:13:37:13,00:00:01:01,Student E3,English,[unintelligible] I'm happy.,,,b,yes
+178,00:14:15:05,00:14:15:19,00:00:00:14,Student E3,English,Game.,,,b,yes
+179,00:14:20:00,00:14:21:19,00:00:01:19,Student E3,English,"Alright, I finished.",,,b,yes
+180,00:14:22:24,00:14:23:24,00:00:01:00,Teacher E,English,You know what it is already?,,,b,no
+181,00:14:26:23,00:14:27:06,00:00:00:13,Teacher E,English,Wow.,,,b,no
+182,00:14:27:25,00:14:28:28,00:00:01:03,Teacher E,English,"Okay, so you know the rule.",,,b,no
+183,00:14:30:11,00:14:30:20,00:00:00:09,Teacher E,English,Okay.,,,b,no
+184,00:14:30:29,00:14:32:01,00:00:01:02,Teacher E,English,"[Student E1], do you know it yet?",,,b,no
+185,00:14:32:18,00:14:33:25,00:00:01:07,Teacher E,English,Don't tell [Student E1] yet.,,,b,no
+186,00:14:34:05,00:14:39:04,00:00:04:29,Teacher E,English,"But when the 5-minute timer goes off, I'm gonna have you guys check it, then tell her if she didn't figure it out.",,,b,no
+187,00:14:39:06,00:14:41:04,00:00:01:28,Teacher E,English,"This is a tricky one, I just [unintelligible].",,,b,no
+188,00:14:43:05,00:14:44:13,00:00:01:08,Student E3,English,[unintelligible].,,,b,yes
+189,00:15:14:06,00:15:14:28,00:00:00:22,Student E3,Spanish,Concha.,,,b,yes
+190,00:15:16:18,00:15:17:29,00:00:01:11,Student E3,English,Bring it to B.,,,b,yes
+191,00:15:23:00,00:15:24:21,00:00:01:21,Student E3,English,"A, B, C, D.",,,b,yes
+192,00:15:34:04,00:15:41:14,00:00:07:10,Student E3,English,"A, B, C, D, E, F, G, H, I, L, M, N, O, N, P, N, O, P.",,,b,yes
+193,00:15:43:09,00:15:46:14,00:00:03:05,Student E3,English,"I got it, I got it, I got it, I got it, I got it, I got it, let's go.",,,b,yes
+194,00:15:51:11,00:15:51:24,00:00:00:13,Student E3,English,Okay.,,,b,yes
+195,00:15:52:10,00:16:08:00,00:00:15:18,Student E3,English,"A, B, C, D, E, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, Q, R, S, T, U, V, W, X, Y, and Z.",,,b,yes
+196,00:16:08:14,00:16:10:06,00:00:01:22,Student E3,English,"Oh my, A, B, C.",,,b,yes
+197,00:16:13:07,00:16:14:08,00:00:01:01,Student E1,English,Student E1bud.,,,b,yes
+198,00:16:14:10,00:16:15:07,00:00:00:27,Student E1,English,What the...?,,,b,yes
+199,00:16:16:11,00:16:18:06,00:00:01:25,Student E3,English,"Alright, Imma help you, okay?",,,b,yes
+200,00:16:19:00,00:16:19:20,00:00:00:20,Student E1,English,Student E1bud.,,,b,yes
+201,00:16:19:22,00:16:20:08,00:00:00:16,Student E1,English,What the hell?,,,b,yes
+202,00:16:20:24,00:16:21:03,00:00:00:09,Student E3,English,Look.,,,b,yes
+203,00:16:22:24,00:16:24:20,00:00:01:26,Student E3,English,"A, B, C, D, E, F, G, right?",,,b,yes
+204,00:16:26:07,00:16:28:28,00:00:02:21,Student E3,English,"That end of the word, of my name, O.",,,b,yes
+205,00:16:29:09,00:16:36:29,00:00:07:20,Student E3,English,"A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, M, N, L, O, P.",,,b,yes
+206,00:16:39:00,00:16:40:06,00:00:01:06,Student E1,English,Oh.,,,b,yes
+207,00:17:09:19,00:17:11:05,00:00:01:16,Student E3,English,"Oh yeah, another example.",,,b,yes
+208,00:17:11:24,00:17:12:16,00:00:00:21,Student E3,Spanish,Concha.,,,b,yes
+209,00:17:13:16,00:17:14:24,00:00:01:08,Student E3,English and Spanish,"You know what ""concha"" is, right?",,,b,yes
+210,00:17:15:08,00:17:15:18,00:00:00:10,Student E1,Spanish,Concha?,,,b,yes
+211,00:17:15:24,00:17:16:09,00:00:00:15,Student E3,Spanish,Concha?,,,b,yes
+212,00:17:17:24,00:17:21:23,00:00:03:29,Student E3,English,"Basically, like a bread that we call it in Spanish.",,,b,yes
+213,00:17:22:03,00:17:22:16,00:00:00:13,Student E1,English,The bread?,,,b,yes
+214,00:17:23:28,00:17:25:22,00:00:01:24,Student E3,English and Spanish,"Like concha, the end.",,,b,yes
+215,00:17:26:23,00:17:28:29,00:00:02:06,Student E3,English,And then it comes out with a B.,,,b,yes
+216,00:17:29:18,00:17:32:28,00:00:03:10,Student E3,English,It's in alphabetical order.,,,b,yes
+217,00:17:34:02,00:17:36:11,00:00:02:09,Student E3,English,"It starts with A, the alphabet.",,,b,yes
+218,00:17:37:06,00:17:38:20,00:00:01:14,Student E3,English,And what it gave me is B.,,,b,yes
+219,00:17:39:16,00:17:41:24,00:00:02:08,Teacher E,English,Four students who've figured it out.,,,b,no
+220,00:17:42:06,00:17:43:06,00:00:01:00,Student E3,English,I was the first one to.,,,b,yes
+221,00:17:44:20,00:17:46:05,00:00:01:15,Teacher E,English,"Okay, so [Student E1] do you know it?",,,b,no
+222,00:17:47:07,00:17:47:27,00:00:00:20,Student E3,English,I helped her a bit.,,,b,yes
+223,00:17:47:27,00:17:50:26,00:00:02:29,Teacher E,English,"Okay, that's okay, I just wanna make sure if you did talk to her already.",,,b,no
+224,00:17:53:14,00:17:54:12,00:00:00:28,Student E3,English,Do you get it at least?,,,b,yes
+225,00:17:56:01,00:17:59:04,00:00:03:03,Student E1,English,Actual output [unintelligible].,,,b,yes
+226,00:18:00:15,00:18:01:09,00:00:00:24,Student E3,English,Use the alphabet.,,,b,yes
+227,00:18:01:29,00:18:02:06,00:00:00:07,Student E1,English,Mmm?,,,b,yes
+228,00:18:02:21,00:18:03:20,00:00:00:29,Student E3,English,Use the alphabet.,,,b,yes
+229,00:18:06:11,00:18:08:10,00:00:01:29,Student E3,English,"Cause in ""friend,"" right?",,,b,yes
+230,00:18:08:26,00:18:10:10,00:00:01:14,Student E3,English,What comes after D?,,,b,yes
+231,00:18:12:08,00:18:13:12,00:00:01:04,Student E3,English,Like in the alphabet.,,,b,yes
+232,00:18:16:16,00:18:17:18,00:00:01:02,Student E1,English,I don't know.,,,b,yes
+233,00:18:19:12,00:18:19:26,00:00:00:14,Student E1,English,E?,,,b,yes
+234,00:18:21:07,00:18:22:19,00:00:01:12,Student E3,English,What comes after D?,,,b,yes
+235,00:18:23:11,00:18:23:23,00:00:00:12,Student E1,English,E?,,,b,yes
+236,00:18:24:08,00:18:24:28,00:00:00:20,Student E3,English,Exactly.,,,b,yes
+237,00:18:26:02,00:18:28:12,00:00:02:10,Student E3,English,"So, the right answer for that one is E.",,,b,yes
+238,00:18:32:04,00:18:33:01,00:00:00:27,Student E3,English,Wallet.,,,b,yes
+239,00:18:33:07,00:18:35:14,00:00:02:07,Student E3,English,"T, U, V.",,,b,yes
+240,00:18:39:15,00:18:40:15,00:00:01:00,Student E3,English,"Friend, again.",,,b,yes
+241,00:18:40:20,00:18:41:02,00:00:00:12,Student E3,English,E.,,,b,yes
+242,00:18:46:15,00:18:47:26,00:00:01:11,Student E1,English,Okay.,,,b,yes
+243,00:18:47:26,00:18:48:15,00:00:00:19,Student E1,English,Get it now?,,,b,yes
+244,00:18:49:03,00:18:49:15,00:00:00:12,Student E3,English,Okay.,,,b,yes
+245,00:19:05:03,00:19:06:05,00:00:01:02,Student E1,English,"Wow, that's crazy.",,,b,yes
+246,00:19:07:13,00:19:08:11,00:00:00:28,Student E3,English,You're so smart.,,,b,yes
+247,00:19:08:13,00:19:09:10,00:00:00:27,Student E3,English,What the hell?,,,b,yes
+248,00:19:10:28,00:19:12:00,00:00:01:02,Student E1,English,I forgot about this.,,,b,yes
+249,00:19:12:00,00:19:18:15,00:00:06:15,Teacher E,English,"We're gonna take a pause, and we're gonna review...",,,b,no
+250,00:19:25:14,00:19:28:11,00:00:02:27,Teacher E,English,"Okay, we're gonna talk about rule number 3.",,,b,no
+251,00:19:28:22,00:19:31:19,00:00:02:27,Teacher E,English,"Uhm, so, who knows...?",,,b,no
+252,00:00:05:28,00:00:08:04,00:00:02:06,Student E3,English,If you put input A into this rule...,,,c,yes
+253,00:00:51:08,00:00:52:03,00:00:00:25,Student E1,English,What up?,,,c,yes
+254,00:01:44:01,00:01:46:19,00:00:02:18,Student E3,English,If I put input A into this rule...,,,c,yes
+255,00:01:56:16,00:02:01:00,00:00:04:12,Student E3,English,"Into this rule, it would turn into a name that starts...",,,c,yes
+256,00:02:18:05,00:02:18:21,00:00:00:16,Student E3,English,With...,,,c,yes
+257,00:02:24:09,00:02:26:04,00:00:01:25,Student E3,English,And B and name.,,,c,yes
+258,00:02:34:06,00:02:36:24,00:00:02:18,Student E3,English,"It comes to me [unintelligible], then put [unintelligible].",,,c,yes
+259,00:02:39:26,00:02:41:04,00:00:01:08,Student E3,English,"Then, put input A.",,,c,yes
+260,00:02:42:28,00:02:51:06,00:00:08:08,Student E3,English,"If I put input A into this rule, that output would be a name, from someone that starts with the input [unintelligible].",,,c,yes
+261,00:03:42:07,00:03:43:01,00:00:00:24,Student E3,English,[unintelligible],,,c,yes
+262,00:04:06:27,00:04:10:04,00:00:03:07,Student E3,English,What do you think...?,,,c,yes
+263,00:04:11:27,00:04:14:18,00:00:02:21,Student E3,English,Mix of rule or function?,,,c,yes
+264,00:04:48:11,00:04:49:27,00:00:01:16,Teacher E,English,What did you say for the function?,,,c,no
+265,00:04:49:29,00:04:51:03,00:00:01:04,Teacher E,English,There's something new about it?,,,c,no
+266,00:04:51:16,00:04:52:06,00:00:00:20,Student E3,English,"Oh, this?",,,c,yes
+267,00:04:52:11,00:04:54:24,00:00:02:13,Teacher E,English,"Yeah, for like what makes a rule a function?",,,c,no
+268,00:04:55:05,00:04:55:18,00:00:00:13,Student E3,English,Oh.,,,c,yes
+269,00:04:58:05,00:04:58:29,00:00:00:24,Teacher E,English,I'll come back.,,,c,no
+270,00:04:59:14,00:04:59:22,00:00:00:08,Student E3,English,Yeah.,,,c,yes
+271,00:05:13:27,00:05:14:04,00:00:00:07,Teacher E,English,Alright.,,,c,no
+272,00:05:14:25,00:05:19:23,00:00:04:28,Teacher E,English,"I understand why you're stuck, because it's hard to know what they're gonna say.",,,c,no
+273,00:05:20:01,00:05:21:02,00:00:01:01,Teacher E,English,You can give me a guess.,,,c,no
+274,00:05:21:28,00:05:23:19,00:00:01:21,Teacher E,English,Any guess that you think would make sense.,,,c,no
+275,00:05:30:07,00:05:34:10,00:00:04:03,Teacher E,English,"Okay, we're gonna bring our focus back to the front please, in 3.",,,c,no
+276,00:00:00:00,00:00:02:13,00:00:02:13,Teacher E,English,"Now, the function, how do we know when something is a function?",,,d,no
+277,00:00:03:00,00:00:07:15,00:00:04:15,Teacher E,English,"So, one person from your group needs to be prepared to share when the timer goes off.",,,d,no
+278,00:02:36:29,00:02:38:18,00:00:01:19,Student E3,English,[unintelligible] number.,,,d,yes
+279,00:02:48:05,00:02:48:14,00:00:00:09,Student E3,English,Hey.,,,d,yes
+280,00:02:49:08,00:02:50:10,00:00:01:02,Teacher E,English,"You can think about it on your own, right?",,,d,no
+281,00:02:50:10,00:02:52:10,00:00:02:00,Student E3,English,I have to change two numbers...,,,d,yes
+282,00:02:52:10,00:02:53:11,00:00:01:01,Teacher E,English,"You can change two numbers, yeah.",,,d,no
+283,00:02:53:11,00:02:55:05,00:00:01:24,Teacher E,English,It says at least one number.,,,d,no
+284,00:02:55:05,00:02:56:06,00:00:01:01,Teacher E,English,You can change more than one.,,,d,no
+285,00:02:56:19,00:02:57:02,00:00:00:13,Student E3,English,Okay.,,,d,yes
+286,00:03:01:15,00:03:09:09,00:00:07:24,Teacher E,English,"Okay, so this is the time that I'm gonna start asking people to share their thinking, so [unintelligible] somebody in your group that's ready to share.",,,d,no
+287,00:03:09:24,00:03:10:12,00:00:00:18,Teacher E,English,Okay?,,,d,no
+288,00:03:10:12,00:03:11:15,00:00:01:03,Teacher E,English,"So, the question is...",,,d,no
